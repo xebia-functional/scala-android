@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Scala API Demos</string>
+    <string name="title_ripple_background">Ripple Background</string>
+    <string name="title_text_styles">Text Styles</string>
+
+    <string name="min_api_not_available">You need an Android version upper</string>
+
+</resources>
