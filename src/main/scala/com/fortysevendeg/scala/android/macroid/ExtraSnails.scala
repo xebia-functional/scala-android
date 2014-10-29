@@ -2,20 +2,31 @@ package com.fortysevendeg.scala.android.macroid
 
 import android.animation.{Animator, AnimatorListenerAdapter}
 import android.view.View._
-import android.view.{ViewAnimationUtils, View}
+import android.view.{View, ViewAnimationUtils}
 import com.fortysevendeg.scala.android.ui.components.RippleBackgroundView
 import macroid.Snail
 
-import android.view.animation.{ AlphaAnimation, Animation }
-import android.view.View
-import scala.concurrent.{ Future, Promise, ExecutionContext }
-import android.view.animation.Animation.AnimationListener
+import scala.concurrent.Promise
 import scala.util.Success
-import android.widget.ProgressBar
-import java.util.concurrent.{ TimeUnit, Executors }
-import scala.util.control.NonFatal
 
 object RevealSnails {
+
+  def move(toView: View) = Snail[View] {
+    view ⇒
+      val animPromise = Promise[Unit]()
+
+      val finalX: Int = (toView.getX + (toView.getWidth / 2) - (view.getWidth / 2) - view.getX).asInstanceOf[Int]
+      val finalY: Int = (toView.getY + (toView.getHeight / 2) - (view.getHeight / 2) - view.getY).asInstanceOf[Int]
+
+      view.animate.translationXBy(finalX).translationYBy(finalY).setListener(new AnimatorListenerAdapter {
+        override def onAnimationEnd(animation: Animator) {
+          super.onAnimationEnd(animation)
+          animPromise.complete(Success(()))
+        }
+      }).start
+
+      animPromise.future
+  }
 
   def ripple(rippleData : RippleSnailData) = Snail[RippleBackgroundView] {
     view ⇒

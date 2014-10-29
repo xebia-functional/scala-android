@@ -4,7 +4,7 @@ android.Plugin.androidBuild
 
 platformTarget in Android := "android-21"
 
-name := """material-scala-sample"""
+name := """scala-android"""
 
 scalaVersion := "2.11.1"
 

@@ -3,12 +3,16 @@ package com.fortysevendeg.scala.android.ui.ripplebackground
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.ActionBarActivity
+import android.view.MenuItem
 import com.fortysevendeg.scala.android.macroid.RippleSnailData
+import com.fortysevendeg.scala.android.ui.components.{RippleBackgroundView, CircleView}
 import macroid.FullDsl._
 import macroid.Contexts
 import com.fortysevendeg.scala.android.macroid.RevealSnails._
+import macroid.util.Ui
 
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
 
 class RippleBackgroundActivity extends ActionBarActivity with Contexts[ActionBarActivity] with Layout {
 
@@ -17,23 +21,42 @@ class RippleBackgroundActivity extends ActionBarActivity with Contexts[ActionBar
 
     setContentView(layout)
 
+    val rippleSnailData = RippleSnailData.fromPlace(rippleBackground.get)
+
     rippleBackground.map(_.setBackgroundColor(Color.RED))
 
     circle1.map(_.setColor(Color.RED))
     runUi(circle1 <~ On.click {
-      rippleBackground <~~ ripple(RippleSnailData.fromPlace(rippleBackground.get).copy(resColor = Color.RED))
+      rippleBackground <~~ ripple(rippleSnailData.copy(resColor = Color.RED))
     })
+
+    val a2 = rippleBackground <~~ ripple(rippleSnailData.copy(resColor = Color.BLUE))
 
     circle2.map(_.setColor(Color.BLUE))
     runUi(circle2 <~ On.click {
-      rippleBackground <~~ ripple(RippleSnailData.fromPlace(rippleBackground.get).copy(resColor = Color.BLUE))
+      a2
     })
+
+    val a3 = (circle3 <~~ move(rippleBackground.get)) ~~ (rippleBackground <~~ ripple(rippleSnailData.copy(resColor = Color.GREEN)))
 
     circle3.map(_.setColor(Color.GREEN))
     runUi(circle3 <~ On.click {
-      rippleBackground <~~ ripple(RippleSnailData.fromPlace(rippleBackground.get).copy(resColor = Color.GREEN))
+      a3
     })
 
+    toolBar map setSupportActionBar
+
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true)
+
+  }
+  override def onOptionsItemSelected(item: MenuItem): Boolean = {
+    item.getItemId match {
+      case android.R.id.home => {
+        finish()
+        false
+      }
+    }
+    super.onOptionsItemSelected(item)
   }
 
 }
