@@ -37,7 +37,11 @@ class RippleBackgroundActivity extends ActionBarActivity with Contexts[ActionBar
       a2
     })
 
-    val a3 = (circle3 <~~ move(rippleBackground.get)) ~~ (rippleBackground <~~ ripple(rippleSnailData.copy(resColor = Color.GREEN)))
+    val moveCircleToViewSNail = circle3 <~~ move(rippleBackground.get)
+
+    val rippleBackgroundAnimation = rippleBackground <~~ ripple(rippleSnailData.copy(resColor = Color.GREEN))
+
+    val a3 = moveCircleToViewSNail ~ rippleBackgroundAnimation
 
     circle3.map(_.setColor(Color.GREEN))
     runUi(circle3 <~ On.click {
