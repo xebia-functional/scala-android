@@ -13,7 +13,7 @@ object Styles {
 
   val contentStyle = llVertical
 
-  val scrollStyle = llVertical
+  val scrollStyle = llVertical + vPaddings(10)
 
   val textLargeStyle = tvSize(24)
 

@@ -23,7 +23,12 @@ class ListDemosAdapter(listener: RecyclerClickListener)
       "Texts Styles",
       "Description for Texts Styles",
       "TextStylesActivity",
-      14))
+      14),
+    DemoInfo(
+      "Circular Reveal",
+      "Description for Circular Reveal",
+      "CircularRevealActivity",
+      21))
 
   override def onCreateViewHolder(parentViewGroup: ViewGroup, i: Int): ViewHolder = {
     val adapter = new Adapter

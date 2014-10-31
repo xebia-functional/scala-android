@@ -4,6 +4,7 @@ import android.os.{Build, Bundle}
 import android.support.v7.app.ActionBarActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.fortysevendeg.scala.android.R
+import com.fortysevendeg.scala.android.ui.circularreveal.CircularRevealActivity
 import com.fortysevendeg.scala.android.ui.ripplebackground.RippleBackgroundActivity
 import com.fortysevendeg.scala.android.ui.textstyles.TextStylesActivity
 import macroid.util.Ui
@@ -30,6 +31,7 @@ class MainActivity
           info match {
             case DemoInfo(_, _, "RippleBackgroundActivity", _) => aStartActivity[RippleBackgroundActivity]
             case DemoInfo(_, _, "TextStylesActivity", _) => aStartActivity[TextStylesActivity]
+            case DemoInfo(_, _, "CircularRevealActivity", _) => aStartActivity[CircularRevealActivity]
           }
         } else {
           aShortToast(getString(R.string.min_api_not_available))
@@ -40,6 +42,7 @@ class MainActivity
     recyclerView.map(view => {
       view.setLayoutManager(layoutManager)
       view.setAdapter(adapter)
+      view.addItemDecoration(new DividerItemDecorator)
     })
 
     toolBar map setSupportActionBar

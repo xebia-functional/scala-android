@@ -25,5 +25,7 @@
 
         <activity android:name=".ui.textstyles.TextStylesActivity" />
 
+        <activity android:name=".ui.circularreveal.CircularRevealActivity" />
+
     </application>
 </manifest>
