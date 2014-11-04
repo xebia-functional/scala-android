@@ -4,13 +4,12 @@ import android.animation.{Animator, AnimatorListenerAdapter}
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.ActionBarActivity
-import android.view.MenuItem
+import android.view.{View, MenuItem}
 import com.fortysevendeg.scala.android.ui.components.{RippleSnailData, CircleView}
 import macroid.FullDsl._
-import macroid.Contexts
+import macroid.{Ui, Contexts}
 import com.fortysevendeg.scala.android.macroid.RevealSnails._
 import com.fortysevendeg.scala.android.macroid.ViewTweaks._
-import macroid.util.Ui
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import com.fortysevendeg.scala.android.ui.components.RippleBackgroundSnails._
@@ -63,14 +62,14 @@ class RippleBackgroundActivity extends ActionBarActivity with Contexts[ActionBar
           resColor = color,
           listener = Some(new AnimatorListenerAdapter {
             override def onAnimationStart(animation: Animator): Unit = {
-              runUi(Ui{ circleView <~ vInvisible })
+              runUi(circleView <~ vInvisible)
             }
             override def onAnimationEnd(animation: Animator): Unit = {
-              runUi(Ui{ circleView <~ vVisible <~ vTransformation()})
+              runUi(circleView <~ vVisible <~ vTransformation(0, 0))
             }
           })
         )
-    (circleView <~~ move(rippleBackground)) ~ (rippleBackground <~~ ripple(rippleData))
+    (circleView <~~ move(rippleBackground)) ~~ (rippleBackground <~~ ripple(rippleData))
 
   }
 

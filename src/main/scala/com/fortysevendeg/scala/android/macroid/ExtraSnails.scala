@@ -2,11 +2,10 @@ package com.fortysevendeg.scala.android.macroid
 
 import android.animation.{Animator, AnimatorListenerAdapter}
 import android.view.View._
-import android.view.{ViewGroup, View, ViewAnimationUtils}
-import com.fortysevendeg.scala.android.ui.components.RippleBackgroundView
+import android.view.{View, ViewAnimationUtils}
 import macroid.Snail
 
-import scala.concurrent.{Future, Promise}
+import scala.concurrent.Promise
 import scala.util.Success
 
 object RevealSnails {

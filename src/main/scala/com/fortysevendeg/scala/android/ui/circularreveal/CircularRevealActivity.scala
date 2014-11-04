@@ -1,6 +1,6 @@
 package com.fortysevendeg.scala.android.ui.circularreveal
 
-import android.os.Bundle
+import android.os.{Build, Bundle}
 import android.support.v7.app.ActionBarActivity
 import android.view.{View, MenuItem}
 import macroid.Contexts
@@ -20,11 +20,7 @@ class CircularRevealActivity extends ActionBarActivity with Contexts[ActionBarAc
     getSupportActionBar().setDisplayHomeAsUpEnabled(true)
 
     runUi(circleButton <~ On.Click {
-      if (content.get.getVisibility == View.VISIBLE) {
-        content <~~ hideCircularReveal
-      } else {
-        content <~~ showCircularReveal
-      }
+      anim
     })
 
   }
@@ -37,4 +33,21 @@ class CircularRevealActivity extends ActionBarActivity with Contexts[ActionBarAc
     }
     super.onOptionsItemSelected(item)
   }
+
+  def anim = {
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+      if (content.get.getVisibility == View.VISIBLE) {
+        content <~~ fadeOut(300)
+      } else {
+        content <~~ fadeIn(300)
+      }
+    } else {
+      if (content.get.getVisibility == View.VISIBLE) {
+        content <~~ hideCircularReveal
+      } else {
+        content <~~ showCircularReveal
+      }
+    }
+  }
+
 }

@@ -2,14 +2,13 @@ package com.fortysevendeg.scala.android.macroid
 
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
-import android.support.v4.view.ViewCompat
 import android.support.v7.widget.{CardView, RecyclerView, Toolbar}
 import android.util.TypedValue
 import android.view.ViewGroup.LayoutParams._
 import android.view.{View, ViewGroup}
-import android.widget.{Button, FrameLayout, TextView, LinearLayout}
-import macroid.Tweak
+import android.widget.{FrameLayout, LinearLayout, TextView}
 import macroid.FullDsl._
+import macroid.Tweak
 
 object ViewTweaks {
   type W = View

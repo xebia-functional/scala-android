@@ -2,10 +2,8 @@ package com.fortysevendeg.scala.android.macroid
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Bundle
 import android.widget.Toast
-import macroid.{ToastDsl, ActivityContext}
-import macroid.util.Ui
+import macroid.{ActivityContext, Ui}
 
 object ExtraUIActions {
 
