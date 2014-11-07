@@ -1,14 +1,18 @@
 package com.fortysevendeg.scala.android.ui.ripplebackground
 
+import android.animation.{Animator, AnimatorListenerAdapter}
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.ActionBarActivity
-import com.fortysevendeg.scala.android.macroid.RippleSnailData
+import android.view.{View, MenuItem}
+import com.fortysevendeg.scala.android.ui.components.{RippleSnailData, CircleView}
 import macroid.FullDsl._
-import macroid.Contexts
+import macroid.{Ui, Contexts}
 import com.fortysevendeg.scala.android.macroid.RevealSnails._
+import com.fortysevendeg.scala.android.macroid.ViewTweaks._
 
 import scala.concurrent.ExecutionContext.Implicits.global
+import com.fortysevendeg.scala.android.ui.components.RippleBackgroundSnails._
 
 class RippleBackgroundActivity extends ActionBarActivity with Contexts[ActionBarActivity] with Layout {
 
@@ -17,22 +21,55 @@ class RippleBackgroundActivity extends ActionBarActivity with Contexts[ActionBar
 
     setContentView(layout)
 
+    val rippleSnailData = RippleSnailData.fromPlace(rippleBackground.get)
+
     rippleBackground.map(_.setBackgroundColor(Color.RED))
 
     circle1.map(_.setColor(Color.RED))
     runUi(circle1 <~ On.click {
-      rippleBackground <~~ ripple(RippleSnailData.fromPlace(rippleBackground.get).copy(resColor = Color.RED))
+      anim(circle1, Color.RED)
     })
 
     circle2.map(_.setColor(Color.BLUE))
     runUi(circle2 <~ On.click {
-      rippleBackground <~~ ripple(RippleSnailData.fromPlace(rippleBackground.get).copy(resColor = Color.BLUE))
+      anim(circle2, Color.BLUE)
     })
 
     circle3.map(_.setColor(Color.GREEN))
     runUi(circle3 <~ On.click {
-      rippleBackground <~~ ripple(RippleSnailData.fromPlace(rippleBackground.get).copy(resColor = Color.GREEN))
+      anim(circle3, Color.GREEN)
     })
+
+    toolBar map setSupportActionBar
+
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true)
+
+  }
+  override def onOptionsItemSelected(item: MenuItem): Boolean = {
+    item.getItemId match {
+      case android.R.id.home => {
+        finish()
+        false
+      }
+    }
+    super.onOptionsItemSelected(item)
+  }
+
+  def anim(circleView: Option[CircleView], color: Int) = {
+
+    val rippleData = RippleSnailData.fromPlace(rippleBackground.get).
+        copy(
+          resColor = color,
+          listener = Some(new AnimatorListenerAdapter {
+            override def onAnimationStart(animation: Animator): Unit = {
+              runUi(circleView <~ vInvisible)
+            }
+            override def onAnimationEnd(animation: Animator): Unit = {
+              runUi(circleView <~ vVisible <~ vTransformation(0, 0))
+            }
+          })
+        )
+    (circleView <~~ move(rippleBackground)) ~~ (rippleBackground <~~ ripple(rippleData))
 
   }
 

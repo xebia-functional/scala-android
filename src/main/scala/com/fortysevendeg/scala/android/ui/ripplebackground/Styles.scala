@@ -14,7 +14,7 @@ object Styles {
 
   val backgroundStyle = vMatchParent
 
-  val circlesContentStyle = vMatchWidth + llGravity(Gravity.CENTER_HORIZONTAL)
+  val circlesContentStyle = vMatchParent + llGravity(Gravity.CENTER_HORIZONTAL)
 
   // TODO We need use dp, px or ps in this object. Compiler say "value dp is not a member of Int"
   // It's possible that we need implicits parameters

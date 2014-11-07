@@ -2,4 +2,7 @@
 <resources>
     <color name="colorPrimary">#ffffc019</color>
     <color name="colorPrimaryDark">#ffe6ae17</color>
+
+    <color name="apiRequired">#ffe61a2b</color>
+    <color name="apiNotRequired">#ffe6ae17</color>
 </resources>

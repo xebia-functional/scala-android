@@ -25,6 +25,6 @@ object Styles {
 
   val descriptionStyle = tvSize(14) + tvNormalLight + tvColor(Color.GRAY) + tvMaxLines(2)
 
-  val apiStyle = tvSize(10) + tvItalicLight + tvColor(Color.WHITE) + vPaddings(12) + vBackground(R.drawable.background_item_api)
+  val apiStyle = tvSize(10) + tvItalicLight + tvColor(Color.WHITE) + vPaddings(12)
 
 }

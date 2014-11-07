@@ -6,9 +6,9 @@ import android.support.v7.widget.{CardView, RecyclerView, Toolbar}
 import android.util.TypedValue
 import android.view.ViewGroup.LayoutParams._
 import android.view.{View, ViewGroup}
-import android.widget.{FrameLayout, TextView, LinearLayout}
-import macroid.Tweak
+import android.widget.{FrameLayout, LinearLayout, TextView}
 import macroid.FullDsl._
+import macroid.Tweak
 
 object ViewTweaks {
   type W = View
@@ -57,6 +57,12 @@ object ViewTweaks {
 
   def vTag(tag: String) = Tweak[W](_.setTag(tag))
 
+  def vTransformation(x: Int = 0, y: Int = 0) = Tweak[W] {
+    view =>
+      view.setTranslationX(x)
+      view.setTranslationY(y)
+  }
+
   val vGone = Tweak[View](_.setVisibility(View.GONE))
   val vVisible = Tweak[View](_.setVisibility(View.VISIBLE))
   val vInvisible = Tweak[View](_.setVisibility(View.INVISIBLE))
@@ -68,11 +74,19 @@ object LinearLayoutTweaks {
 
   val llHorizontal = Tweak[W](_.setOrientation(LinearLayout.HORIZONTAL))
   val llVertical = Tweak[W](_.setOrientation(LinearLayout.VERTICAL))
-  def llGravity(gravity: Int) = Tweak[W](_.setGravity(gravity))
   val llMatchWeightVertical = lp[W](MATCH_PARENT, 0, 1)
   val llMatchWeightHorizontal = lp[W](0, MATCH_PARENT, 1)
   val llWrapWeightVertical = lp[W](WRAP_CONTENT, 0, 1)
   val llWrapWeightHorizontal = lp[W](0, WRAP_CONTENT, 1)
+
+  def llGravity(gravity: Int) = Tweak[W](_.setGravity(gravity))
+
+  def llLayoutGravity(gravity: Int) = Tweak[View] {
+    view =>
+      val param = new LinearLayout.LayoutParams(view.getLayoutParams.width, view.getLayoutParams.height)
+      param.gravity = gravity
+      view.setLayoutParams(param)
+  }
 }
 
 object FrameLayoutTweaks {
@@ -80,6 +94,14 @@ object FrameLayoutTweaks {
 
   val flMatchWeightVertical = lp[W](MATCH_PARENT, 0, 1)
   val flMatchWeightHorizontal = lp[W](0, MATCH_PARENT, 1)
+
+  def flLayoutGravity(gravity: Int) = Tweak[View] {
+    view =>
+      val param = new FrameLayout.LayoutParams(view.getLayoutParams.width, view.getLayoutParams.height)
+      param.gravity = gravity
+      view.setLayoutParams(param)
+  }
+
 }
 
 object RecyclerViewTweaks {
@@ -118,6 +140,12 @@ object TextTweaks {
   def tvLines(lines: Int) = Tweak[W](_.setLines(lines))
 
   def tvMaxLines(lines: Int) = Tweak[W](_.setMaxLines(lines))
+
+  def tvGravity(gravity: Int) = Tweak[W](_.setGravity(gravity))
+
+  def tvText(text: String) = Tweak[W](_.setText(text))
+
+  def tvText(text: Int) = Tweak[W](_.setText(text))
 
 }
 
