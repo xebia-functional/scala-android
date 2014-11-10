@@ -8,6 +8,7 @@ import com.fortysevendeg.scala.android.macroid.TextTweaks._
 import com.fortysevendeg.scala.android.macroid.LinearLayoutTweaks._
 import com.fortysevendeg.scala.android.macroid.ViewTweaks._
 import com.fortysevendeg.scala.android.ui.components.CircleButtonTweaks._
+import macroid.FullDsl._
 
 object Styles {
 

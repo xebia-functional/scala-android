@@ -2,21 +2,20 @@ package com.fortysevendeg.scala.android.ui.main
 
 import android.os.{Build, Bundle}
 import android.support.v7.app.ActionBarActivity
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.{GridLayoutManager, LinearLayoutManager}
 import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.scala.android.macroid.ExtraActions._
 import com.fortysevendeg.scala.android.ui.circularreveal.CircularRevealActivity
 import com.fortysevendeg.scala.android.ui.ripplebackground.RippleBackgroundActivity
 import com.fortysevendeg.scala.android.ui.textstyles.TextStylesActivity
 import macroid.Contexts
-
+import macroid.FullDsl._
+import com.fortysevendeg.scala.android.macroid.DevicesQueries._
 
 class MainActivity
     extends ActionBarActivity
     with Contexts[ActionBarActivity]
     with Layout {
-
-  val layoutManager = new LinearLayoutManager(this)
 
   override def onCreate(savedInstanceState: Bundle) = {
     super.onCreate(savedInstanceState)
@@ -36,6 +35,12 @@ class MainActivity
         }
       }
     })
+
+    val layoutManager =
+      landscapeTablet ?
+          new GridLayoutManager(this, 4) |
+          tablet ?
+              new GridLayoutManager(this, 3) | new LinearLayoutManager(this)
 
     recyclerView.map(view => {
       view.setLayoutManager(layoutManager)

@@ -1,19 +1,16 @@
 package com.fortysevendeg.scala.android.ui.textstyles
 
-import android.graphics.Color
-import android.view.Gravity
-import com.fortysevendeg.scala.android.R
+import macroid.FullDsl._
 import com.fortysevendeg.scala.android.macroid.LinearLayoutTweaks._
-import com.fortysevendeg.scala.android.macroid.RecyclerViewTweaks._
 import com.fortysevendeg.scala.android.macroid.TextTweaks._
 import com.fortysevendeg.scala.android.macroid.ViewTweaks._
-import com.fortysevendeg.scala.android.macroid.CardViewTweaks._
+import macroid.AppContext
 
 object Styles {
 
   val contentStyle = llVertical
 
-  val scrollStyle = llVertical + vPaddings(10)
+  def scrollStyle(implicit appContext: AppContext) = llVertical + vPaddings(8 dp)
 
   val textLargeStyle = tvSize(24)
 

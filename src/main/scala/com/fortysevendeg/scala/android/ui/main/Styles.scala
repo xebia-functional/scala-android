@@ -2,12 +2,11 @@ package com.fortysevendeg.scala.android.ui.main
 
 import android.graphics.Color
 import android.view.Gravity
-import com.fortysevendeg.scala.android.R
+import macroid.FullDsl._
 import com.fortysevendeg.scala.android.macroid.LinearLayoutTweaks._
-import com.fortysevendeg.scala.android.macroid.RecyclerViewTweaks._
 import com.fortysevendeg.scala.android.macroid.TextTweaks._
 import com.fortysevendeg.scala.android.macroid.ViewTweaks._
-import com.fortysevendeg.scala.android.macroid.CardViewTweaks._
+import macroid.AppContext
 
 object Styles {
 
@@ -17,14 +16,14 @@ object Styles {
 
   val cardStyle = vMatchWidth
 
-  val itemStyle = llVertical + vMatchWidth + vPaddings(40)
+  def itemStyle(implicit appContext: AppContext) = llVertical + vMatchWidth + vPaddings(12 dp)
 
-  val itemTopStyle = llHorizontal + vContentSizeMatchWidth(100) + llGravity(Gravity.CENTER_VERTICAL)
+  def itemTopStyle(implicit appContext: AppContext) = llHorizontal + vContentSizeMatchWidth(72 dp) + llGravity(Gravity.CENTER_VERTICAL)
 
   val titleStyle = llWrapWeightHorizontal + tvSize(18) + tvColor(Color.BLACK)
 
   val descriptionStyle = tvSize(14) + tvNormalLight + tvColor(Color.GRAY) + tvMaxLines(2)
 
-  val apiStyle = tvSize(10) + tvItalicLight + tvColor(Color.WHITE) + vPaddings(12)
+  def apiStyle(implicit appContext: AppContext) = tvSize(10) + tvItalicLight + tvColor(Color.WHITE) + vPaddings(8 dp)
 
 }
