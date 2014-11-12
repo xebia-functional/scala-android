@@ -6,6 +6,7 @@ import android.support.v7.widget.{GridLayoutManager, LinearLayoutManager}
 import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.scala.android.macroid.ExtraActions._
 import com.fortysevendeg.scala.android.ui.circularreveal.CircularRevealActivity
+import com.fortysevendeg.scala.android.ui.pathmorphing.PathMorphingActivity
 import com.fortysevendeg.scala.android.ui.ripplebackground.RippleBackgroundActivity
 import com.fortysevendeg.scala.android.ui.textstyles.TextStylesActivity
 import macroid.Contexts
@@ -29,6 +30,7 @@ class MainActivity
             case DemoInfo(_, _, "RippleBackgroundActivity", _, _) => aStartActivity[RippleBackgroundActivity]
             case DemoInfo(_, _, "TextStylesActivity", _, _) => aStartActivity[TextStylesActivity]
             case DemoInfo(_, _, "CircularRevealActivity", _, _) => aStartActivity[CircularRevealActivity]
+            case DemoInfo(_, _, "PathMorphingActivity", _, _) => aStartActivity[PathMorphingActivity]
           }
         } else {
           aShortToast(getString(R.string.min_api_not_available))

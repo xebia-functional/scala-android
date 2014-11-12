@@ -25,6 +25,11 @@ class ListDemosAdapter(listener: RecyclerClickListener)
       "TextStylesActivity",
       14, 14),
     DemoInfo(
+      "Path Morphing",
+      "Description for Path Morphing",
+      "PathMorphingActivity",
+      14, 14),
+    DemoInfo(
       "Circular Reveal",
       "Description for Circular Reveal",
       "CircularRevealActivity",

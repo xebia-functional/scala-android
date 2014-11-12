@@ -5,6 +5,7 @@
     <string name="title_ripple_background">Ripple Background</string>
     <string name="title_text_styles">Text Styles</string>
     <string name="title_circular_reveal_styles">Circular Reveal Styles</string>
+    <string name="title_path_morphing">Path morphing</string>
 
     <string name="min_api_not_available">You need an Android version upper</string>
 

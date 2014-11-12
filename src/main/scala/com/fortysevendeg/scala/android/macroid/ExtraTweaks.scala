@@ -6,7 +6,7 @@ import android.support.v7.widget.{CardView, RecyclerView, Toolbar}
 import android.util.TypedValue
 import android.view.ViewGroup.LayoutParams._
 import android.view.{View, ViewGroup}
-import android.widget.{FrameLayout, LinearLayout, TextView}
+import android.widget.{ImageView, FrameLayout, LinearLayout, TextView}
 import macroid.FullDsl._
 import macroid.Tweak
 
@@ -69,6 +69,13 @@ object ViewTweaks {
 
 }
 
+object ImageViewTweaks {
+  type W = ImageView
+
+  def ivSrc(drawable: Drawable) = Tweak[W](_.setImageDrawable(drawable))
+
+}
+
 object LinearLayoutTweaks {
   type W = LinearLayout
 
@@ -91,6 +98,8 @@ object LinearLayoutTweaks {
 
 object FrameLayoutTweaks {
   type W = FrameLayout
+
+  def flContentSize(w: Int, h: Int) = lp[W](w, h)
 
   val flMatchWeightVertical = lp[W](MATCH_PARENT, 0, 1)
   val flMatchWeightHorizontal = lp[W](0, MATCH_PARENT, 1)
