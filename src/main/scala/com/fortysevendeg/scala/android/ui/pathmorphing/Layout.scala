@@ -26,16 +26,16 @@ trait Layout extends ToolbarLayout {
           l[LinearLayout](
             l[RadioGroup](
               w[RadioButton] <~ tvText("Burger") + radioItemStyle <~ On.click {
-                icon <~ changeIcon(TypeIcons.BURGER)
+                icon <~ animIcon(TypeIcons.BURGER)
               },
               w[RadioButton] <~ tvText("Back") <~ radioItemStyle <~ On.click {
-                icon <~ changeIcon(TypeIcons.BACK)
+                icon <~ animIcon(TypeIcons.BACK)
               },
               w[RadioButton] <~ tvText("Check") <~ radioItemStyle <~ On.click {
-                icon <~ changeIcon(TypeIcons.CHECK)
+                icon <~ animIcon(TypeIcons.CHECK)
               },
               w[RadioButton] <~ tvText("Add") <~ radioItemStyle <~ On.click {
-                icon <~ changeIcon(TypeIcons.ADD)
+                icon <~ animIcon(TypeIcons.ADD)
               }
             ) <~ contentItemsRadiosStyle,
             l[RadioGroup](
