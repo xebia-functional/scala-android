@@ -40,7 +40,7 @@ if "%ACTIVATOR_HOME%"=="" (
 )
 
 set ERROR_CODE=0
-set APP_VERSION=1.2.3
+set APP_VERSION=1.2.10
 set ACTIVATOR_LAUNCH_JAR=activator-launch-%APP_VERSION%.jar
 
 rem Detect if we were double clicked, although theoretically A user could
@@ -76,6 +76,9 @@ set _JAVACMD=%JAVACMD%
 if "%_JAVACMD%"=="" (
   if not "%JAVA_HOME%"=="" (
     if exist "%JAVA_HOME%\bin\java.exe" set "_JAVACMD=%JAVA_HOME%\bin\java.exe"
+
+    rem if there is a java home set we make sure it is the first picked up when invoking 'java'
+    SET "PATH=%JAVA_HOME%\bin;%PATH%"
   )
 )
 
@@ -182,7 +185,7 @@ if not "%~1"=="" (
     )
     shift
 
-    set DEBUG_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=!JPDA_PORT!
+    set DEBUG_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=!JPDA_PORT!
     goto argsloop
   )
   rem else
