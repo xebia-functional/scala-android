@@ -1,14 +1,13 @@
 package com.fortysevendeg.scala.android.ui.circularreveal
 
-import android.os.{Build, Bundle}
+import android.os.Bundle
+import android.support.v4.app.{Fragment, FragmentActivity}
 import android.support.v7.app.ActionBarActivity
-import android.view.{View, MenuItem}
+import android.view.MenuItem
 import macroid.Contexts
-import macroid.FullDsl._
-import com.fortysevendeg.scala.android.macroid.RevealSnails._
-import scala.concurrent.ExecutionContext.Implicits.global
+import com.fortysevendeg.scala.android.macroid.ExtraFragment._
 
-class CircularRevealActivity extends ActionBarActivity with Contexts[ActionBarActivity] with Layout {
+class CircularRevealActivity extends ActionBarActivity with Contexts[FragmentActivity] with Layout {
 
   override def onCreate(savedInstanceState: Bundle) = {
     super.onCreate(savedInstanceState)
@@ -19,11 +18,12 @@ class CircularRevealActivity extends ActionBarActivity with Contexts[ActionBarAc
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true)
 
-    runUi(circleButton <~ On.Click {
-      anim
-    })
-
   }
+
+  def remove(fragment: Fragment): Unit = {
+    removeFragment(fragment)
+  }
+
   override def onOptionsItemSelected(item: MenuItem): Boolean = {
     item.getItemId match {
       case android.R.id.home => {
@@ -33,21 +33,11 @@ class CircularRevealActivity extends ActionBarActivity with Contexts[ActionBarAc
     }
     super.onOptionsItemSelected(item)
   }
-
-  def anim = {
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-      if (content.get.getVisibility == View.VISIBLE) {
-        content <~~ fadeOut(300)
-      } else {
-        content <~~ fadeIn(300)
-      }
+  override def onBackPressed(): Unit = {
+    if (existFragmentByTag(FRAGMENT_NAME)) {
+      findFragmentByTag(FRAGMENT_NAME).asInstanceOf[SampleFragment].unreveal()
     } else {
-      if (content.get.getVisibility == View.VISIBLE) {
-        content <~~ hideCircularReveal
-      } else {
-        content <~~ showCircularReveal
-      }
+      super.onBackPressed()
     }
   }
-
 }

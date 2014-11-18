@@ -2,13 +2,15 @@ package com.fortysevendeg.scala.android.macroid
 
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
+import android.support.v4.app.Fragment
+import android.support.v7.app.ActionBarActivity
 import android.support.v7.widget.{CardView, RecyclerView, Toolbar}
 import android.util.TypedValue
 import android.view.ViewGroup.LayoutParams._
 import android.view.{View, ViewGroup}
 import android.widget.{ImageView, FrameLayout, LinearLayout, TextView}
 import macroid.FullDsl._
-import macroid.Tweak
+import macroid.{AppContext, ActivityContext, Tweak}
 
 object ViewTweaks {
   type W = View
@@ -56,6 +58,8 @@ object ViewTweaks {
   def vBackground(drawable: Drawable) = Tweak[W](_.setBackground(drawable))
 
   def vTag(tag: String) = Tweak[W](_.setTag(tag))
+
+  def vTag(tag: Int) = Tweak[W](_.setTag(tag))
 
   def vTransformation(x: Int = 0, y: Int = 0) = Tweak[W] {
     view =>

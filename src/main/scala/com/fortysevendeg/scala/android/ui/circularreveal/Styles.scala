@@ -18,8 +18,10 @@ object Styles {
 
   val fabStyle = vContentSize(140, 140) + cbDrawable(R.drawable.ic_add) + flLayoutGravity(Gravity.RIGHT | Gravity.BOTTOM)
 
-  val contentRevealStyle = vMatchParent + vBackgroundColor(Color.GRAY) + vInvisible + llGravity(Gravity.CENTER)
+  // Fragment Styles
 
-  val textStyle = tvText("Hi guys!") + tvSize(24) + tvColor(Color.WHITE)
+  val contentRevealStyle = vMatchParent + vBackgroundColor(Color.GRAY) + llGravity(Gravity.CENTER)
+
+  val textStyle = tvText("Hi guys!") + tvSize(24) + tvColor(Color.RED)
 
 }

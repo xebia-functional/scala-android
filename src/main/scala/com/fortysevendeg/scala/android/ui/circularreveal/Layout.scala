@@ -1,32 +1,56 @@
 package com.fortysevendeg.scala.android.ui.circularreveal
 
-import android.widget.{TextView, Button, FrameLayout, LinearLayout}
+import android.os.Bundle
+import android.support.v4.app.{FragmentManager, Fragment}
+import android.widget.{TextView, FrameLayout, LinearLayout}
 import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.scala.android.macroid.ToolbarTweaks._
 import com.fortysevendeg.scala.android.ui.circularreveal.Styles._
 import com.fortysevendeg.scala.android.ui.commons.ToolbarLayout
 import com.fortysevendeg.scala.android.ui.components.CircleButton
 import macroid.FullDsl._
-import macroid.{ActivityContext, AppContext}
+import macroid.{IdGeneration, FragmentManagerContext, ActivityContext, AppContext}
+import com.fortysevendeg.scala.android.macroid.ExtraFragment._
 
-trait Layout extends ToolbarLayout {
+trait Layout extends ToolbarLayout with IdGeneration {
+
+  val FRAGMENT_NAME = "name"
 
   var circleButton = slot[CircleButton]
 
   var content = slot[LinearLayout]
 
-  def layout(implicit appContext: AppContext, context: ActivityContext) = {
+  def layout(implicit appContext: AppContext, context: ActivityContext, managerContext: FragmentManagerContext[Fragment, FragmentManager]) = {
+
     getUi(
       l[LinearLayout](
         toolBarLayout <~ tbTitle(R.string.title_circular_reveal_styles),
         l[FrameLayout](
-          w[CircleButton] <~ wire(circleButton) <~ fabStyle,
-          l[LinearLayout] (
-            w[TextView] <~ textStyle
-          ) <~ wire(content) <~ contentRevealStyle
+          w[CircleButton] <~ wire(circleButton) <~ fabStyle <~ On.Click {
+            val args = new Bundle()
+            args.putInt(SampleFragment.POS_X, circleButton.get.getLeft)
+            args.putInt(SampleFragment.POS_Y, circleButton.get.getTop)
+            addFragment(f[SampleFragment], Some(args), Some(Id.fragment), Some(FRAGMENT_NAME))
+          },
+          l[LinearLayout](
+          ) <~ wire(content) <~ id(Id.fragment)
         ) <~ contentStyle
       ) <~ rootStyle
     )
   }
+
+}
+
+class FragmentLayout(implicit appContext: AppContext, context: ActivityContext) {
+
+  val content = {
+    getUi(
+      l[LinearLayout](
+        w[TextView] <~ textStyle
+      ) <~ contentRevealStyle
+    )
+  }
+
+  def layout = content
 
 }

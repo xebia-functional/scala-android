@@ -6,6 +6,9 @@ import android.view.View.OnClickListener
 import android.view.{View, ViewGroup}
 import com.fortysevendeg.scala.android.R
 import macroid.{ActivityContext, AppContext}
+import macroid.FullDsl._
+import com.fortysevendeg.scala.android.macroid.TextTweaks._
+import com.fortysevendeg.scala.android.macroid.ViewTweaks._
 
 class ListDemosAdapter(listener: RecyclerClickListener)
     (implicit context: ActivityContext, appContext: AppContext)
@@ -47,28 +50,18 @@ class ListDemosAdapter(listener: RecyclerClickListener)
 
   override def onBindViewHolder(viewHolder: ViewHolder, position: Int): Unit = {
     val demoInfo = list(position)
-    viewHolder.content.setTag(position)
-    viewHolder.title.map(_.setText(demoInfo.name))
-    viewHolder.description.map(_.setText(demoInfo.description))
-    viewHolder.api.map {
-      view =>
-        val myApi = Build.VERSION.SDK_INT
-        view.setText("API %d".format(demoInfo.targetApi))
-        if (myApi < demoInfo.minApi) {
-          view.setBackgroundResource(R.drawable.background_item_api_required)
-        } else {
-          view.setBackgroundResource(R.drawable.background_item_api_not_required)
-        }
-    }
-
-    // TODO We should use the next code in macroid but it doesn't work inside Adapter. Pending study
-
-    //    runUi(Ui {
-    //      viewHolder.title <~ tvText(demoInfo.name)
-    //      viewHolder.description <~ tvText(demoInfo.description)
-    //      viewHolder.api <~ tvText("API %d".format(demoInfo.minApi)) <~
-    //          (if (demoInfo.apiRequired) vBackground(R.drawable.background_item_api_required) else vBackground(R.drawable.background_item_api_not_required))
-    //    })
+    runUi(
+      (viewHolder.content <~ vTag(position)) ~
+          (viewHolder.title <~ tvText(demoInfo.name)) ~
+          (viewHolder.description <~ tvText(demoInfo.description)) ~
+          (viewHolder.api <~ tvText("API %d".format(demoInfo.minApi)) <~
+              (if (Build.VERSION.SDK_INT < demoInfo.minApi) {
+                vBackground(R.drawable.background_item_api_required)
+              } else {
+                vBackground(R.drawable.background_item_api_not_required)
+              })
+              )
+    )
 
   }
 }
