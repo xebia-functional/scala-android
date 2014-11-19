@@ -141,7 +141,7 @@ class PathMorphDrawable(implicit appContext: AppContext) extends Drawable with A
 
   private def drawSegment(canvas: Canvas, segment: Segment): Unit = {
     iconPaint.setAlpha((segment.alpha * 255).toInt)
-    canvas.drawLine(segment.x1, segment.y1, segment.x2, segment.y2, iconPaint)
+    canvas.drawLine(segment.point1.x, segment.point1.y, segment.point2.x, segment.point2.y, iconPaint)
   }
 
   def moveIcon(from: Icon, to: Icon) = {
@@ -165,7 +165,7 @@ class PathMorphDrawable(implicit appContext: AppContext) extends Drawable with A
 
         val segmentToOver = toOver.map(
           segment =>
-            transformSegment(new Segment(segment.x1 + 1, segment.y1 + 1, segment.x1, segment.y1), segment, fraction)
+            transformSegment(new Segment(Point(segment.point1.x + 1, segment.point1.y + 1), Point(segment.point1.x, segment.point1.y)), segment, fraction)
         )
 
         val list = transform ++ segmentFromOver ++ segmentToOver
@@ -186,38 +186,31 @@ class PathMorphDrawable(implicit appContext: AppContext) extends Drawable with A
 
   def transformSegment(from: Segment, to: Segment, fraction: Float): Segment = {
     if (from.equals(to)) {
-      return from
+      from
+    } else {
+      val point1 = calculatePoint(from.point1, to.point1, fraction)
+      val point2 = calculatePoint(from.point2, to.point2, fraction)
+
+      Segment(point1, point2)
     }
-    val cathetiX1 = to.x1 - from.x1
-    val cathetiY1 = to.y1 - from.y1
-    val positiveX1 = cathetiX1 >= 0
-    val positiveY1 = cathetiY1 >= 0
-    val r1 = Math.sqrt((cathetiX1 * cathetiX1) + (cathetiY1 * cathetiY1)).toFloat
-    val angle1 = Math.atan(cathetiY1 / cathetiX1)
+  }
 
-    val rFraction1 = r1 * fraction
+  def calculatePoint(from: Point, to: Point, fraction: Float): Point = {
+    val cathetiX = to.x - from.x
+    val cathetiY = to.y - from.y
 
-    val newX1 = rFraction1 * Math.cos(angle1).toFloat
-    val newY1 = rFraction1 * Math.sin(angle1).toFloat
+    val hypotenuse = Math.sqrt((cathetiX * cathetiX) + (cathetiY * cathetiY)).toFloat
+    val angle = Math.atan(cathetiY / cathetiX)
 
-    val cathetiX2 = to.x2 - from.x2
-    val cathetiY2 = to.y2 - from.y2
-    val positiveX2 = cathetiX2 >= 0
-    val positiveY2 = cathetiY2 >= 0
-    val r2 = Math.sqrt((cathetiX2 * cathetiX2) + (cathetiY2 * cathetiY2)).toFloat
-    val angle2 = Math.atan(cathetiY2 / cathetiX2)
+    val rFraction = hypotenuse * fraction
 
-    val rFraction2 = r2 * fraction
+    val coordX = rFraction * Math.cos(angle).toFloat
+    val coordY = rFraction * Math.sin(angle).toFloat
 
-    val newX2 = rFraction2 * Math.cos(angle2).toFloat
-    val newY2 = rFraction2 * Math.sin(angle2).toFloat
-
-    new Segment(
-      from.x1 + (if (positiveX1) newX1 else -newX1),
-      from.y1 + (if (positiveX1) newY1 else -newY1),
-      from.x2 + (if (positiveX2) newX2 else -newX2),
-      from.y2 + (if (positiveX2) newY2 else -newY2)
-    )
+    if (cathetiX >= 0)
+      Point(from.x + coordX, from.y + coordY)
+    else
+      Point(from.x - coordX, from.y - coordY)
   }
 
 }
@@ -235,11 +228,11 @@ object TypeIcons {
 
 case class Dim(wight: Int, height: Int)
 
+case class Point(x: Float, y: Float)
+
 case class Segment(
-    x1: Float = 0,
-    y1: Float = 0,
-    x2: Float = 0,
-    y2: Float = 0,
+    point1: Point = Point(0, 0),
+    point2: Point = Point(0, 0),
     alpha: Float = 1) {
 
   def fromRatios(ratioX1: Float,
@@ -248,13 +241,13 @@ case class Segment(
       ratioY2: Float)(implicit dim: Option[Dim]): Segment = {
     val (x1: Float, y1: Float, x2: Float, y2: Float) = dim.map {
       value =>
-        val x1 = (ratioX1 * value.wight)
-        val y1 = (ratioY1 * value.height)
-        val x2 = (ratioX2 * value.wight)
-        val y2 = (ratioY2 * value.height)
+        val x1 = ratioX1 * value.wight
+        val y1 = ratioY1 * value.height
+        val x2 = ratioX2 * value.wight
+        val y2 = ratioY2 * value.height
         (x1, y1, x2, y2)
     }.getOrElse(0f, 0f, 0f, 0f, 0f)
-    new Segment(x1, y1, x2, y2)
+    new Segment(Point(x1, y1), Point(x2, y2))
   }
 
 }
