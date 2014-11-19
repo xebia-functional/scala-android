@@ -5,10 +5,10 @@ import android.animation.{Animator, AnimatorListenerAdapter, ValueAnimator}
 import android.graphics.Paint.Style
 import android.graphics._
 import android.graphics.drawable.{Animatable, Drawable}
-import android.view.animation.{DecelerateInterpolator, AccelerateInterpolator}
+import android.view.animation.DecelerateInterpolator
 import android.widget.ImageView
-import macroid.{LogTag, AppContext, Tweak}
 import macroid.FullDsl._
+import macroid.{AppContext, Tweak}
 
 class PathMorphDrawable(implicit appContext: AppContext) extends Drawable with Animatable with PathMorphDrawableTypes {
 
@@ -26,6 +26,24 @@ class PathMorphDrawable(implicit appContext: AppContext) extends Drawable with A
     new Segment().fromRatios(0.3f, 0.49f, 0.5f, 0.7f)
   )
 
+  lazy val upIcon = List(
+    new Segment().fromRatios(0.49f, 0.3f, 0.7f, 0.5f),
+    new Segment().fromRatios(0.5f, 0.33f, 0.5f, 0.7f),
+    new Segment().fromRatios(0.51f, 0.3f, 0.3f, 0.5f)
+  )
+
+  lazy val downIcon = List(
+    new Segment().fromRatios(0.51f, 0.7f, 0.3f, 0.5f),
+    new Segment().fromRatios(0.5f, 0.67f, 0.5f, 0.3f),
+    new Segment().fromRatios(0.49f, 0.7f, 0.7f, 0.5f)
+  )
+
+  lazy val nextIcon = List(
+    new Segment().fromRatios(0.7f, 0.49f, 0.5f, 0.7f),
+    new Segment().fromRatios(0.67f, 0.5f, 0.3f, 0.5f),
+    new Segment().fromRatios(0.7f, 0.51f, 0.5f, 0.3f)
+  )
+
   lazy val checkIcon = List(
     new Segment().fromRatios(0.2f, 0.6f, 0.4f, 0.8f),
     new Segment().fromRatios(0.4f, 0.8f, 0.8f, 0.2f)
@@ -34,6 +52,11 @@ class PathMorphDrawable(implicit appContext: AppContext) extends Drawable with A
   lazy val addIcon = List(
     new Segment().fromRatios(0.5f, 0.2f, 0.5f, 0.8f),
     new Segment().fromRatios(0.2f, 0.5f, 0.8f, 0.5f)
+  )
+
+  lazy val closeIcon = List(
+    new Segment().fromRatios(0.712f, 0.288f, 0.288f, 0.712f),
+    new Segment().fromRatios(0.288f, 0.288f, 0.712f, 0.712f)
   )
 
   val iconPaint: Paint = {
@@ -112,10 +135,18 @@ class PathMorphDrawable(implicit appContext: AppContext) extends Drawable with A
       setIcon(burgerIcon)
     } else if (icon == TypeIcons.BACK) {
       setIcon(backIcon)
+    } else if (icon == TypeIcons.UP) {
+      setIcon(upIcon)
+    } else if (icon == TypeIcons.DOWN) {
+      setIcon(downIcon)
+    } else if (icon == TypeIcons.NEXT) {
+      setIcon(nextIcon)
     } else if (icon == TypeIcons.CHECK) {
       setIcon(checkIcon)
     } else if (icon == TypeIcons.ADD) {
       setIcon(addIcon)
+    } else if (icon == TypeIcons.CLOSE) {
+      setIcon(closeIcon)
     }
   }
 
@@ -128,10 +159,18 @@ class PathMorphDrawable(implicit appContext: AppContext) extends Drawable with A
       setToIcon(burgerIcon)
     } else if (icon == TypeIcons.BACK) {
       setToIcon(backIcon)
+    } else if (icon == TypeIcons.UP) {
+      setToIcon(upIcon)
+    } else if (icon == TypeIcons.DOWN) {
+      setToIcon(downIcon)
+    } else if (icon == TypeIcons.NEXT) {
+      setToIcon(nextIcon)
     } else if (icon == TypeIcons.CHECK) {
       setToIcon(checkIcon)
     } else if (icon == TypeIcons.ADD) {
       setToIcon(addIcon)
+    } else if (icon == TypeIcons.CLOSE) {
+      setToIcon(closeIcon)
     }
   }
 
@@ -224,6 +263,10 @@ object TypeIcons {
   val BACK = 1
   val CHECK = 2
   val ADD = 3
+  val UP = 4
+  val DOWN = 5
+  val NEXT = 6
+  val CLOSE = 7
 }
 
 case class Dim(wight: Int, height: Int)

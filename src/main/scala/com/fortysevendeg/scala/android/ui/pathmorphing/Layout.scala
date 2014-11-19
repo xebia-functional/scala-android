@@ -36,6 +36,18 @@ trait Layout extends ToolbarLayout {
               },
               w[RadioButton] <~ tvText("Add") <~ radioItemStyle <~ On.click {
                 icon <~ animIcon(TypeIcons.ADD)
+              },
+              w[RadioButton] <~ tvText("Up") <~ radioItemStyle <~ On.click {
+                icon <~ animIcon(TypeIcons.UP)
+              },
+              w[RadioButton] <~ tvText("Down") <~ radioItemStyle <~ On.click {
+                icon <~ animIcon(TypeIcons.DOWN)
+              },
+              w[RadioButton] <~ tvText("Next") <~ radioItemStyle <~ On.click {
+                icon <~ animIcon(TypeIcons.NEXT)
+              },
+              w[RadioButton] <~ tvText("Close") <~ radioItemStyle <~ On.click {
+                icon <~ animIcon(TypeIcons.CLOSE)
               }
             ) <~ contentItemsRadiosStyle,
             l[RadioGroup](
