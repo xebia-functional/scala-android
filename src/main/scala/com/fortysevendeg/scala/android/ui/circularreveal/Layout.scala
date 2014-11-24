@@ -27,9 +27,16 @@ trait Layout extends ToolbarLayout with IdGeneration {
         toolBarLayout <~ tbTitle(R.string.title_circular_reveal_styles),
         l[FrameLayout](
           w[CircleButton] <~ wire(circleButton) <~ fabStyle <~ On.Click {
+            val (x : Int, y : Int) = (for {
+              circle <- circleButton
+              c <- content
+            } yield (
+              (circle.getLeft - c.getLeft + (circle.getWidth / 2),
+                  circle.getTop - c.getTop + (circle.getHeight / 2))
+                  )).getOrElse(0, 0)
             val args = new Bundle()
-            args.putInt(SampleFragment.POS_X, circleButton.get.getLeft)
-            args.putInt(SampleFragment.POS_Y, circleButton.get.getTop)
+            args.putInt(SampleFragment.POS_X, x)
+            args.putInt(SampleFragment.POS_Y, y)
             addFragment(f[SampleFragment], Some(args), Some(Id.fragment), Some(FRAGMENT_NAME))
           },
           l[LinearLayout](

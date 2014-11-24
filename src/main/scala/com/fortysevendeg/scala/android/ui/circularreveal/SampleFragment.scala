@@ -47,8 +47,8 @@ class SampleFragment extends Fragment with Contexts[Fragment] {
           val cy = getArguments().getInt(SampleFragment.POS_Y, 0)
           lastRevealX = Some(cx)
           lastRevealY = Some(cy)
-          val radius = SnailsUtils.calculateRadius(cx, cy, width, height)
-          val reveal: Animator = ViewAnimationUtils.createCircularReveal(fLayout.layout, cx, cy, 0, radius)
+          val endRadius = SnailsUtils.calculateRadius(cx, cy, width, height)
+          val reveal: Animator = ViewAnimationUtils.createCircularReveal(fLayout.layout, cx, cy, 0, endRadius)
           reveal.setInterpolator(new DecelerateInterpolator(2f))
           reveal.start()
         } else {
@@ -92,6 +92,6 @@ class SampleFragment extends Fragment with Contexts[Fragment] {
 object SampleFragment {
 
   val POS_X = "pos_x"
-  val POS_Y = "pos_x"
+  val POS_Y = "pos_y"
 
 }
