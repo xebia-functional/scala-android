@@ -2,6 +2,7 @@ package com.fortysevendeg.scala.android.ui.circularreveal
 
 import android.graphics.Color
 import android.view.Gravity
+import android.widget.FrameLayout
 import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.scala.android.macroid.FrameLayoutTweaks._
 import com.fortysevendeg.scala.android.macroid.TextTweaks._
@@ -16,7 +17,7 @@ object Styles {
 
   val contentStyle = vMatchParent + vPaddings(24)
 
-  val fabStyle = vContentSize(140, 140) + cbDrawable(R.drawable.ic_add) + flLayoutGravity(Gravity.RIGHT | Gravity.BOTTOM)
+  val fabStyle = lp[FrameLayout](140, 140) + cbDrawable(R.drawable.ic_add) + flLayoutGravity(Gravity.RIGHT | Gravity.BOTTOM)
 
   val contentRevealStyle = vMatchParent + vBackgroundColor(Color.GRAY) + vInvisible + llGravity(Gravity.CENTER)
 

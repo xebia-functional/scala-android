@@ -9,4 +9,6 @@
     <color name="circle_button_color">#ff3f51b5</color>
     <color name="circle_button_shadow_color">#ff000000</color>
 
+    <dimen name="option_button_width">64dp</dimen>
+    <dimen name="option_button_height">64dp</dimen>
 </resources>
