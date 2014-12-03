@@ -1,18 +1,15 @@
 package com.fortysevendeg.scala.android.ui.pathmorphing
 
-import android.animation.{Animator, AnimatorListenerAdapter}
-import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.ActionBarActivity
 import android.view.MenuItem
-import com.fortysevendeg.scala.android.macroid.RevealSnails._
-import com.fortysevendeg.scala.android.macroid.ViewTweaks._
-import com.fortysevendeg.scala.android.ui.components.RippleBackgroundSnails._
-import com.fortysevendeg.scala.android.ui.components.{TypeIcons, CircleView, RippleSnailData}
-import macroid.{Ui, Contexts}
+import com.fortysevendeg.scala.android.R
+import com.fortysevendeg.scala.android.macroid.SeekBarTweaks._
+import com.fortysevendeg.scala.android.macroid.TextTweaks._
+import com.fortysevendeg.scala.android.ui.components.PathMorphDrawableTweaks._
+import com.fortysevendeg.scala.android.ui.components.TypeIcons
+import macroid.Contexts
 import macroid.FullDsl._
-
-import scala.concurrent.ExecutionContext.Implicits.global
 
 class PathMorphingActivity extends ActionBarActivity with Contexts[ActionBarActivity] with Layout {
 
@@ -25,6 +22,11 @@ class PathMorphingActivity extends ActionBarActivity with Contexts[ActionBarActi
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true)
 
+    runUi(
+      (icon <~ pmdAnimIcon(TypeIcons.BURGER)) ~
+          (strokeSelector <~ sbProgress(2)) ~
+          (sizeTitle <~ tvText(getApplicationContext().getString(R.string.title_select_size, 48.toString, 48.toString)))
+    )
   }
 
   override def onOptionsItemSelected(item: MenuItem): Boolean = {
@@ -36,5 +38,4 @@ class PathMorphingActivity extends ActionBarActivity with Contexts[ActionBarActi
     }
     super.onOptionsItemSelected(item)
   }
-
 }

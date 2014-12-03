@@ -7,32 +7,41 @@ import android.support.v7.app.ActionBarActivity
 import android.support.v7.widget.{CardView, RecyclerView, Toolbar}
 import android.util.TypedValue
 import android.view.ViewGroup.LayoutParams._
+import android.view.ViewGroup.MarginLayoutParams
 import android.view.{View, ViewGroup}
-import android.widget.{ImageView, FrameLayout, LinearLayout, TextView}
+import android.widget.SeekBar.OnSeekBarChangeListener
+import android.widget._
 import macroid.FullDsl._
 import macroid.{AppContext, ActivityContext, Tweak}
 
 object ViewTweaks {
   type W = View
 
-  private def lp(w: Int, h: Int) = Tweak[W](_.setLayoutParams(new ViewGroup.LayoutParams(w, h)))
+  //  private def lp(w: Int, h: Int) = Tweak[W](_.setLayoutParams(new ViewGroup.LayoutParams(w, h)))
 
-  val vMatchParent = lp(MATCH_PARENT, MATCH_PARENT)
-  val vWrapContent = lp(WRAP_CONTENT, WRAP_CONTENT)
-  val vMatchWidth = lp(MATCH_PARENT, WRAP_CONTENT)
-  val vMatchHeight = lp(WRAP_CONTENT, MATCH_PARENT)
+  val vMatchParent = lp[ViewGroup](MATCH_PARENT, MATCH_PARENT)
+  val vWrapContent = lp[ViewGroup](WRAP_CONTENT, WRAP_CONTENT)
+  val vMatchWidth = lp[ViewGroup](MATCH_PARENT, WRAP_CONTENT)
+  val vMatchHeight = lp[ViewGroup](WRAP_CONTENT, MATCH_PARENT)
 
-  def vContentSize(w: Int, h: Int) = lp(w, h)
+  //  def vContentSizeMacroid[V <: ViewGroup](w: Int, h: Int) = macroid.FullDsl.lp[V](w, h)
+  //
+  //  def vContentSize(w: Int, h: Int) = lp(w, h)
 
-  def vContentSizeMatchWidth(h: Int) = lp(MATCH_PARENT, h)
+  def vContentSizeMatchWidth(h: Int) = lp[ViewGroup](MATCH_PARENT, h)
 
-  def vContentSizeMatchHeight(w: Int) = lp(w, MATCH_PARENT)
+  def vContentSizeMatchHeight(w: Int) = lp[ViewGroup](w, MATCH_PARENT)
 
   def vMargins(
       margin: Int) = Tweak[W] {
     view =>
-      view.getLayoutParams.asInstanceOf[ViewGroup.MarginLayoutParams].setMargins(margin, margin, margin, margin)
-      view.requestLayout
+      //      view.getLayoutParams.asInstanceOf[ViewGroup.MarginLayoutParams].setMargins(margin, margin, margin, margin)
+      //      view.requestLayout
+      view.getLayoutParams match {
+        case lp: MarginLayoutParams =>
+          lp.setMargins(margin, margin, margin, margin)
+        case _ =>
+      }
   }
 
   def vMargin(
@@ -53,6 +62,7 @@ object ViewTweaks {
       paddingRight: Int = 0,
       paddingBottom: Int = 0) = Tweak[W](_.setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom))
 
+  def vActivated(activated: Boolean) = Tweak[W](_.setActivated(activated))
   def vBackground(res: Int) = Tweak[W](_.setBackgroundResource(res))
   def vBackgroundColor(color: Int) = Tweak[W](_.setBackgroundColor(color))
   def vBackground(drawable: Drawable) = Tweak[W](_.setBackground(drawable))
@@ -77,7 +87,6 @@ object ImageViewTweaks {
   type W = ImageView
 
   def ivSrc(drawable: Drawable) = Tweak[W](_.setImageDrawable(drawable))
-
 }
 
 object LinearLayoutTweaks {
@@ -91,6 +100,13 @@ object LinearLayoutTweaks {
   val llWrapWeightHorizontal = lp[W](0, WRAP_CONTENT, 1)
 
   def llGravity(gravity: Int) = Tweak[W](_.setGravity(gravity))
+
+  def llDividerPadding(res: Int, padding: Int)(implicit appContext: AppContext) = Tweak[W] {
+    view =>
+      view.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE)
+      view.setDividerDrawable(appContext.get.getResources.getDrawable(res))
+      view.setDividerPadding(padding)
+  }
 
   def llLayoutGravity(gravity: Int) = Tweak[View] {
     view =>
@@ -115,6 +131,35 @@ object FrameLayoutTweaks {
       view.setLayoutParams(param)
   }
 
+}
+
+object TableLayoutTweaks {
+  type W = TableLayout
+
+  def tlLayoutMargins(value: Int) = Tweak[View] {
+    view =>
+      val param = new TableLayout.LayoutParams(view.getLayoutParams.width, view.getLayoutParams.height)
+      param.setMargins(value, value, value, value)
+      view.setLayoutParams(param)
+  }
+  def tlStretchAllColumns(stretchAllColumns: Boolean) = Tweak[W](_.setStretchAllColumns(stretchAllColumns))
+}
+
+object TableRowTweaks {
+  type W = TableRow
+
+  def trLayoutGravity(gravity: Int) = Tweak[View] {
+    view =>
+      val param = new TableRow.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
+      param.gravity = gravity
+      view.setLayoutParams(param)
+  }
+  def trLayoutMargins(value: Int) = Tweak[View] {
+    view =>
+      val param = new TableRow.LayoutParams(view.getLayoutParams.width, view.getLayoutParams.height)
+      param.setMargins(value, value, value, value)
+      view.setLayoutParams(param)
+  }
 }
 
 object RecyclerViewTweaks {
@@ -159,7 +204,6 @@ object TextTweaks {
   def tvText(text: String) = Tweak[W](_.setText(text))
 
   def tvText(text: Int) = Tweak[W](_.setText(text))
-
 }
 
 object ToolbarTweaks {
@@ -171,3 +215,10 @@ object ToolbarTweaks {
 
 }
 
+object SeekBarTweaks {
+  type W = SeekBar
+
+  def sbMax(maxValue: Int) = Tweak[W](_.setMax(maxValue))
+  def sbProgress(progressValue: Int) = Tweak[W](_.setProgress(progressValue))
+  def sbOnSeekBarChangeListener(listener: OnSeekBarChangeListener) = Tweak[W](_.setOnSeekBarChangeListener(listener))
+}
