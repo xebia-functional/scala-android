@@ -164,5 +164,45 @@
 # view res/layout/abc_search_view.xml #generated:78
 -keep class android.support.v7.widget.SearchView$SearchAutoComplete { <init>(...); }
 
+# view AndroidManifest.xml #generated:18
+-keep class android.support.v7.widget.TestActivity { <init>(...); }
+
 # view res/layout/abc_screen_toolbar.xml #generated:36
 -keep class android.support.v7.widget.Toolbar { <init>(...); }
+
+# view AndroidManifest.xml #generated:21
+-keep class android.test.InstrumentationTestRunner { <init>(...); }
+
+# view AndroidManifest.xml #generated:16
+-keep class com.fortysevendeg.scala.android.ui.circularreveal.CircularRevealActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:7
+-keep class com.fortysevendeg.scala.android.ui.main.MainActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:17
+-keep class com.fortysevendeg.scala.android.ui.pathmorphing.PathMorphingActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:14
+-keep class com.fortysevendeg.scala.android.ui.ripplebackground.RippleBackgroundActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:15
+-keep class com.fortysevendeg.scala.android.ui.textstyles.TextStylesActivity { <init>(...); }
+
+-ignorewarnings
+-keep class scala.Dynamic
+-keep class akka.actor.Actor$class { *; }
+-keep class akka.actor.LightArrayRevolverScheduler { *; }
+-keep class akka.actor.LocalActorRefProvider { *; }
+-keep class akka.actor.CreatorFunctionConsumer { *; }
+-keep class akka.actor.TypedCreatorFunctionConsumer { *; }
+-keep class akka.dispatch.BoundedDequeBasedMessageQueueSemantics { *; }
+-keep class akka.dispatch.UnboundedMessageQueueSemantics { *; }
+-keep class akka.dispatch.UnboundedDequeBasedMessageQueueSemantics { *; }
+-keep class akka.dispatch.DequeBasedMessageQueueSemantics { *; }
+-keep class akka.dispatch.MultipleConsumerSemantics { *; }
+-keep class akka.actor.LocalActorRefProvider$Guardian { *; }
+-keep class akka.actor.LocalActorRefProvider$SystemGuardian { *; }
+-keep class akka.dispatch.UnboundedMailbox { *; }
+-keep class akka.actor.DefaultSupervisorStrategy { *; }
+-keep class macroid.akkafragments.AkkaAndroidLogger { *; }
+-keep class akka.event.Logging$LogExt { *; }
