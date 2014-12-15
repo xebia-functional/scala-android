@@ -15,16 +15,10 @@ import macroid.{AppContext, Tweak}
 object ViewTweaks {
   type W = View
 
-  //  private def lp(w: Int, h: Int) = Tweak[W](_.setLayoutParams(new ViewGroup.LayoutParams(w, h)))
-
   val vMatchParent = lp[ViewGroup](MATCH_PARENT, MATCH_PARENT)
   val vWrapContent = lp[ViewGroup](WRAP_CONTENT, WRAP_CONTENT)
   val vMatchWidth = lp[ViewGroup](MATCH_PARENT, WRAP_CONTENT)
   val vMatchHeight = lp[ViewGroup](WRAP_CONTENT, MATCH_PARENT)
-
-  //  def vContentSizeMacroid[V <: ViewGroup](w: Int, h: Int) = macroid.FullDsl.lp[V](w, h)
-  //
-  //  def vContentSize(w: Int, h: Int) = lp(w, h)
 
   def vContentSizeMatchWidth(h: Int) = lp[ViewGroup](MATCH_PARENT, h)
 
@@ -33,8 +27,6 @@ object ViewTweaks {
   def vMargins(
       margin: Int) = Tweak[W] {
     view =>
-      //      view.getLayoutParams.asInstanceOf[ViewGroup.MarginLayoutParams].setMargins(margin, margin, margin, margin)
-      //      view.requestLayout
       view.getLayoutParams match {
         case lp: MarginLayoutParams =>
           lp.setMargins(margin, margin, margin, margin)
@@ -66,6 +58,8 @@ object ViewTweaks {
   def vBackground(drawable: Drawable) = Tweak[W](_.setBackground(drawable))
 
   def vTag(tag: String) = Tweak[W](_.setTag(tag))
+
+  def vTag(tag: Int) = Tweak[W](_.setTag(tag))
 
   def vTransformation(x: Int = 0, y: Int = 0) = Tweak[W] {
     view =>
