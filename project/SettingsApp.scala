@@ -1,6 +1,5 @@
 import Libraries.akka._
 import Libraries.android._
-import Libraries.compilePlugin._
 import Libraries.macroid._
 import android.Keys._
 import sbt.Keys._
@@ -13,13 +12,13 @@ object SettingsApp {
   lazy val rootSettings =
     SettingsDefault.settings ++
         Seq(
-          platformTarget in Android := Versions.androidPlatform,
+          platformTarget in Android := Versions.androidPlatformV,
           install <<= install in(app, Android),
           run <<= run in(app, Android)
         )
 
   lazy val appSettings =
-    android.Plugin.androidBuild(androidLib) ++
+    android.Plugin.androidBuild(macroidExtrasLib) ++
         SettingsDefault.settings ++
         SettingsProguard.settings ++
         Seq(
@@ -31,7 +30,7 @@ object SettingsApp {
           )
         )
 
-  lazy val androidLibSettings =
+  lazy val macroidExtrasLibSettings =
     android.Plugin.androidBuildApklib ++
     SettingsDefault.settings ++
         Seq(
@@ -43,6 +42,6 @@ object SettingsApp {
             aar(androidCardView),
             aar(androidRecyclerview),
             akkaActor,
-            compilerPlugin(wartRemover))
+            compilerPlugin(Libraries.wartRemover))
         )
 }

@@ -6,13 +6,13 @@ object AppBuild extends Build {
 
   lazy val root = Project(id = "root", base = file("."))
       .settings(rootSettings: _*)
-      .aggregate(app, androidLib)
+      .aggregate(app, macroidExtrasLib)
 
   lazy val app = Project(id = "app", base = file("modules/app"))
       .settings(appSettings: _*)
-      .dependsOn(androidLib)
+      .dependsOn(macroidExtrasLib)
 
-  val androidLib = Project(id = "androidLib",
-    base = file("modules/androidLib"))
-      .settings(androidLibSettings: _*)
+  val macroidExtrasLib = Project(id = "macroidExtrasLib",
+    base = file("modules/macroidExtrasLib"))
+      .settings(macroidExtrasLibSettings: _*)
 }

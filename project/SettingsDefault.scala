@@ -5,9 +5,9 @@ object SettingsDefault {
 
   lazy val settings =
     Seq(
-      scalaVersion := Versions.scala,
+      scalaVersion := Versions.scalaV,
       organization := "com.fortysevendeg",
-      version := Versions.app,
+      version := Versions.appV,
       resolvers ++= Seq(
         Resolver.mavenLocal,
         DefaultMavenRepository,
