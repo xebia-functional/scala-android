@@ -31,7 +31,7 @@ class CircleButton(context: Context, attrs: AttributeSet, defStyleAttr: Int)
   val iconPaint = new Paint(Paint.ANTI_ALIAS_FLAG)
 
   var fingerRect : Option[Rect] = None
-  var moveOutside : Boolean = false
+  var downTouch : Boolean = false
 
   var icon : Option[Bitmap] = None
 
@@ -89,23 +89,19 @@ class CircleButton(context: Context, attrs: AttributeSet, defStyleAttr: Int)
 
   override def onTouchEvent(event: MotionEvent): Boolean = {
     if (event.getAction==MotionEvent.ACTION_DOWN) {
-      moveOutside = false
+      downTouch = true
       fingerRect = Some(new Rect(getLeft(), getTop(), getRight(), getBottom()))
       circlePaint.setColor(darkenColor(color))
       invalidate()
-    } else if (event.getAction==MotionEvent.ACTION_MOVE) {
-      if (!fingerRect.contains(getLeft() + event.getX(), getTop() + event.getY())) {
-        moveOutside = true
-        circlePaint.setColor(color)
-        invalidate()
-      }
     } else if (event.getAction==MotionEvent.ACTION_UP) {
       circlePaint.setColor(color)
       invalidate()
-      if (!moveOutside) {
+      if (downTouch) {
         performClick()
       }
+      downTouch = false;
     } else if (event.getAction==MotionEvent.ACTION_CANCEL) {
+      downTouch = false;
       circlePaint.setColor(color)
       invalidate()
     }
