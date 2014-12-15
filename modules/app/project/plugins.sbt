@@ -1,0 +1,1 @@
+addSbtPlugin(Libraries.androidSDKPlugin)
