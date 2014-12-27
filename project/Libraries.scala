@@ -41,5 +41,6 @@ object Libraries {
 
     lazy val macroidRoot = macroid()
     lazy val macroidAkkaFragments = macroid("akka-fragments")
+    lazy val macroidExtras = "com.fortysevendeg" %% "macroid-extras" % Versions.macroidExtras
   }
 }
