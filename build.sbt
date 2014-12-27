@@ -6,6 +6,8 @@ android.Plugin.androidBuild
 
 platformTarget in Android := Versions.androidPlatformV
 
+name := "scala-android"
+
 organization := "com.fortysevendeg"
 
 organizationName := "47 Degrees"
