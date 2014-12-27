@@ -32,8 +32,6 @@ libraryDependencies ++= Seq(
   akkaActor,
   compilerPlugin(Libraries.wartRemover))
 
-transitiveAndroidLibs in Android := false
-
 run <<= run in Android
 
 proguardScala in Android := true

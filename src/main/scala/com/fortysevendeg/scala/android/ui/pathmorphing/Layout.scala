@@ -15,6 +15,7 @@ import com.fortysevendeg.scala.android.ui.components.{Dim, TypeIcons}
 import com.fortysevendeg.scala.android.ui.pathmorphing.Styles._
 import macroid.FullDsl._
 import macroid.{ActivityContext, AppContext, Transformer}
+import scala.language.postfixOps
 
 trait Layout extends ToolbarLayout {
 

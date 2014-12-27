@@ -10,6 +10,7 @@ import com.fortysevendeg.macroid.extras.TextTweaks._
 import com.fortysevendeg.macroid.extras.LinearLayoutTweaks._
 import com.fortysevendeg.scala.android.ui.components.CircleButtonTweaks._
 import macroid.FullDsl._
+import scala.language.postfixOps
 
 object Styles {
 

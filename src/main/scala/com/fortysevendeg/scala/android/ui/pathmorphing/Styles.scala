@@ -11,6 +11,7 @@ import com.fortysevendeg.macroid.extras.ViewTweaks._
 import com.fortysevendeg.scala.android.ui.components.{PathMorphDrawable, TypeIcons}
 import macroid.AppContext
 import macroid.FullDsl._
+import scala.language.postfixOps
 
 object Styles {
 

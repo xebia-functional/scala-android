@@ -6,6 +6,7 @@ import com.fortysevendeg.macroid.extras.LinearLayoutTweaks._
 import com.fortysevendeg.macroid.extras.ViewTweaks._
 import macroid.AppContext
 import macroid.FullDsl._
+import scala.language.postfixOps
 
 object Styles {
 

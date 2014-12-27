@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView.State
 import android.view.View
 import macroid.AppContext
 import macroid.FullDsl._
+import scala.language.postfixOps
 
 class DividerItemDecorator(implicit appContext: AppContext) extends RecyclerView.ItemDecoration {
 
