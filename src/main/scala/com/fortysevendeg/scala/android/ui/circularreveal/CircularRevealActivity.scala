@@ -20,9 +20,7 @@ class CircularRevealActivity extends ActionBarActivity with Contexts[FragmentAct
 
   }
 
-  def remove(fragment: Fragment): Unit = {
-    removeFragment(fragment)
-  }
+  def remove(fragment: Fragment): Unit = removeFragment(fragment)
 
   override def onOptionsItemSelected(item: MenuItem): Boolean = {
     item.getItemId match {
@@ -33,9 +31,15 @@ class CircularRevealActivity extends ActionBarActivity with Contexts[FragmentAct
     }
     super.onOptionsItemSelected(item)
   }
+//  override def onBackPressed(): Unit =
+//    findFragmentByTag(fragmentName) match {
+//      case Some(f) => f.asInstanceOf[SampleFragment].unreveal()
+//      case _ => super.onBackPressed()
+//    }
+
   override def onBackPressed(): Unit = {
-    if (existFragmentByTag(FRAGMENT_NAME)) {
-      findFragmentByTag(FRAGMENT_NAME).asInstanceOf[SampleFragment].unreveal()
+    if (existFragmentByTag(fragmentName)) {
+      findFragmentByTag(fragmentName).asInstanceOf[SampleFragment].unreveal()
     } else {
       super.onBackPressed()
     }

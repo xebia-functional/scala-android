@@ -10,15 +10,15 @@ import macroid.Contexts
 
 class SampleFragment extends Fragment with Contexts[Fragment] {
 
-  var lastWidth: Option[Int] = None
+  private var lastWidth: Option[Int] = None
 
-  var lastHeight: Option[Int] = None
+  private var lastHeight: Option[Int] = None
 
-  var lastRevealX: Option[Int] = None
+  private var lastRevealX: Option[Int] = None
 
-  var lastRevealY: Option[Int] = None
+  private var lastRevealY: Option[Int] = None
 
-  var fragmentLayout: Option[FragmentLayout] = None
+  private var fragmentLayout: Option[FragmentLayout] = None
 
   override def onCreateView(inflater: LayoutInflater, container: ViewGroup, savedInstanceState: Bundle): View = {
 
@@ -43,8 +43,8 @@ class SampleFragment extends Fragment with Contexts[Fragment] {
     fragmentLayout.map {
       fLayout =>
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-          val cx = getArguments().getInt(SampleFragment.POS_X, 0)
-          val cy = getArguments().getInt(SampleFragment.POS_Y, 0)
+          val cx = getArguments().getInt(SampleFragment.posX, 0)
+          val cy = getArguments().getInt(SampleFragment.posY, 0)
           lastRevealX = Some(cx)
           lastRevealY = Some(cy)
           val endRadius = SnailsUtils.calculateRadius(cx, cy, width, height)
@@ -91,7 +91,7 @@ class SampleFragment extends Fragment with Contexts[Fragment] {
 
 object SampleFragment {
 
-  val POS_X = "pos_x"
-  val POS_Y = "pos_y"
+  val posX = "pos_x"
+  val posY = "pos_y"
 
 }
