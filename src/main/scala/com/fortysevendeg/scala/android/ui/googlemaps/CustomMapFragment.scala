@@ -8,10 +8,10 @@ import googlemaps._
 
 trait CustomMapFragment extends SupportMapFragment {
   
-  def changeMapType(mapType: Int)
-  def moveCamera(latitude: Double, longitude: Double, zoom: Int)
-  def addMarker(title: String, snippet: String, latitude: Double, longitude: Double)
-  def clearMap()
+  def changeMapType(mapType: Int): Unit
+  def moveCamera(latitude: Double, longitude: Double, zoom: Int): Unit
+  def addMarker(title: String, snippet: String, latitude: Double, longitude: Double): Unit
+  def clearMap(): Unit
 }
 
 class CustomMapFragmentImpl extends CustomMapFragment with OnMapReadyCallback {
