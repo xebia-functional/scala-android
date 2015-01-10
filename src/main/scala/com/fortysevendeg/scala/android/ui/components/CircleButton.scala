@@ -30,10 +30,9 @@ class CircleButton(context: Context, attrs: AttributeSet, defStyleAttr: Int)
 
   val iconPaint = new Paint(Paint.ANTI_ALIAS_FLAG)
 
-  var fingerRect : Option[Rect] = None
-  var moveOutside : Boolean = false
+  var moveOutside: Boolean = false
 
-  var icon : Option[Bitmap] = None
+  var icon: Option[Bitmap] = None
 
   val (circlePaint, color) = {
     val paint = new Paint(Paint.ANTI_ALIAS_FLAG)
@@ -55,7 +54,7 @@ class CircleButton(context: Context, attrs: AttributeSet, defStyleAttr: Int)
     val widthSpecSize = MeasureSpec.getSize(heightMeasureSpec)
 
     val widthSize = {
-      var size : Int = buttonWidth
+      var size: Int = buttonWidth
       if (widthSpecMode == MeasureSpec.EXACTLY) {
         if (widthSpecSize < buttonWidth) {
           size = buttonWidth
@@ -72,7 +71,7 @@ class CircleButton(context: Context, attrs: AttributeSet, defStyleAttr: Int)
     val heightSpecSize = MeasureSpec.getSize(heightMeasureSpec)
 
     val heightSize = {
-      var size : Int = buttonHeight
+      var size: Int = buttonHeight
       if (heightSpecMode == MeasureSpec.EXACTLY) {
         if (heightSpecSize < buttonHeight) {
           size = buttonHeight
@@ -88,26 +87,28 @@ class CircleButton(context: Context, attrs: AttributeSet, defStyleAttr: Int)
   }
 
   override def onTouchEvent(event: MotionEvent): Boolean = {
-    if (event.getAction==MotionEvent.ACTION_DOWN) {
-      moveOutside = false
-      fingerRect = Some(new Rect(getLeft(), getTop(), getRight(), getBottom()))
-      circlePaint.setColor(darkenColor(color))
-      invalidate()
-    } else if (event.getAction==MotionEvent.ACTION_MOVE) {
-      if (!fingerRect.contains(getLeft() + event.getX(), getTop() + event.getY())) {
-        moveOutside = true
+    event.getAction match {
+      case action if (action == MotionEvent.ACTION_DOWN) =>
+        moveOutside = false
+        circlePaint.setColor(darkenColor(color))
+        invalidate()
+      case action if (action == MotionEvent.ACTION_MOVE) =>
+        val rect = new Rect()
+        getLocalVisibleRect(rect)
+        if (!rect.contains(event.getX().toInt, event.getY().toInt)) {
+          moveOutside = true
+          circlePaint.setColor(color)
+          invalidate()
+        }
+      case action if (action == MotionEvent.ACTION_UP) =>
         circlePaint.setColor(color)
         invalidate()
-      }
-    } else if (event.getAction==MotionEvent.ACTION_UP) {
-      circlePaint.setColor(color)
-      invalidate()
-      if (!moveOutside) {
-        performClick()
-      }
-    } else if (event.getAction==MotionEvent.ACTION_CANCEL) {
-      circlePaint.setColor(color)
-      invalidate()
+        if (!moveOutside) {
+          performClick()
+        }
+      case action if (action == MotionEvent.ACTION_CANCEL) =>
+        circlePaint.setColor(color)
+        invalidate()
     }
     true
   }
@@ -123,18 +124,18 @@ class CircleButton(context: Context, attrs: AttributeSet, defStyleAttr: Int)
     }
   }
 
-  def darkenColor(color : Int) : Int = {
-    var hsv = Seq(0f,0f,0f).toArray
+  def darkenColor(color: Int): Int = {
+    var hsv = Seq(0f, 0f, 0f).toArray
     Color.colorToHSV(color, hsv)
     hsv(2) *= 0.8f
     Color.HSVToColor(hsv)
   }
 
-  def drawable(res : Int) = {
+  def drawable(res: Int) = {
     icon = Some(getResources.getDrawable(res).asInstanceOf[BitmapDrawable].getBitmap)
   }
 
-  def color(res : Int) = {
+  def color(res: Int) = {
     val color = getResources().getColor(res)
     circlePaint.setColor(color)
   }

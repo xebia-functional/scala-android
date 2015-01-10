@@ -31,17 +31,11 @@ class CircularRevealActivity extends ActionBarActivity with Contexts[FragmentAct
     }
     super.onOptionsItemSelected(item)
   }
-//  override def onBackPressed(): Unit =
-//    findFragmentByTag(fragmentName) match {
-//      case Some(f) => f.asInstanceOf[SampleFragment].unreveal()
-//      case _ => super.onBackPressed()
-//    }
 
-  override def onBackPressed(): Unit = {
-    if (existFragmentByTag(fragmentName)) {
-      findFragmentByTag(fragmentName).asInstanceOf[SampleFragment].unreveal()
-    } else {
-      super.onBackPressed()
+  override def onBackPressed(): Unit =
+    findFragmentByTag(fragmentName) match {
+      case Some(f) => f.asInstanceOf[SampleFragment].unreveal()
+      case _ => super.onBackPressed()
     }
-  }
+
 }
