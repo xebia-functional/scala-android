@@ -39,11 +39,11 @@ libraryDependencies ++= Seq(
 
 run <<= run in Android
 
-proguardOptions in Android ++= Settings.proguardCommons ++ Settings.proguardAkka
-
 proguardScala in Android := true
 
 useProguard in Android := true
+
+proguardOptions in Android ++= Settings.proguardCommons ++ Settings.proguardAkka
 
 useProguardInDebug in Android := true
 
