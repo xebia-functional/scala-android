@@ -49,8 +49,6 @@ useProguardInDebug in Android := true
 
 dexMulti in Android := true
 
-dexMaxHeap in Android := "2g"
-
 dexMinimizeMainFile in Android := true
 
 dexMainFileClasses in Android := Seq(
