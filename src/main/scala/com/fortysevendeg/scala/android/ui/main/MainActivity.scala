@@ -9,7 +9,6 @@ import com.fortysevendeg.macroid.extras.ExtraActions._
 import com.fortysevendeg.scala.android.R
 import macroid.Contexts
 import macroid.FullDsl._
-import com.fortysevendeg.macroid.extras.DevicesQueries._
 
 class MainActivity
     extends ActionBarActivity
