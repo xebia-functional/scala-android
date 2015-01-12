@@ -13,7 +13,7 @@ organization := "com.fortysevendeg"
 
 organizationName := "47 Degrees"
 
-organizationHomepage := Some(new URL("http:47deg.com"))
+organizationHomepage := Some(new URL("http://47deg.com"))
 
 version := Versions.appV
 
