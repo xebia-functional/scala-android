@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/add_marker"
+        android:title="@string/menu_add_marker"/>
+    
+    <item
+        android:id="@+id/clear_map"
+        android:title="@string/menu_clear_map"/>
+</menu>
