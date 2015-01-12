@@ -24,4 +24,6 @@
     <string name="menu_add_marker">Add Marker</string>
     <string name="menu_clear_map">Clear Map</string>
 
+    <string name="exampleText">Hi guys!</string>
+
 </resources>
