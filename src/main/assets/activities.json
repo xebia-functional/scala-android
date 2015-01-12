@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Ripple Background",
+    "description": "Description for Ripple Background",
+    "className": "com.fortysevendeg.scala.android.ui.ripplebackground.RippleBackgroundActivity",
+    "minApi": 21,
+    "targetApi": 21
+  },
+  {
+    "name": "Texts Styles",
+    "description": "Description for Texts Styles",
+    "className": "com.fortysevendeg.scala.android.ui.textstyles.TextStylesActivity",
+    "minApi": 14,
+    "targetApi": 14
+  },
+  {
+    "name": "Path Morphing",
+    "description": "Description for Path Morphing",
+    "className": "com.fortysevendeg.scala.android.ui.pathmorphing.PathMorphingActivity",
+    "minApi": 14,
+    "targetApi": 14
+  },
+  {
+    "name": "Circular Reveal",
+    "description": "Description for Circular Reveal",
+    "className": "com.fortysevendeg.scala.android.ui.circularreveal.CircularRevealActivity",
+    "minApi": 14,
+    "targetApi": 21
+  },
+  {
+    "name": "Google Maps",
+    "description": "Description for Google Maps",
+    "className": "com.fortysevendeg.scala.android.ui.googlemaps.GoogleMapsActivity",
+    "minApi": 14,
+    "targetApi": 21
+  }
+]

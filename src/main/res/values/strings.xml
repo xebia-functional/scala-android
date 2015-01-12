@@ -24,6 +24,11 @@
     <string name="menu_add_marker">Add Marker</string>
     <string name="menu_clear_map">Clear Map</string>
 
+    <string name="activity_not_found">Activity not found</string>
+    <string name="json_file_not_found">JSON file not found</string>
+    <string name="malformed_json_file">Malformed JSON file</string>
+    <string name="unexpected_error">An unexpected error has occurred</string>
+    
     <string name="exampleText">Hi guys!</string>
 
 </resources>

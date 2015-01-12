@@ -64,4 +64,9 @@ object Libraries {
     lazy val macroidAkkaFragments = macroid("akka-fragments")
     lazy val macroidExtras = "com.fortysevendeg" %% "macroid-extras" % Versions.macroidExtras
   }
+
+  object utils {
+    lazy val json4s = "org.json4s" %% "json4s-native" % Versions.json4sV
+    lazy val sprayJson = "io.spray" %%  "spray-json" % Versions.sprayJsonV
+  }
 }
