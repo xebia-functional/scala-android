@@ -13,4 +13,6 @@
 
     <string name="min_api_not_available">You need an Android version upper</string>
 
+    <string name="exampleText">Hi guys!</string>
+
 </resources>
