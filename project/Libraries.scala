@@ -24,6 +24,8 @@ object Libraries {
     lazy val androidRecyclerview = androidDep("recyclerview-v7")
     lazy val androidCardView = androidDep("cardview-v7")
   }
+  
+  lazy val androidMultidex = "com.android.support" % "multidex" % Versions.multidexV
 
   object akka {
 

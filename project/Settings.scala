@@ -24,6 +24,8 @@ object Settings {
     "-keep class scala.Dynamic")
 
   lazy val proguardAkka = Seq(
+    "-keep class com.fortysevendeg.** { *; }",
+    "-keep class macroid.** { *; }",
     "-keep class akka.actor.Actor$class { *; }",
     "-keep class akka.actor.LightArrayRevolverScheduler { *; }",
     "-keep class akka.actor.LocalActorRefProvider { *; }",
@@ -38,6 +40,5 @@ object Settings {
     "-keep class akka.actor.LocalActorRefProvider$SystemGuardian { *; }",
     "-keep class akka.dispatch.UnboundedMailbox { *; }",
     "-keep class akka.actor.DefaultSupervisorStrategy { *; }",
-    "-keep class macroid.akkafragments.AkkaAndroidLogger { *; }",
     "-keep class akka.event.Logging$LogExt { *; }")
 }
