@@ -33,6 +33,11 @@ class ListDemosAdapter(listener: RecyclerClickListener)
       "Circular Reveal",
       "Description for Circular Reveal",
       "CircularRevealActivity",
+      14, 21),
+    DemoInfo(
+      "Google Maps",
+      "Description for Google Maps",
+      "GoogleMapsActivity",
       14, 21))
 
   override def onCreateViewHolder(parentViewGroup: ViewGroup, i: Int): ViewHolder = {

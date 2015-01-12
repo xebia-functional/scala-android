@@ -10,8 +10,19 @@
     <string name="title_select_color">Select color</string>
     <string name="title_select_stroke">Stroke: %1$s dp</string>
     <string name="title_select_size">Size: %1$s x %2$s</string>
+    <string name="title_map">Google Map Sample</string>
+    <string name="marker_map_title">47 Degrees</string>
+    <string name="marker_map_message">Reactive, scalable software solutions.</string>
+    <string name="marker_map_sample_title">Sample Marker</string>
+    <string name="marker_map_sample_message">This is a sample marker</string>
+    <string name="map_satellite">Satellite</string>
+    <string name="map_normal">Normal</string>
+    <string name="map_hybrid">Hybrid</string>
+    <string name="map_terrain">Terrain</string>
 
     <string name="min_api_not_available">You need an Android version upper</string>
+    <string name="menu_add_marker">Add Marker</string>
+    <string name="menu_clear_map">Clear Map</string>
 
     <string name="exampleText">Hi guys!</string>
 

@@ -1,6 +1,7 @@
 import Libraries.android._
 import Libraries.macroid._
 import Libraries.akka._
+import Libraries.playServices._
 
 android.Plugin.androidBuild
 
@@ -31,6 +32,7 @@ libraryDependencies ++= Seq(
   aar(androidCardView),
   aar(androidRecyclerview),
   aar(macroidExtras),
+  aar(playServicesMaps),
   akkaActor,
   aar(Libraries.androidMultidex),
   compilerPlugin(Libraries.wartRemover))

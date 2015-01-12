@@ -9,5 +9,6 @@ object Versions {
   val macroidV = "2.0.0-M3"
   val akkaV = "2.3.6"
   val wartremoverV = "0.11"
+  val playServicesV = "6.5.87"
   val multidexV = "1.0.1"
 }
