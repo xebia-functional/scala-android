@@ -176,6 +176,9 @@
 # view AndroidManifest.xml #generated:33
 -keep class android.test.InstrumentationTestRunner { <init>(...); }
 
+# view AndroidManifest.xml #generated:12
+-keep class com.fortysevendeg.scala.android.ScalaAndroidApplication { <init>(...); }
+
 # view AndroidManifest.xml #generated:24
 -keep class com.fortysevendeg.scala.android.ui.circularreveal.CircularRevealActivity { <init>(...); }
 
@@ -196,6 +199,10 @@
 
 -ignorewarnings
 -keep class scala.Dynamic
+-keep class com.fortysevendeg.** { *; }
+-keep class macroid.** { *; }
+-keep class android.** { *; }
+-keep class com.google.** { *; }
 -keep class akka.actor.Actor$class { *; }
 -keep class akka.actor.LightArrayRevolverScheduler { *; }
 -keep class akka.actor.LocalActorRefProvider { *; }
@@ -210,5 +217,4 @@
 -keep class akka.actor.LocalActorRefProvider$SystemGuardian { *; }
 -keep class akka.dispatch.UnboundedMailbox { *; }
 -keep class akka.actor.DefaultSupervisorStrategy { *; }
--keep class macroid.akkafragments.AkkaAndroidLogger { *; }
 -keep class akka.event.Logging$LogExt { *; }

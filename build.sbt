@@ -54,7 +54,7 @@ dexMaxHeap in Android := "2g"
 dexMinimizeMainFile in Android := true
 
 dexMainFileClasses in Android := Seq(
-  "com/example/app/MultidexApplication.class",
+  "com/fortysevendeg/scala/android/ScalaAndroidApplication.class",
   "android/support/multidex/BuildConfig.class",
   "android/support/multidex/MultiDex$V14.class",
   "android/support/multidex/MultiDex$V19.class",
