@@ -1,8 +1,8 @@
-package com.fortysevendeg.scala.android.ui.akkasimon
+package com.fortysevendeg.scala.android.ui.akkasimon.fragments
 
 import android.os.Bundle
 import android.view.{LayoutInflater, ViewGroup}
-import android.widget.{Button, LinearLayout}
+import android.widget.Button
 import com.fortysevendeg.scala.android.ui.akkasimon.Styles._
 import macroid.FullDsl._
 import macroid._
@@ -21,11 +21,9 @@ class SimonColorFragment extends AkkaFragment with Contexts[AkkaFragment] {
 
   def receive = lightColor(color)
 
-  def lightColor(c: Int = color) = simonColor <~ vAlpha(1f) <~~ delay(1000) <~ simonButton(c) <~~ delay(1000)
+  def lightColor(c: Int = color) = simonColor <~ vAlpha(1f) <~~ delay(600) <~ simonButton(c) <~~ delay(600)
 
   override def onCreateView(inflater: LayoutInflater, container: ViewGroup, savedInstanceState: Bundle) = getUi {
-    l[LinearLayout](
       w[Button] <~ wire(simonColor) <~ simonButton(color) <~ On.click(lightColor())
-    )
   }
 }

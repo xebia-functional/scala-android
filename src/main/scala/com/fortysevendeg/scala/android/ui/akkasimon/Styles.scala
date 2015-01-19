@@ -11,7 +11,7 @@ import scala.language.postfixOps
 object Styles {
 
   def simonButton(color: Int, alpha: Float = 0.3f)(implicit appCtx: AppContext) =
-    buttonsStyle + vBackgroundColor(color) + vAlpha(alpha)
+    vBackgroundColor(color) + vAlpha(alpha)
 
   def vAlpha(alpha: Float) = Tweak[View](_.setAlpha(alpha))
 
@@ -24,7 +24,9 @@ object Styles {
   val verticalWeigthMatch = llMatchWeightVertical + llHorizontal
 
 //  val verticalMatch = llMatchWeightHorizontal + llHorizontal
-  val verticalWrap = llWrapWeightHorizontal + llHorizontal
+  val horizontalWrap = llWrapWeightHorizontal + llHorizontal
 
-  val verticalMatch = llMatchWeightHorizontal + llHorizontal
+  val verticalWrap = llWrapWeightHorizontal + llVertical
+
+  val verticalMatch = llMatchWeightHorizontal + llVertical
 }

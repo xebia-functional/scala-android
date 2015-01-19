@@ -3,7 +3,10 @@ package com.fortysevendeg.scala.android.ui.akkasimon
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
 import android.view.MenuItem
-import com.fortysevendeg.scala.android.ui.akkasimon.SimonColor._
+import com.fortysevendeg.scala.android.ui.akkasimon.actors.SimonComputerActor.NewGame
+import com.fortysevendeg.scala.android.ui.akkasimon.actors.{SimonComputerActor, SimonColorActor}
+import com.fortysevendeg.scala.android.ui.akkasimon.util.SimonColor
+import SimonColor._
 import macroid.Contexts
 import macroid.akkafragments.AkkaActivity
 
@@ -15,6 +18,7 @@ class AkkaSimonActivity
 
   val actorSystemName = "simonsystem"
 
+  lazy val computer = actorSystem.actorOf(SimonComputerActor.props, "computer")
   lazy val green = actorSystem.actorOf(SimonColorActor.props, GREEN.toLower)
   lazy val red = actorSystem.actorOf(SimonColorActor.props, RED.toLower)
   lazy val blue = actorSystem.actorOf(SimonColorActor.props, BLUE.toLower)
@@ -23,7 +27,7 @@ class AkkaSimonActivity
   override def onCreate(savedInstanceState: Bundle) = {
     super.onCreate(savedInstanceState)
 
-    (green, red, blue, yellow)
+    (computer, green, red, blue, yellow)
 
     setContentView(layout(actorSystem))
   }

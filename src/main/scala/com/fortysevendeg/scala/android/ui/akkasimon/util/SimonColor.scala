@@ -1,4 +1,4 @@
-package com.fortysevendeg.scala.android.ui.akkasimon
+package com.fortysevendeg.scala.android.ui.akkasimon.util
 
 object SimonColor {
   sealed trait SimonColor

@@ -1,6 +1,8 @@
-package com.fortysevendeg.scala.android.ui.akkasimon
+package com.fortysevendeg.scala.android.ui.akkasimon.actors
 
 import akka.actor.{ActorLogging, Props}
+
+import com.fortysevendeg.scala.android.ui.akkasimon.fragments.SimonColorFragment
 import macroid.Ui
 import macroid.akkafragments.FragmentActor
 
@@ -12,16 +14,13 @@ object SimonColorActor {
 }
 
 class SimonColorActor extends FragmentActor[SimonColorFragment] with ActorLogging {
-
-  import com.fortysevendeg.scala.android.ui.akkasimon.SimonColorActor._
+  import SimonColorActor._
   import macroid.akkafragments.FragmentActor._
 
   def receive = receiveUi andThen {
     case LightOn(Nil) =>
     case LightOn(Some(head) :: tail) =>
-      println(s"Sending message from ${head.actor.get} with message ${LightOn(tail)}")
       withUi(f => f.receive ~~ Ui(head.actor.get ! LightOn(tail)))
-      println(s"Pending tail => " + tail)
     case AttachUi(_) =>
     case DetachUi =>
   }
