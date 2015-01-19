@@ -1,7 +1,7 @@
 package com.fortysevendeg.scala.android.ui.main
 
 import android.content.ComponentName
-import android.os.{Build, Bundle}
+import android.os.Bundle
 import android.support.v7.app.ActionBarActivity
 import android.support.v7.widget.{GridLayoutManager, LinearLayoutManager}
 import com.fortysevendeg.macroid.extras.DevicesQueries._
@@ -19,12 +19,12 @@ class MainActivity
     super.onCreate(savedInstanceState)
     setContentView(layout)
 
-    val adapter = new ListDemosAdapter(new RecyclerClickListener {
+    val adapter = new ProjectActivityInfoListAdapter(new RecyclerClickListener {
       override def onClick(info: ProjectActivityInfo): Unit = {
-        if (Build.VERSION.SDK_INT >= info.minApi) {
-          aStartActivityFromComponentName(new ComponentName(getPackageName(), info.className))
-        } else {
+        if (info.apiRequired) {
           aShortToast(getString(R.string.min_api_not_available))
+        } else {
+          aStartActivityFromComponentName(new ComponentName(getPackageName, info.className))
         }
       }
     })
@@ -42,7 +42,5 @@ class MainActivity
     })
 
     toolBar map setSupportActionBar
-
   }
-
 }

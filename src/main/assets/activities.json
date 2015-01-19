@@ -1,35 +1,35 @@
 [
   {
-    "name": "Ripple Background",
-    "description": "Description for Ripple Background",
+    "name": "ripple_background_activity_name",
+    "description": "ripple_background_activity_description",
     "className": "com.fortysevendeg.scala.android.ui.ripplebackground.RippleBackgroundActivity",
     "minApi": 21,
     "targetApi": 21
   },
   {
-    "name": "Texts Styles",
-    "description": "Description for Texts Styles",
+    "name": "texts_styles_activity_name",
+    "description": "texts_styles_activity_description",
     "className": "com.fortysevendeg.scala.android.ui.textstyles.TextStylesActivity",
     "minApi": 14,
     "targetApi": 14
   },
   {
-    "name": "Path Morphing",
-    "description": "Description for Path Morphing",
+    "name": "path_morphing_activity_name",
+    "description": "path_morphing_activity_description",
     "className": "com.fortysevendeg.scala.android.ui.pathmorphing.PathMorphingActivity",
     "minApi": 14,
     "targetApi": 14
   },
   {
-    "name": "Circular Reveal",
-    "description": "Description for Circular Reveal",
+    "name": "circular_reveal_activity_name",
+    "description": "circular_reveal_activity_description",
     "className": "com.fortysevendeg.scala.android.ui.circularreveal.CircularRevealActivity",
     "minApi": 14,
     "targetApi": 21
   },
   {
-    "name": "Google Maps",
-    "description": "Description for Google Maps",
+    "name": "google_maps_activity_name",
+    "description": "google_maps_activity_description",
     "className": "com.fortysevendeg.scala.android.ui.googlemaps.GoogleMapsActivity",
     "minApi": 14,
     "targetApi": 21

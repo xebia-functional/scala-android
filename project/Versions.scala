@@ -10,6 +10,5 @@ object Versions {
   val akkaV = "2.3.6"
   val wartremoverV = "0.11"
   val playServicesV = "6.5.87"
-  val json4sV = "3.2.11"
-  val sprayJsonV = "1.3.1"
+  val playJsonV = "2.3.4"
 }
