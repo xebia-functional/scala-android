@@ -15,6 +15,11 @@ class ListDemosAdapter(listener: RecyclerClickListener)
 
   val list = List(
     DemoInfo(
+      "Akka Simon",
+      "Description for Akka Simon",
+      "AkkaSimonActivity",
+      14, 21),
+    DemoInfo(
       "Ripple Background",
       "Description for Ripple Background",
       "RippleBackgroundActivity",
@@ -45,7 +50,7 @@ class ListDemosAdapter(listener: RecyclerClickListener)
     adapter.layout.setOnClickListener(new OnClickListener {
       override def onClick(v: View): Unit = recyclerClickListener.onClick(list(v.getTag.asInstanceOf[Int]))
     })
-    return new ViewHolder(adapter)
+    new ViewHolder(adapter)
   }
 
   override def getItemCount: Int = list.size

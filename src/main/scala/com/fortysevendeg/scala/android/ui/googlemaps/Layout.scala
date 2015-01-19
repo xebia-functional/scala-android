@@ -46,7 +46,7 @@ trait Layout extends ToolbarLayout with IdGeneration {
       ) <~ contentStyle
     )
   }
-  
+
   def findFragment(implicit appContext: AppContext, context: ActivityContext, fragmentManager: FragmentManagerContext[Fragment, FragmentManager]): Option[CustomMapFragment] = {
     findFragmentByTag(fragmentTag) map (_.asInstanceOf[CustomMapFragment])
   }
