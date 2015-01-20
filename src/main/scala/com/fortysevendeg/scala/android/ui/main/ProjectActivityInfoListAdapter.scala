@@ -50,12 +50,13 @@ class ProjectActivityInfoListAdapter(listener: RecyclerClickListener)
 
   override def onBindViewHolder(viewHolder: ViewHolder, position: Int): Unit = {
     val projectActivityInfo = activityInfoList(position)
+    val resourceStringFormatArgs = Seq(projectActivityInfo.minApi) map (_.asInstanceOf[Object])
     viewHolder.content.setTag(position)
 
     runUi(
       (viewHolder.title <~ tvText(resGetString(projectActivityInfo.name).getOrElse(projectActivityInfo.name))) ~
           (viewHolder.description <~ tvText(resGetString(projectActivityInfo.description).getOrElse(projectActivityInfo.description))) ~
-          (viewHolder.api <~ tvText("API %d".format(projectActivityInfo.minApi)) <~ setApiBackground(projectActivityInfo))
+          (viewHolder.api <~ tvText(resGetString("min_api_required",resourceStringFormatArgs:_*).getOrElse("")) <~ setApiBackground(projectActivityInfo))
     )
   }
 
