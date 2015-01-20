@@ -21,12 +21,10 @@ object Styles {
 
   val horizontalLinearLayoutStyle = vMatchWidth + llHorizontal
 
-  val verticalWeigthMatch = llMatchWeightVertical + llHorizontal
+  val colorsContainerStyle = llMatchWeightVertical + llHorizontal
 
-//  val verticalMatch = llMatchWeightHorizontal + llHorizontal
-  val horizontalWrap = llWrapWeightHorizontal + llHorizontal
+  val columnColorsStyle = llMatchWeightHorizontal + llVertical
 
-  val verticalWrap = llWrapWeightHorizontal + llVertical
+  val fragmentStyle = llMatchWeightVertical
 
-  val verticalMatch = llMatchWeightHorizontal + llVertical
 }

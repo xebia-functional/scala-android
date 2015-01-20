@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.{LayoutInflater, ViewGroup}
 import android.widget.Button
 import com.fortysevendeg.scala.android.ui.akkasimon.Styles._
+import com.fortysevendeg.scala.android.ui.akkasimon.actors.ComputerActor.ClickedUserColor
+import com.fortysevendeg.scala.android.ui.akkasimon.util.SimonAkkaFragment
 import macroid.FullDsl._
 import macroid._
-import macroid.akkafragments.AkkaFragment
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
-class SimonColorFragment extends AkkaFragment with Contexts[AkkaFragment] {
+class ColorFragment extends SimonAkkaFragment {
 
   lazy val actorName = getArguments.getString("name")
   lazy val color = getArguments.getInt("color")
@@ -24,6 +25,7 @@ class SimonColorFragment extends AkkaFragment with Contexts[AkkaFragment] {
   def lightColor(c: Int = color) = simonColor <~ vAlpha(1f) <~~ delay(600) <~ simonButton(c) <~~ delay(600)
 
   override def onCreateView(inflater: LayoutInflater, container: ViewGroup, savedInstanceState: Bundle) = getUi {
-      w[Button] <~ wire(simonColor) <~ simonButton(color) <~ On.click(lightColor())
+    w[Button] <~ wire(simonColor) <~ simonButton(color) <~ On.click(lightColor() ~~
+        Ui(computerActor ! ClickedUserColor(color)))
   }
 }

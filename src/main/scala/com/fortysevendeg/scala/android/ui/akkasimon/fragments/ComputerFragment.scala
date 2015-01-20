@@ -1,19 +1,29 @@
 package com.fortysevendeg.scala.android.ui.akkasimon.fragments
 
-import android.widget.Button
-import macroid.FullDsl._
+import com.fortysevendeg.scala.android.ui.akkasimon.actors.ComputerActor.RoundItemActorColor
+import com.fortysevendeg.scala.android.ui.akkasimon.actors.RoundActor._
+import com.fortysevendeg.scala.android.ui.akkasimon.util.SimonAkkaFragment
 import macroid._
-import macroid.akkafragments.AkkaFragment
 
-class ComputerFragment extends AkkaFragment with Contexts[AkkaFragment] {
+class ComputerFragment extends SimonAkkaFragment {
 
   lazy val actorName = getArguments.getString("name")
 
   lazy val actor = Some(actorSystem.actorSelection(s"/user/$actorName"))
 
-  var simonColor = slot[Button]
+  def newGame = Ui(roundActor ! ResetRound)
 
-  def receive = {
-    println("Computer fragment...")
+  def checkGame(gameList: List[RoundItemActorColor], userClicks: List[Int]) = Ui {
+
+    if (userClicks.size == gameList.size) {
+
+      val colors = gameList map (_.color)
+
+      if (userClicks.zip(colors).exists(t => t._1 != t._2))
+        roundActor ! GameOver
+      else
+        roundActor ! NextRound
+    }
   }
 }
+
