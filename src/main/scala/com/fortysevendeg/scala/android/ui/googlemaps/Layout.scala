@@ -23,22 +23,22 @@ trait Layout extends ToolbarLayout with IdGeneration {
         l[LinearLayout](
           w[Button] <~ tvText(R.string.map_satellite) <~ buttonsStyle <~ On.click {
             Ui {
-              findFragment map (_.changeMapType(GoogleMap.MAP_TYPE_SATELLITE))
+              findFragmentByTag[CustomMapFragment](fragmentTag) map (_.changeMapType(GoogleMap.MAP_TYPE_SATELLITE))
             }
           },
           w[Button] <~ tvText(R.string.map_normal) <~ buttonsStyle <~ On.click {
             Ui {
-              findFragment map (_.changeMapType(GoogleMap.MAP_TYPE_NORMAL))
+              findFragmentByTag[CustomMapFragment](fragmentTag) map (_.changeMapType(GoogleMap.MAP_TYPE_NORMAL))
             }
           },
           w[Button] <~ tvText(R.string.map_hybrid) <~ buttonsStyle <~ On.click {
             Ui {
-              findFragment map (_.changeMapType(GoogleMap.MAP_TYPE_HYBRID))
+              findFragmentByTag[CustomMapFragment](fragmentTag) map (_.changeMapType(GoogleMap.MAP_TYPE_HYBRID))
             }
           },
           w[Button] <~ tvText(R.string.map_terrain) <~ buttonsStyle <~ On.click {
             Ui {
-              findFragment map (_.changeMapType(GoogleMap.MAP_TYPE_TERRAIN))
+              findFragmentByTag[CustomMapFragment](fragmentTag) map (_.changeMapType(GoogleMap.MAP_TYPE_TERRAIN))
             }
           }
         ) <~ horizontalLinearLayoutStyle,
@@ -46,9 +46,4 @@ trait Layout extends ToolbarLayout with IdGeneration {
       ) <~ contentStyle
     )
   }
-
-  def findFragment(implicit appContext: AppContext, context: ActivityContext, fragmentManager: FragmentManagerContext[Fragment, FragmentManager]): Option[CustomMapFragment] = {
-    findFragmentByTag(fragmentTag) map (_.asInstanceOf[CustomMapFragment])
-  }
-
 }

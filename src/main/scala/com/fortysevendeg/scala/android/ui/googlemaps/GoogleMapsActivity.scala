@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.FragmentActivity
 import android.support.v7.app.ActionBarActivity
 import android.view.{Menu, MenuItem}
+import com.fortysevendeg.macroid.extras.ExtraFragment._
 import com.fortysevendeg.scala.android.R
 import macroid.Contexts
 import googlemaps._
@@ -37,7 +38,7 @@ class GoogleMapsActivity extends ActionBarActivity with Contexts[FragmentActivit
         false
       }
       case R.id.add_marker => {
-        findFragment map (_.addMarker(
+        findFragmentByTag[CustomMapFragment](fragmentTag) map (_.addMarker(
           getString(R.string.marker_map_sample_title),
           getString(R.string.marker_map_sample_message),
           initLatitude + random.nextDouble() / 100,
@@ -45,7 +46,7 @@ class GoogleMapsActivity extends ActionBarActivity with Contexts[FragmentActivit
         true
       }
       case R.id.clear_map => {
-        findFragment map (_.clearMap())
+        findFragmentByTag[CustomMapFragment](fragmentTag) map (_.clearMap())
         true
       }  
     }
