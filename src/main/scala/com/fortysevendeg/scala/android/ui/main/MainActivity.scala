@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity
 import android.support.v7.widget.{GridLayoutManager, LinearLayoutManager}
 import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.macroid.extras.ExtraActions._
+import com.fortysevendeg.scala.android.ui.akkasimon.AkkaSimonActivity
 import com.fortysevendeg.scala.android.ui.circularreveal.CircularRevealActivity
 import com.fortysevendeg.scala.android.ui.googlemaps.GoogleMapsActivity
 import com.fortysevendeg.scala.android.ui.pathmorphing.PathMorphingActivity
@@ -33,6 +34,7 @@ class MainActivity
             case DemoInfo(_, _, "CircularRevealActivity", _, _) => aStartActivity[CircularRevealActivity]
             case DemoInfo(_, _, "PathMorphingActivity", _, _) => aStartActivity[PathMorphingActivity]
             case DemoInfo(_, _, "GoogleMapsActivity", _, _) => aStartActivity[GoogleMapsActivity]
+            case DemoInfo(_, _, "AkkaSimonActivity", _, _) => aStartActivity[AkkaSimonActivity]
           }
         } else {
           aShortToast(getString(R.string.min_api_not_available))

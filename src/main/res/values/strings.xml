@@ -20,6 +20,11 @@
     <string name="map_hybrid">Hybrid</string>
     <string name="map_terrain">Terrain</string>
 
+    <!-- Akka Simon String resources -->
+    <string name="title_akka_simon">Akka Simon</string>
+    <string name="simon_start">Start</string>
+    <string name="simon_round">Round</string>
+
     <string name="min_api_not_available">You need an Android version upper</string>
     <string name="menu_add_marker">Add Marker</string>
     <string name="menu_clear_map">Clear Map</string>
