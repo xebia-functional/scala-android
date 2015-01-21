@@ -16,7 +16,7 @@ class CircularRevealActivity extends ActionBarActivity with Contexts[FragmentAct
 
     toolBar map setSupportActionBar
 
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true)
+    getSupportActionBar.setDisplayHomeAsUpEnabled(true)
 
   }
 
@@ -33,8 +33,8 @@ class CircularRevealActivity extends ActionBarActivity with Contexts[FragmentAct
   }
 
   override def onBackPressed(): Unit =
-    findFragmentByTag(fragmentName) match {
-      case Some(f) => f.asInstanceOf[SampleFragment].unreveal()
+    findFragmentByTag[SampleFragment](fragmentName) match {
+      case Some(f) => f.unreveal()
       case _ => super.onBackPressed()
     }
 

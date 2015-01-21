@@ -45,5 +45,7 @@
 
         <activity android:name=".ui.googlemaps.GoogleMapsActivity" />
 
+        <activity android:name=".ui.akkasimon.AkkaSimonActivity" />
+
     </application>
 </manifest>

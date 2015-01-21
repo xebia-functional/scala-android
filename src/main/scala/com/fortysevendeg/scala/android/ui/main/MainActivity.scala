@@ -1,12 +1,17 @@
 package com.fortysevendeg.scala.android.ui.main
 
 import android.content.ComponentName
-import android.os.Bundle
+import android.os.{Build, Bundle}
 import android.support.v7.app.ActionBarActivity
 import android.support.v7.widget.{GridLayoutManager, LinearLayoutManager}
 import com.fortysevendeg.macroid.extras.DevicesQueries._
 import com.fortysevendeg.macroid.extras.ExtraActions._
-import com.fortysevendeg.scala.android.R
+import com.fortysevendeg.scala.android.ui.akkasimon.AkkaSimonActivity
+import com.fortysevendeg.scala.android.ui.circularreveal.CircularRevealActivity
+import com.fortysevendeg.scala.android.ui.googlemaps.GoogleMapsActivity
+import com.fortysevendeg.scala.android.ui.pathmorphing.PathMorphingActivity
+import com.fortysevendeg.scala.android.ui.ripplebackground.RippleBackgroundActivity
+import com.fortysevendeg.scala.android.ui.textstyles.TextStylesActivity
 import macroid.Contexts
 import macroid.FullDsl._
 
@@ -42,5 +47,7 @@ class MainActivity
     })
 
     toolBar map setSupportActionBar
+
   }
+
 }
