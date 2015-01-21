@@ -54,9 +54,9 @@ class ProjectActivityInfoListAdapter(listener: RecyclerClickListener)
     viewHolder.content.setTag(position)
 
     runUi(
-      (viewHolder.title <~ tvText(resGetString(projectActivityInfo.name).getOrElse(projectActivityInfo.name))) ~
-          (viewHolder.description <~ tvText(resGetString(projectActivityInfo.description).getOrElse(projectActivityInfo.description))) ~
-          (viewHolder.api <~ tvText(resGetString("min_api_required",resourceStringFormatArgs:_*).getOrElse("")) <~ setApiBackground(projectActivityInfo))
+      (viewHolder.title <~ tvText(resGetString(projectActivityInfo.name) getOrElse projectActivityInfo.name)) ~
+          (viewHolder.description <~ tvText(resGetString(projectActivityInfo.description) getOrElse projectActivityInfo.description)) ~
+          (viewHolder.api <~ tvText(resGetString("min_api_required",resourceStringFormatArgs:_*) getOrElse "") <~ setApiBackground(projectActivityInfo))
     )
   }
 
