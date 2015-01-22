@@ -2,6 +2,7 @@ import Libraries.android._
 import Libraries.macroid._
 import Libraries.akka._
 import Libraries.playServices._
+import Libraries.json._
 
 android.Plugin.androidBuild
 
@@ -33,6 +34,7 @@ libraryDependencies ++= Seq(
   aar(androidRecyclerview),
   aar(macroidExtras),
   aar(playServicesMaps),
+  playJson,
   akkaActor,
   compilerPlugin(Libraries.wartRemover))
 
@@ -43,3 +45,5 @@ proguardScala in Android := true
 useProguard in Android := true
 
 proguardOptions in Android ++= Settings.proguardCommons ++ Settings.proguardAkka
+
+apkbuildExcludes in Android ++= Seq("META-INF/LICENSE.txt", "META-INF/NOTICE.txt", "META-INF/LICENSE", "META-INF/NOTICE")

@@ -64,4 +64,8 @@ object Libraries {
     lazy val macroidAkkaFragments = macroid("akka-fragments")
     lazy val macroidExtras = "com.fortysevendeg" %% "macroid-extras" % Versions.macroidExtras
   }
+  
+  object json {
+    lazy val playJson = "com.typesafe.play" %% "play-json" % Versions.playJsonV
+  }
 }

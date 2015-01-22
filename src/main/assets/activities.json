@@ -1,0 +1,44 @@
+[
+  {
+    "name": "ripple_background_activity_name",
+    "description": "ripple_background_activity_description",
+    "className": "com.fortysevendeg.scala.android.ui.ripplebackground.RippleBackgroundActivity",
+    "minApi": 21,
+    "targetApi": 21
+  },
+  {
+    "name": "texts_styles_activity_name",
+    "description": "texts_styles_activity_description",
+    "className": "com.fortysevendeg.scala.android.ui.textstyles.TextStylesActivity",
+    "minApi": 14,
+    "targetApi": 14
+  },
+  {
+    "name": "path_morphing_activity_name",
+    "description": "path_morphing_activity_description",
+    "className": "com.fortysevendeg.scala.android.ui.pathmorphing.PathMorphingActivity",
+    "minApi": 14,
+    "targetApi": 14
+  },
+  {
+    "name": "circular_reveal_activity_name",
+    "description": "circular_reveal_activity_description",
+    "className": "com.fortysevendeg.scala.android.ui.circularreveal.CircularRevealActivity",
+    "minApi": 14,
+    "targetApi": 21
+  },
+  {
+    "name": "google_maps_activity_name",
+    "description": "google_maps_activity_description",
+    "className": "com.fortysevendeg.scala.android.ui.googlemaps.GoogleMapsActivity",
+    "minApi": 14,
+    "targetApi": 21
+  },
+  {
+    "name": "akka_simon_activity_name",
+    "description": "akka_simon_activity_description",
+    "className": "com.fortysevendeg.scala.android.ui.akkasimon.AkkaSimonActivity",
+    "minApi": 14,
+    "targetApi": 21
+  }
+]

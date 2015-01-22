@@ -26,9 +26,27 @@
     <string name="simon_round">Round</string>
 
     <string name="min_api_not_available">You need an Android version upper</string>
+    <string name="min_api_required">API %1$d</string>
     <string name="menu_add_marker">Add Marker</string>
     <string name="menu_clear_map">Clear Map</string>
 
+    <string name="activity_not_found">Activity not found</string>
+    <string name="json_file_not_found">JSON file not found</string>
+    <string name="malformed_json_file">Malformed JSON file</string>
+    <string name="unexpected_error">An unexpected error has occurred</string>
+
     <string name="exampleText">Hi guys!</string>
 
+    <string name="ripple_background_activity_name">Ripple Background</string>
+    <string name="ripple_background_activity_description">Description for Ripple Background</string>
+    <string name="texts_styles_activity_name">Texts Styles</string>
+    <string name="texts_styles_activity_description">Description for Texts Styles</string>
+    <string name="path_morphing_activity_name">Path Morphing</string>
+    <string name="path_morphing_activity_description">Description for Path Morphing</string>
+    <string name="circular_reveal_activity_name">Circular Reveal</string>
+    <string name="circular_reveal_activity_description">Description for Circular Reveal</string>
+    <string name="google_maps_activity_name">Google Maps</string>
+    <string name="google_maps_activity_description">Description for Google Maps</string>
+    <string name="akka_simon_activity_name">Akka Simon</string>
+    <string name="akka_simon_activity_description">Description for Akka Simon</string>
 </resources>
