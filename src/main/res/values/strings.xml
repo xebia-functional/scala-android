@@ -47,4 +47,6 @@
     <string name="circular_reveal_activity_description">Description for Circular Reveal</string>
     <string name="google_maps_activity_name">Google Maps</string>
     <string name="google_maps_activity_description">Description for Google Maps</string>
+    <string name="akka_simon_activity_name">Akka Simon</string>
+    <string name="akka_simon_activity_description">Description for Akka Simon</string>
 </resources>

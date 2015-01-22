@@ -33,5 +33,12 @@
     "className": "com.fortysevendeg.scala.android.ui.googlemaps.GoogleMapsActivity",
     "minApi": 14,
     "targetApi": 21
+  },
+  {
+    "name": "akka_simon_activity_name",
+    "description": "akka_simon_activity_description",
+    "className": "com.fortysevendeg.scala.android.ui.akkasimon.AkkaSimonActivity",
+    "minApi": 14,
+    "targetApi": 21
   }
 ]
