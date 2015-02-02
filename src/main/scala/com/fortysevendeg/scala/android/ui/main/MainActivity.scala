@@ -4,8 +4,8 @@ import android.content.ComponentName
 import android.os.Bundle
 import android.support.v7.app.ActionBarActivity
 import android.support.v7.widget.{GridLayoutManager, LinearLayoutManager}
-import com.fortysevendeg.macroid.extras.DevicesQueries._
-import com.fortysevendeg.macroid.extras.ExtraActions._
+import com.fortysevendeg.macroid.extras.DeviceMediaQueries._
+import com.fortysevendeg.macroid.extras.ActionsExtras._
 import com.fortysevendeg.scala.android.R
 import macroid.Contexts
 import macroid.FullDsl._

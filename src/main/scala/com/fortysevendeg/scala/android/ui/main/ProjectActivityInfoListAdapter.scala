@@ -6,8 +6,8 @@ import android.os.Build
 import android.support.v7.widget.RecyclerView
 import android.view.View.OnClickListener
 import android.view.{View, ViewGroup}
-import com.fortysevendeg.macroid.extras.ExtraActions._
-import com.fortysevendeg.macroid.extras.ExtraResources._
+import com.fortysevendeg.macroid.extras.ActionsExtras._
+import com.fortysevendeg.macroid.extras.ResourcesExtras._
 import com.fortysevendeg.macroid.extras.TextTweaks._
 import com.fortysevendeg.macroid.extras.ViewTweaks._
 import com.fortysevendeg.scala.android.R

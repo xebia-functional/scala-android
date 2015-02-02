@@ -7,7 +7,7 @@ import com.fortysevendeg.scala.android.ui.commons.ToolbarLayout
 import com.fortysevendeg.scala.android.ui.googlemaps.Styles._
 import com.fortysevendeg.macroid.extras.ToolbarTweaks._
 import com.fortysevendeg.macroid.extras.TextTweaks._
-import com.fortysevendeg.macroid.extras.ExtraFragment._
+import com.fortysevendeg.macroid.extras.FragmentExtras._
 import com.google.android.gms.maps.GoogleMap
 import macroid.FullDsl._
 import macroid._

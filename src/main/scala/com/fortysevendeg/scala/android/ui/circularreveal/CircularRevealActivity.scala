@@ -5,7 +5,7 @@ import android.support.v4.app.{Fragment, FragmentActivity}
 import android.support.v7.app.ActionBarActivity
 import android.view.MenuItem
 import macroid.Contexts
-import com.fortysevendeg.macroid.extras.ExtraFragment._
+import com.fortysevendeg.macroid.extras.FragmentExtras._
 
 class CircularRevealActivity extends ActionBarActivity with Contexts[FragmentActivity] with Layout {
 
