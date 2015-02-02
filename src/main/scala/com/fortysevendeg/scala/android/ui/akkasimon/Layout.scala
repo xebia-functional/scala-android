@@ -4,7 +4,7 @@ import akka.actor.ActorSystem
 import android.graphics.Color
 import android.support.v4.app.{Fragment, FragmentManager}
 import android.widget.{Button, LinearLayout, TextView}
-import com.fortysevendeg.macroid.extras.ExtraFragment._
+import com.fortysevendeg.macroid.extras.FragmentExtras._
 import com.fortysevendeg.macroid.extras.TextTweaks._
 import com.fortysevendeg.macroid.extras.ToolbarTweaks._
 import com.fortysevendeg.scala.android.R

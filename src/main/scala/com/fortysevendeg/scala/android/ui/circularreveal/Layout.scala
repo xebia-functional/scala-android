@@ -10,7 +10,7 @@ import com.fortysevendeg.scala.android.ui.commons.ToolbarLayout
 import com.fortysevendeg.scala.android.ui.components.CircleButton
 import macroid.FullDsl._
 import macroid.{IdGeneration, FragmentManagerContext, ActivityContext, AppContext}
-import com.fortysevendeg.macroid.extras.ExtraFragment._
+import com.fortysevendeg.macroid.extras.FragmentExtras._
 
 trait Layout extends ToolbarLayout with IdGeneration {
 
@@ -37,7 +37,7 @@ trait Layout extends ToolbarLayout with IdGeneration {
           val args = new Bundle()
           args.putInt(SampleFragment.posX, x)
           args.putInt(SampleFragment.posY, y)
-          addFragment(f[SampleFragment], Some(args), Some(Id.fragment), Some(fragmentName))
+          addFragment(f[SampleFragment].pass(args), Some(Id.fragment), Some(fragmentName))
         },
         l[LinearLayout](
         ) <~ wire(content) <~ id(Id.fragment)

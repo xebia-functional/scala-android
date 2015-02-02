@@ -4,7 +4,7 @@ import android.graphics.Color
 import android.view.View
 import android.widget._
 import com.fortysevendeg.scala.android.R
-import com.fortysevendeg.macroid.extras.ExtraSeekBarEvents.OnSeekBarChangeListenerHandler
+import com.fortysevendeg.macroid.extras.SeekBarEventsExtras.OnSeekBarChangeListenerHandler
 import com.fortysevendeg.macroid.extras.SeekBarTweaks._
 import com.fortysevendeg.macroid.extras.TextTweaks._
 import com.fortysevendeg.macroid.extras.ToolbarTweaks._
