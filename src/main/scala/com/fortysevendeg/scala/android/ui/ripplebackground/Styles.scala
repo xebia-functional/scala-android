@@ -10,14 +10,20 @@ import scala.language.postfixOps
 
 object Styles {
 
-  val rootStyle = vMatchParent + llVertical
+  val rootStyle =
+    vMatchParent +
+      llVertical
 
   val contentStyle = vWrapContent
 
   val backgroundStyle = vMatchParent
 
-  val circlesContentStyle = vMatchParent + llGravity(Gravity.CENTER_HORIZONTAL)
+  val circlesContentStyle =
+    vMatchParent +
+      llGravity(Gravity.CENTER_HORIZONTAL)
 
-  def circleStyle(implicit appContext: AppContext) = lp[LinearLayout](64 dp, 64 dp) + vMargins(8 dp)
+  def circleStyle(implicit appContext: AppContext) =
+    lp[LinearLayout](64 dp, 64 dp) +
+      vMargins(8 dp)
 
 }

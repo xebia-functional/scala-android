@@ -30,10 +30,8 @@ trait Layout extends ToolbarLayout with IdGeneration {
           val (x: Int, y: Int) = (for {
             circle <- circleButton
             c <- content
-          } yield (
-                (circle.getLeft - c.getLeft + (circle.getWidth / 2),
-                    circle.getTop - c.getTop + (circle.getHeight / 2))
-                )).getOrElse(0, 0)
+          } yield (circle.getLeft - c.getLeft + circle.getWidth / 2,
+              circle.getTop - c.getTop + (circle.getHeight / 2))).getOrElse(0, 0)
           val args = new Bundle()
           args.putInt(SampleFragment.posX, x)
           args.putInt(SampleFragment.posY, y)

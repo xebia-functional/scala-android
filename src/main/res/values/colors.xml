@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#ffffc019</color>
-    <color name="colorPrimaryDark">#ffe6ae17</color>
+    <color name="primary">#ffffc019</color>
+    <color name="primary_dark">#ffe6ae17</color>
+    <color name="color_control_highlight">#ffe6ae17</color>
 
     <color name="apiRequired">#ffe61a2b</color>
     <color name="apiNotRequired">#ffe6ae17</color>

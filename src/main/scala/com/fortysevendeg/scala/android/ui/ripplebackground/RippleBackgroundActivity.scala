@@ -45,6 +45,7 @@ class RippleBackgroundActivity extends ActionBarActivity with Contexts[ActionBar
     getSupportActionBar().setDisplayHomeAsUpEnabled(true)
 
   }
+
   override def onOptionsItemSelected(item: MenuItem): Boolean = {
     item.getItemId match {
       case android.R.id.home => {
@@ -58,17 +59,18 @@ class RippleBackgroundActivity extends ActionBarActivity with Contexts[ActionBar
   def anim(circleView: Option[CircleView], color: Int) = {
 
     val rippleData = RippleSnailData.fromPlace(rippleBackground.get).
-        copy(
-          resColor = color,
-          listener = Some(new AnimatorListenerAdapter {
-            override def onAnimationStart(animation: Animator): Unit = {
-              runUi(circleView <~ vInvisible)
-            }
-            override def onAnimationEnd(animation: Animator): Unit = {
-              runUi(circleView <~ vVisible <~ vTransformation(0, 0))
-            }
-          })
-        )
+      copy(
+        resColor = color,
+        listener = Some(new AnimatorListenerAdapter {
+          override def onAnimationStart(animation: Animator): Unit = {
+            runUi(circleView <~ vInvisible)
+          }
+
+          override def onAnimationEnd(animation: Animator): Unit = {
+            runUi(circleView <~ vVisible <~ vTransformation(0, 0))
+          }
+        })
+      )
     (circleView <~~ move(rippleBackground)) ~~ (rippleBackground <~~ ripple(rippleData))
 
   }

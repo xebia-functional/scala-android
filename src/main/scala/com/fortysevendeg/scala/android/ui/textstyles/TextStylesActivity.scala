@@ -13,18 +13,12 @@ class TextStylesActivity extends ActionBarActivity with Contexts[ActionBarActivi
 
     setContentView(layout)
 
-    //    DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-    //    ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(
-    //      this,  mDrawerLayout, mToolbar,
-    //      R.string.navigation_drawer_open, R.string.navigation_drawer_close
-    //    );
-    //    mDrawerLayout.setDrawerListener(mDrawerToggle);
-
     toolBar map setSupportActionBar
 
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true)
+    getSupportActionBar.setDisplayHomeAsUpEnabled(true)
 
   }
+
   override def onOptionsItemSelected(item: MenuItem): Boolean = {
     item.getItemId match {
       case android.R.id.home => {

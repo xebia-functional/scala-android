@@ -5,6 +5,8 @@ import com.fortysevendeg.macroid.extras.ViewTweaks._
 
 object CommonsStyles {
 
-  val toolbarStyle = vBackground(R.color.colorPrimary) + vMatchWidth
+  val toolbarStyle =
+    vBackground(R.color.primary) +
+      vMatchWidth
 
 }

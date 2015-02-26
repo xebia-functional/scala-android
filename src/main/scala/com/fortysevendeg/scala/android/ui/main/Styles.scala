@@ -17,14 +17,31 @@ object Styles {
 
   val cardStyle = vMatchWidth
 
-  def itemStyle(implicit appContext: AppContext) = llVertical + vMatchWidth + vPaddings(12 dp)
+  def itemStyle(implicit appContext: AppContext) =
+    llVertical +
+      vMatchWidth +
+      vPaddings(12 dp)
 
-  def itemTopStyle(implicit appContext: AppContext) = llHorizontal + vContentSizeMatchWidth(72 dp) + llGravity(Gravity.CENTER_VERTICAL)
+  def itemTopStyle(implicit appContext: AppContext) =
+    llHorizontal +
+      vContentSizeMatchWidth(72 dp) +
+      llGravity(Gravity.CENTER_VERTICAL)
 
-  val titleStyle = llWrapWeightHorizontal + tvSize(18) + tvColor(Color.BLACK)
+  val titleStyle =
+    llWrapWeightHorizontal +
+      tvSize(18) +
+      tvColor(Color.BLACK)
 
-  val descriptionStyle = tvSize(14) + tvNormalLight + tvColor(Color.GRAY) + tvMaxLines(2)
+  val descriptionStyle =
+    tvSize(14) +
+      tvNormalLight +
+      tvColor(Color.GRAY) +
+      tvMaxLines(2)
 
-  def apiStyle(implicit appContext: AppContext) = tvSize(10) + tvItalicLight + tvColor(Color.WHITE) + vPaddings(8 dp)
+  def apiStyle(implicit appContext: AppContext) =
+    tvSize(10) +
+      tvItalicLight +
+      tvColor(Color.WHITE) +
+      vPaddings(8 dp)
 
 }

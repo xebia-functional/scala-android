@@ -12,7 +12,9 @@ object Styles {
 
   val contentStyle = llVertical
 
-  val horizontalLinearLayoutStyle = vMatchWidth + llHorizontal
+  val horizontalLinearLayoutStyle =
+    vMatchWidth +
+      llHorizontal
 
   val buttonsStyle = llWrapWeightHorizontal + tvMaxLines(1)
   
