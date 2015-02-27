@@ -20,11 +20,6 @@
     <string name="map_hybrid">Hybrid</string>
     <string name="map_terrain">Terrain</string>
 
-    <!-- Akka Simon String resources -->
-    <string name="title_akka_simon">Akka Simon</string>
-    <string name="simon_start">Start</string>
-    <string name="simon_round">Round</string>
-
     <string name="min_api_not_available">You need an Android version upper</string>
     <string name="min_api_required">API %1$d</string>
     <string name="menu_add_marker">Add Marker</string>
@@ -35,7 +30,7 @@
     <string name="malformed_json_file">Malformed JSON file</string>
     <string name="unexpected_error">An unexpected error has occurred</string>
 
-    <string name="exampleText">Hi guys!</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, vix vocent suscipit no. Definitionem delicatissimi at pri. Pro omnis civibus in, oporteat senserit instructior eos in. Ne usu tale definitionem, quo consetetur temporibus definitionem et, assum putent dolores mei in. No aliquam detraxit pro, quem eloquentiam id pro.</string>
 
     <string name="ripple_background_activity_name">Ripple Background</string>
     <string name="ripple_background_activity_description">Description for Ripple Background</string>
@@ -49,4 +44,13 @@
     <string name="google_maps_activity_description">Description for Google Maps</string>
     <string name="akka_simon_activity_name">Akka Simon</string>
     <string name="akka_simon_activity_description">Description for Akka Simon</string>
+
+    <!-- Akka Simon String resources -->
+    <string name="title_akka_simon">Akka Simon</string>
+    <string name="simon_start">Start</string>
+    <string name="simon_round">Round</string>
+
+    <!-- Circular Reveal String resources -->
+    <string name="circular_reveal_title">Beach</string>
+
 </resources>

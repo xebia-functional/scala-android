@@ -4,8 +4,11 @@ import android.os.Bundle
 import android.support.v4.app.{Fragment, FragmentActivity}
 import android.support.v7.app.ActionBarActivity
 import android.view.MenuItem
-import macroid.Contexts
+import com.fortysevendeg.scala.android.ui.components.IconTypes._
+import com.fortysevendeg.scala.android.ui.components.PathMorphDrawableTweaks._
+import macroid.{Ui, Contexts}
 import com.fortysevendeg.macroid.extras.FragmentExtras._
+import macroid.FullDsl._
 
 class CircularRevealActivity extends ActionBarActivity with Contexts[FragmentActivity] with Layout {
 
@@ -34,7 +37,9 @@ class CircularRevealActivity extends ActionBarActivity with Contexts[FragmentAct
 
   override def onBackPressed(): Unit =
     findFragmentByTag[SampleFragment](fragmentName) match {
-      case Some(f) => f.unreveal()
+      case Some(f) =>
+        runUi(Ui(f.unreveal()) ~
+          (circleButton <~ pmdAnimIcon(ADD)))
       case _ => super.onBackPressed()
     }
 

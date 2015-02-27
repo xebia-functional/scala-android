@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Default -->
     <dimen name="radius">3dp</dimen>
+    <dimen name="padding_default_small">4dp</dimen>
+    <dimen name="padding_default">8dp</dimen>
+    <dimen name="padding_default_large">8dp</dimen>
+    <dimen name="padding_default_xlarge">16dp</dimen>
+
+    <dimen name="font_size_micro">10sp</dimen>
+    <dimen name="font_size_small">12sp</dimen>
+    <dimen name="font_size_normal">14sp</dimen>
+    <dimen name="font_size_medium">16sp</dimen>
+    <dimen name="font_size_large">20sp</dimen>
+    <dimen name="font_size_xlarge">24sp</dimen>
+
+    <dimen name="size_fab_default">56dp</dimen>
+
+    <!-- Circular Reveal -->
+    <dimen name="circular_reveal_fab_stroke">2dp</dimen>
+    <dimen name="circular_reveal_fab_size">64dp</dimen>
+
+    <dimen name="circular_reveal_height_image">200dp</dimen>
 
     <!-- CircleButton Default -->
     <dimen name="circle_button_width">72dp</dimen>

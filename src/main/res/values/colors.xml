@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Default -->
     <color name="primary">#ffffc019</color>
     <color name="primary_dark">#ffe6ae17</color>
     <color name="color_control_highlight">#ffe6ae17</color>
 
+    <!-- Main List -->
     <color name="apiRequired">#ffe61a2b</color>
     <color name="apiNotRequired">#ffe6ae17</color>
+
 
     <color name="iconBackground">#ffe6e6e6</color>
     <color name="iconStroke">#ffd6d6d6</color>
@@ -17,4 +21,10 @@
     <color name="pathMorphSample2">#545756</color>
     <color name="pathMorphSample3">#72979C</color>
     <color name="pathMorphSample4">#EDB55A</color>
+
+    <!-- Circular Reveal -->
+    <color name="circular_reveal_fab_color">#ff49cb94</color>
+    <color name="circular_reveal_fab_color_dark">#ff3da97c</color>
+    <color name="circular_reveal_fab_shadow_color">#46000000</color>
+
 </resources>
