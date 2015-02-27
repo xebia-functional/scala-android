@@ -40,5 +40,12 @@
     "className": "com.fortysevendeg.scala.android.ui.akkasimon.AkkaSimonActivity",
     "minApi": 14,
     "targetApi": 21
+  },
+  {
+    "name": "forecast_api_request_activity_name",
+    "description": "forecast_api_request_activity_description",
+    "className": "com.fortysevendeg.scala.android.ui.apirequest.ForecastApiRequestActivity",
+    "minApi": 14,
+    "targetApi": 21
   }
 ]

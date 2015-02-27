@@ -49,4 +49,11 @@
     <string name="google_maps_activity_description">Description for Google Maps</string>
     <string name="akka_simon_activity_name">Akka Simon</string>
     <string name="akka_simon_activity_description">Description for Akka Simon</string>
+    <string name="forecast_api_request_activity_name">Forecast API Request</string>
+    <string name="forecast_api_request_activity_description">Description for Forecast API Request</string>
+
+    <string name="title_forecast_api_request">API Request Sample</string>
+    <string name="try_again_button">Try again</string>
+    <string name="error_message_api_request_default">Unknown error</string>
+    <string name="error_message_api_request_location_api">Error connecting to Play Services</string>
 </resources>

@@ -47,5 +47,7 @@
 
         <activity android:name=".ui.akkasimon.AkkaSimonActivity" />
 
+        <activity android:name=".ui.apirequest.ForecastApiRequestActivity" />
+
     </application>
 </manifest>

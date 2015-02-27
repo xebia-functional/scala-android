@@ -34,6 +34,7 @@ libraryDependencies ++= Seq(
   aar(androidRecyclerview),
   aar(macroidExtras),
   aar(playServicesMaps),
+  aar(playServicesActivityRecognition),
   playJson,
   akkaActor,
   compilerPlugin(Libraries.wartRemover))
