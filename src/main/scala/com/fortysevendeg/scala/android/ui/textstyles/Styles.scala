@@ -1,7 +1,8 @@
 package com.fortysevendeg.scala.android.ui.textstyles
 
-import macroid.FullDsl._
+import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.macroid.extras.LinearLayoutTweaks._
+import com.fortysevendeg.macroid.extras.ResourcesExtras._
 import com.fortysevendeg.macroid.extras.TextTweaks._
 import com.fortysevendeg.macroid.extras.ViewTweaks._
 import macroid.AppContext
@@ -13,48 +14,63 @@ object Styles {
 
   def scrollStyle(implicit appContext: AppContext) =
     llVertical +
-      vPaddings(8 dp)
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default_large))
 
-  val textLargeStyle = tvSize(24)
+  def textLargeStyle(implicit appContext: AppContext) =
+    tvSizeResource(R.dimen.font_size_large) +
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
-  val textMediumStyle = tvSize(18)
+  def textMediumStyle(implicit appContext: AppContext) =
+    tvSizeResource(R.dimen.font_size_medium) +
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
-  val textSmallStyle = tvSize(12)
+  def textSmallStyle(implicit appContext: AppContext) =
+    tvSizeResource(R.dimen.font_size_small) +
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
-  val textLightLargeStyle =
-    tvSize(24) +
-      tvNormalLight
+  def textLightLargeStyle(implicit appContext: AppContext) =
+    tvSizeResource(R.dimen.font_size_large) +
+      tvNormalLight +
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
-  val textLightMediumStyle =
-    tvSize(18) +
-      tvNormalLight
+  def textLightMediumStyle(implicit appContext: AppContext) =
+    tvSizeResource(R.dimen.font_size_medium) +
+      tvNormalLight +
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
-  val textLightSmallStyle =
-    tvSize(12) +
-      tvNormalLight
+  def textLightSmallStyle(implicit appContext: AppContext) =
+    tvSizeResource(R.dimen.font_size_small) +
+      tvNormalLight +
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
-  val textBoldCondensedLargeStyle =
-    tvSize(24) +
-      tvBoldCondensed
+  def textBoldCondensedLargeStyle(implicit appContext: AppContext) =
+    tvSizeResource(R.dimen.font_size_large) +
+      tvBoldCondensed +
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
-  val textBoldCondensedMediumStyle =
-    tvSize(18) +
-      tvBoldCondensed
+  def textBoldCondensedMediumStyle(implicit appContext: AppContext) =
+    tvSizeResource(R.dimen.font_size_medium) +
+      tvBoldCondensed +
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
-  val textBoldCondensedSmallStyle =
-    tvSize(12) +
-      tvBoldCondensed
+  def textBoldCondensedSmallStyle(implicit appContext: AppContext) =
+    tvSizeResource(R.dimen.font_size_small) +
+      tvBoldCondensed +
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
-  val textItalicLargeStyle =
-    tvSize(24) +
-      tvItalic
+  def textItalicLargeStyle(implicit appContext: AppContext) =
+    tvSizeResource(R.dimen.font_size_large) +
+      tvItalic +
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
-  val textItalicMediumStyle =
-    tvSize(18) +
-      tvItalic
+  def textItalicMediumStyle(implicit appContext: AppContext) =
+    tvSizeResource(R.dimen.font_size_medium) +
+      tvItalic +
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
-  val textItalicSmallStyle =
-    tvSize(12) +
-      tvItalic
+  def textItalicSmallStyle(implicit appContext: AppContext) =
+    tvSizeResource(R.dimen.font_size_small) +
+      tvItalic +
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
 }
