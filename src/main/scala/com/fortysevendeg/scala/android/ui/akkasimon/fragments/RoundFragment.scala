@@ -12,7 +12,8 @@ import macroid._
 import scala.language.postfixOps
 import scala.util.Random
 
-class RoundFragment  extends SimonAkkaFragment {
+class
+RoundFragment  extends SimonAkkaFragment {
 
   lazy val actorName = getArguments.getString("name")
 

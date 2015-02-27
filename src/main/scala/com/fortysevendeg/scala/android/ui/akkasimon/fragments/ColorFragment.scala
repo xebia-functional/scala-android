@@ -6,6 +6,7 @@ import android.widget.Button
 import com.fortysevendeg.scala.android.ui.akkasimon.Styles._
 import com.fortysevendeg.scala.android.ui.akkasimon.actors.ComputerActor.ClickedUserColor
 import com.fortysevendeg.scala.android.ui.akkasimon.util.SimonAkkaFragment
+import com.fortysevendeg.macroid.extras.ViewTweaks._
 import macroid.FullDsl._
 import macroid._
 
