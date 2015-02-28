@@ -14,7 +14,6 @@ class RoundActor extends FragmentActor[RoundFragment] with ActorLogging {
       withUi(f => f.resetRound ~ f.newRound)
     case NextRound =>
       withUi(f => f.incrementRound ~ f.newRound)
-    case GameOver => withUi(f => f.youLoose)
     case AttachUi(_) =>
     case DetachUi =>
   }
@@ -25,8 +24,6 @@ object RoundActor {
   case object ResetRound
 
   case object NextRound
-
-  case object GameOver
 
   def props = Props(new RoundActor)
 }

@@ -1,6 +1,7 @@
 package com.fortysevendeg.scala.android.ui.akkasimon.actors
 
 import akka.actor.{ActorLogging, ActorSelection, Props}
+import com.fortysevendeg.scala.android.ui.akkasimon.AkkaSimonActivity
 import com.fortysevendeg.scala.android.ui.akkasimon.actors.ColorActor.LightOn
 import com.fortysevendeg.scala.android.ui.akkasimon.fragments.ComputerFragment
 import macroid.akkafragments.FragmentActor
@@ -19,6 +20,8 @@ class ComputerActor extends FragmentActor[ComputerFragment] with ActorLogging {
   def receive = receiveUi andThen {
     case NewGame =>
       withUi(f => f.newGame)
+    case GameOver =>
+      withUi(f => f.getActivity.asInstanceOf[AkkaSimonActivity].loose)
     case NewRound(game: List[RoundItemActorColor]) =>
       gameList = game
       receivedFromUser.clear()
@@ -34,6 +37,8 @@ class ComputerActor extends FragmentActor[ComputerFragment] with ActorLogging {
 object ComputerActor {
 
   case object NewGame
+
+  case object GameOver
 
   case class RoundItemActorColor(actor: ActorSelection, color: Int)
 

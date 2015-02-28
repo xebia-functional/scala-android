@@ -1,9 +1,14 @@
 package com.fortysevendeg.scala.android.ui.akkasimon
 
+import android.graphics.Color
+import android.view.Gravity
+import android.widget.{Button, FrameLayout, LinearLayout}
 import com.fortysevendeg.macroid.extras.LinearLayoutTweaks._
+import com.fortysevendeg.macroid.extras.FrameLayoutTweaks._
 import com.fortysevendeg.macroid.extras.TextTweaks._
 import com.fortysevendeg.macroid.extras.ViewTweaks._
-import macroid.AppContext
+import com.fortysevendeg.scala.android.R
+import macroid.{Tweak, AppContext}
 
 import scala.language.postfixOps
 
@@ -13,24 +18,36 @@ object Styles {
     vBackgroundColor(color) +
       vAlpha(alpha)
 
-  val rootStyle = llVertical
+  val rootStyle: Tweak[LinearLayout] =
+    llMatchWeightVertical +
+      llVertical
 
-  val buttonsStyle =
-    llWrapWeightHorizontal +
-      tvMaxLines(1)
+  val contentStyle: Tweak[FrameLayout] = llMatchWeightVertical
 
-  val horizontalLinearLayoutStyle =
-    vMatchWidth +
-      llHorizontal
+  val optionsContentStyle: Tweak[LinearLayout] =
+    vMatchParent +
+      llGravity(Gravity.CENTER)
 
-  val colorsContainerStyle =
+  val buttonsStyle: Tweak[Button] =
+    vWrapContent +
+      tvText(R.string.simon_start)
+
+  val gameContentStyle: Tweak[LinearLayout] =
+    vMatchParent +
+      llVertical +
+      vGone
+
+  val roundsStyle: Tweak[FrameLayout] =
+    vMatchWidth
+
+  val simonContainerStyle: Tweak[LinearLayout] =
     llMatchWeightVertical +
       llHorizontal
 
-  val columnColorsStyle =
+  val columnStyle: Tweak[LinearLayout] =
     llMatchWeightHorizontal +
       llVertical
 
-  val fragmentStyle = llMatchWeightVertical
+  val rowStyle: Tweak[FrameLayout] = llMatchWeightVertical
 
 }

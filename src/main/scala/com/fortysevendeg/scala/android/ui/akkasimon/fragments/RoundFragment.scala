@@ -12,8 +12,8 @@ import macroid._
 import scala.language.postfixOps
 import scala.util.Random
 
-class
-RoundFragment  extends SimonAkkaFragment {
+class RoundFragment
+  extends SimonAkkaFragment {
 
   lazy val actorName = getArguments.getString("name")
 
@@ -25,16 +25,14 @@ RoundFragment  extends SimonAkkaFragment {
 
   var tvwRound = slot[TextView]
 
-  def youLoose = Ui(tvwRound.get.setText("You Loose"))
-
   def resetRound = Ui {
     round = 1
-    tvwRound.get.setText(round.toString)
+    tvwRound.get.setText("Round " + round.toString)
   }
 
   def incrementRound = Ui {
     round += 1
-    tvwRound.get.setText(round.toString)
+    tvwRound.get.setText("Round " + round.toString)
   }
 
   def newRound = Ui {

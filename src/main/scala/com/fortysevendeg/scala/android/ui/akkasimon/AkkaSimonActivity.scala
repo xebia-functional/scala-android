@@ -6,7 +6,8 @@ import android.view.MenuItem
 import com.fortysevendeg.scala.android.ui.akkasimon.actors.{RoundActor, ComputerActor, ColorActor}
 import com.fortysevendeg.scala.android.ui.akkasimon.util.FragmentEnum
 import FragmentEnum._
-import macroid.Contexts
+import macroid.FullDsl._
+import macroid.{Ui, Contexts}
 import macroid.akkafragments.AkkaActivity
 
 class AkkaSimonActivity
@@ -29,11 +30,12 @@ class AkkaSimonActivity
 
     (computer, round, green, red, blue, yellow)
 
-    setContentView(layout(actorSystem))
+    setContentView(layout)
   }
 
-  override def onStart() = {
-    super.onStart()
+  override def onDestroy(): Unit = {
+    super.onDestroy()
+    actorSystem.shutdown()
   }
 
   override def onOptionsItemSelected(item: MenuItem): Boolean = {
@@ -45,4 +47,7 @@ class AkkaSimonActivity
     }
     super.onOptionsItemSelected(item)
   }
+
+  def loose = goToOptions
+
 }

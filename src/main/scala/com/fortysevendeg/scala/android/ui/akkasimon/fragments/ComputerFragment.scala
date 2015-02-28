@@ -1,5 +1,6 @@
 package com.fortysevendeg.scala.android.ui.akkasimon.fragments
 
+import com.fortysevendeg.scala.android.ui.akkasimon.actors.ComputerActor._
 import com.fortysevendeg.scala.android.ui.akkasimon.actors.ComputerActor.RoundItemActorColor
 import com.fortysevendeg.scala.android.ui.akkasimon.actors.RoundActor._
 import com.fortysevendeg.scala.android.ui.akkasimon.util.SimonAkkaFragment
@@ -20,7 +21,7 @@ class ComputerFragment extends SimonAkkaFragment {
       val colors = gameList map (_.color)
 
       if (userClicks.zip(colors).exists(t => t._1 != t._2))
-        roundActor ! GameOver
+        computerActor ! GameOver
       else
         roundActor ! NextRound
     }
