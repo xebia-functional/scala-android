@@ -23,7 +23,9 @@ class ComputerActor extends FragmentActor[ComputerFragment] with ActorLogging {
     case NewGame =>
       withUi(f => f.newGame)
     case GameOver =>
-      withUi(f => f.getActivity.asInstanceOf[AkkaSimonActivity].gameOver())
+      val rounds = gameList.length
+      gameList = List.empty
+      withUi(f => f.getActivity.asInstanceOf[AkkaSimonActivity].gameOver(rounds))
     case ResetRound(round) =>
       addRound(round)
       withUi(f => f.getActivity.asInstanceOf[AkkaSimonActivity].resetRound())

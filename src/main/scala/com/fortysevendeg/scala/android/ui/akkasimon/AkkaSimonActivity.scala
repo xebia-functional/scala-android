@@ -50,7 +50,7 @@ class AkkaSimonActivity
     super.onOptionsItemSelected(item)
   }
 
-  def gameOver() = goToOptions
+  def gameOver(rounds: Int) = goToOptions(rounds)
 
   def resetRound() = {
     roundCounter = 1

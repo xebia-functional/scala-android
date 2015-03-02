@@ -26,7 +26,12 @@ object Styles {
 
   val optionsContentStyle: Tweak[LinearLayout] =
     vMatchParent +
-      llGravity(Gravity.CENTER)
+      llGravity(Gravity.CENTER) +
+      llVertical
+
+  val messageStyle: Tweak[TextView] =
+    vWrapContent +
+      tvText(R.string.simon_welcome)
 
   val buttonsStyle: Tweak[Button] =
     vWrapContent +

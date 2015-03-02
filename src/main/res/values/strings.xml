@@ -46,7 +46,9 @@
     <string name="akka_simon_activity_description">Description for Akka Simon</string>
 
     <!-- Akka Simon String resources -->
-    <string name="title_akka_simon">Akka Simon</string>
+    <string name="simon_title">Akka Simon</string>
+    <string name="simon_welcome">Welcome to Akka Simon</string>
+    <string name="simon_rounds_message">Score: %s</string>
     <string name="simon_start">Start</string>
     <string name="simon_round">Round</string>
     <string name="simon_round_counter">Round: %s</string>
