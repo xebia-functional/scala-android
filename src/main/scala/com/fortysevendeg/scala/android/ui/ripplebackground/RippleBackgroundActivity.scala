@@ -1,7 +1,6 @@
 package com.fortysevendeg.scala.android.ui.ripplebackground
 
 import android.animation.{Animator, AnimatorListenerAdapter}
-import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.ActionBarActivity
 import android.view.MenuItem
@@ -9,11 +8,11 @@ import com.fortysevendeg.macroid.extras.MoveSnails._
 import com.fortysevendeg.macroid.extras.ResourcesExtras._
 import com.fortysevendeg.macroid.extras.ViewTweaks._
 import com.fortysevendeg.scala.android.R
+import com.fortysevendeg.scala.android.ui.components.CircleView._
 import com.fortysevendeg.scala.android.ui.components.RippleBackgroundSnails._
 import com.fortysevendeg.scala.android.ui.components.{CircleView, RippleSnailData}
 import macroid.Contexts
 import macroid.FullDsl._
-import com.fortysevendeg.scala.android.ui.components.CircleView._
 
 import scala.concurrent.ExecutionContext.Implicits.global
 

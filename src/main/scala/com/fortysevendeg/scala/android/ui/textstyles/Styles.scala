@@ -8,7 +8,7 @@ import com.fortysevendeg.macroid.extras.ViewTweaks._
 import macroid.AppContext
 import scala.language.postfixOps
 
-object Styles {
+trait Styles {
 
   val contentStyle = llVertical
 

@@ -1,47 +1,55 @@
 package com.fortysevendeg.scala.android.ui.main
 
 import android.graphics.Color
+import android.support.v7.widget.{RecyclerView, CardView}
 import android.view.Gravity
+import android.widget.{TextView, LinearLayout}
+import com.fortysevendeg.scala.android.R
 import macroid.FullDsl._
 import com.fortysevendeg.macroid.extras.LinearLayoutTweaks._
 import com.fortysevendeg.macroid.extras.TextTweaks._
+import com.fortysevendeg.macroid.extras.ResourcesExtras._
 import com.fortysevendeg.macroid.extras.ViewTweaks._
-import macroid.AppContext
+import macroid.{Tweak, AppContext}
 import scala.language.postfixOps
 
-object Styles {
+trait Styles {
 
-  val listStyle = llMatchWeightVertical
+  val listStyle: Tweak[RecyclerView] = llMatchWeightVertical
 
-  val contentStyle = llVertical
+  val contentStyle: Tweak[LinearLayout] = llVertical
 
-  val cardStyle = vMatchWidth
+}
 
-  def itemStyle(implicit appContext: AppContext) =
+trait AdapterStyles {
+
+  val cardStyle: Tweak[CardView] = vMatchWidth
+
+  def itemStyle(implicit appContext: AppContext): Tweak[LinearLayout] =
     llVertical +
       vMatchWidth +
-      vPaddings(12 dp)
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
-  def itemTopStyle(implicit appContext: AppContext) =
+  def itemTopStyle(implicit appContext: AppContext): Tweak[LinearLayout] =
     llHorizontal +
       vContentSizeMatchWidth(72 dp) +
       llGravity(Gravity.CENTER_VERTICAL)
 
-  val titleStyle =
+  def titleStyle(implicit appContext: AppContext): Tweak[TextView] =
     llWrapWeightHorizontal +
-      tvSize(18) +
+      tvSizeResource(R.dimen.font_size_medium) +
       tvColor(Color.BLACK)
 
-  val descriptionStyle =
-    tvSize(14) +
+  def descriptionStyle(implicit appContext: AppContext): Tweak[TextView] =
+    tvSizeResource(R.dimen.font_size_normal) +
       tvNormalLight +
       tvColor(Color.GRAY) +
       tvMaxLines(2)
 
-  def apiStyle(implicit appContext: AppContext) =
-    tvSize(10) +
+  def apiStyle(implicit appContext: AppContext): Tweak[TextView] =
+    tvSizeResource(R.dimen.font_size_micro) +
       tvItalicLight +
       tvColor(Color.WHITE) +
-      vPaddings(8 dp)
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
 }

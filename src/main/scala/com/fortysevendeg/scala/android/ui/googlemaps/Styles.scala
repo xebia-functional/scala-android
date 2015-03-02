@@ -8,7 +8,7 @@ import macroid.Tweak
 
 import scala.language.postfixOps
 
-object Styles {
+trait Styles {
 
   val contentStyle: Tweak[LinearLayout] = llVertical
 

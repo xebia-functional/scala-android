@@ -4,11 +4,12 @@ import android.widget.{LinearLayout, ScrollView, TextView}
 import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.macroid.extras.ToolbarTweaks._
 import com.fortysevendeg.scala.android.ui.commons.ToolbarLayout
-import com.fortysevendeg.scala.android.ui.textstyles.Styles._
 import macroid.FullDsl._
 import macroid.{ActivityContext, AppContext}
 
-trait Layout extends ToolbarLayout {
+trait Layout
+  extends ToolbarLayout
+  with Styles {
 
   def layout(implicit appContext: AppContext, context: ActivityContext) = {
     getUi(
