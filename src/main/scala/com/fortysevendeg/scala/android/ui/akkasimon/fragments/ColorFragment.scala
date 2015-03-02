@@ -9,13 +9,14 @@ import com.fortysevendeg.scala.android.ui.akkasimon.util.SimonAkkaFragment
 import com.fortysevendeg.macroid.extras.ViewTweaks._
 import macroid.FullDsl._
 import macroid._
+import ColorFragment._
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
 class ColorFragment extends SimonAkkaFragment {
 
-  lazy val actorName = getArguments.getString("name")
-  lazy val color = getArguments.getInt("color")
+  lazy val actorName = getArguments.getString(nameColorKey)
+  lazy val color = getArguments.getInt(colorKey)
 
   lazy val actor = Some(actorSystem.actorSelection(s"/user/$actorName"))
 
@@ -29,4 +30,9 @@ class ColorFragment extends SimonAkkaFragment {
     w[Button] <~ wire(simonColor) <~ simonButton(color) <~ On.click(lightColor() ~~
         Ui(computerActor ! ClickedUserColor(color)))
   }
+}
+
+object ColorFragment {
+  val nameColorKey = "name"
+  val colorKey = "color"
 }

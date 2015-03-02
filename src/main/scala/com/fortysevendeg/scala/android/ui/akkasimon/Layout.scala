@@ -15,7 +15,8 @@ import com.fortysevendeg.scala.android.ui.akkasimon.util.FragmentEnum._
 import com.fortysevendeg.scala.android.ui.commons.ToolbarLayout
 import macroid.FullDsl._
 import macroid._
-
+import ColorFragment._
+import ComputerFragment._
 import scala.language.postfixOps
 
 trait Layout extends ToolbarLayout with IdGeneration {
@@ -35,7 +36,7 @@ trait Layout extends ToolbarLayout with IdGeneration {
     l[LinearLayout](
       toolBarLayout <~ tbTitle(R.string.title_akka_simon),
       l[FrameLayout](
-        f[ComputerFragment].pass("name" -> COMPUTER.toLower).framed(Id.computer, COMPUTER.toLower),
+        f[ComputerFragment].pass(nameComputerKey -> COMPUTER.toLower).framed(Id.computer, COMPUTER.toLower),
         optionsScreen,
         gameScreen
       ) <~ contentStyle
@@ -60,18 +61,18 @@ trait Layout extends ToolbarLayout with IdGeneration {
       l[LinearLayout](
         l[LinearLayout](
           f[ColorFragment]
-            .pass("color" -> Color.GREEN, "name" -> GREEN.toLower)
+            .pass(colorKey -> Color.GREEN, nameColorKey -> GREEN.toLower)
             .framed(Id.green, GREEN.toLower) <~ rowStyle,
           f[ColorFragment]
-            .pass("color" -> Color.RED, "name" -> RED.toLower)
+            .pass(colorKey -> Color.RED, nameColorKey -> RED.toLower)
             .framed(Id.red, RED.toLower) <~ rowStyle
         ) <~ columnStyle,
         l[LinearLayout](
           f[ColorFragment]
-            .pass("color" -> Color.BLUE, "name" -> BLUE.toLower)
+            .pass(colorKey -> Color.BLUE, nameColorKey -> BLUE.toLower)
             .framed(Id.blue, BLUE.toLower) <~ rowStyle,
           f[ColorFragment]
-            .pass("color" -> Color.YELLOW, "name" -> YELLOW.toLower)
+            .pass(colorKey -> Color.YELLOW, nameColorKey -> YELLOW.toLower)
             .framed(Id.yellow, YELLOW.toLower) <~ rowStyle
         ) <~ columnStyle
       ) <~ simonContainerStyle

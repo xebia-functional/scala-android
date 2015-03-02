@@ -4,10 +4,11 @@ import com.fortysevendeg.scala.android.ui.akkasimon.actors.ComputerActor._
 import com.fortysevendeg.scala.android.ui.akkasimon.actors.ComputerActor.RoundItemActorColor
 import com.fortysevendeg.scala.android.ui.akkasimon.util.SimonAkkaFragment
 import macroid._
+import ComputerFragment._
 
 class ComputerFragment extends SimonAkkaFragment {
 
-  lazy val actorName = getArguments.getString("name")
+  lazy val actorName = getArguments.getString(nameComputerKey)
 
   lazy val actor = Some(actorSystem.actorSelection(s"/user/$actorName"))
 
@@ -27,3 +28,6 @@ class ComputerFragment extends SimonAkkaFragment {
   }
 }
 
+object ComputerFragment {
+  val nameComputerKey = "name"
+}
