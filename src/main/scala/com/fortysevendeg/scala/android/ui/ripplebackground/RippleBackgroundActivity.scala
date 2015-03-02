@@ -4,15 +4,18 @@ import android.animation.{Animator, AnimatorListenerAdapter}
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.ActionBarActivity
-import android.view.{View, MenuItem}
-import com.fortysevendeg.scala.android.ui.components.{RippleSnailData, CircleView}
-import macroid.FullDsl._
-import macroid.{Ui, Contexts}
-import com.fortysevendeg.macroid.extras.RevealSnails._
+import android.view.MenuItem
+import com.fortysevendeg.macroid.extras.MoveSnails._
+import com.fortysevendeg.macroid.extras.ResourcesExtras._
 import com.fortysevendeg.macroid.extras.ViewTweaks._
+import com.fortysevendeg.scala.android.R
+import com.fortysevendeg.scala.android.ui.components.RippleBackgroundSnails._
+import com.fortysevendeg.scala.android.ui.components.{CircleView, RippleSnailData}
+import macroid.Contexts
+import macroid.FullDsl._
+import com.fortysevendeg.scala.android.ui.components.CircleView._
 
 import scala.concurrent.ExecutionContext.Implicits.global
-import com.fortysevendeg.scala.android.ui.components.RippleBackgroundSnails._
 
 class RippleBackgroundActivity extends ActionBarActivity with Contexts[ActionBarActivity] with Layout {
 
@@ -23,26 +26,26 @@ class RippleBackgroundActivity extends ActionBarActivity with Contexts[ActionBar
 
     val rippleSnailData = RippleSnailData.fromPlace(rippleBackground.get)
 
-    rippleBackground.map(_.setBackgroundColor(Color.RED))
+    val color1 = resGetColor(R.color.ripple_bg_color1)
+    val color2 = resGetColor(R.color.ripple_bg_color2)
+    val color3 = resGetColor(R.color.ripple_bg_color3)
 
-    circle1.map(_.setColor(Color.RED))
-    runUi(circle1 <~ On.click {
-      anim(circle1, Color.RED)
-    })
-
-    circle2.map(_.setColor(Color.BLUE))
-    runUi(circle2 <~ On.click {
-      anim(circle2, Color.BLUE)
-    })
-
-    circle3.map(_.setColor(Color.GREEN))
-    runUi(circle3 <~ On.click {
-      anim(circle3, Color.GREEN)
-    })
+    runUi(
+      (rippleBackground <~ vBackgroundColor(color1)) ~
+        (circle1 <~ cvColor(color1) <~ On.click {
+          anim(circle1, color1)
+        }) ~
+        (circle2 <~ cvColor(color2) <~ On.click {
+          anim(circle2, color2)
+        }) ~
+        (circle3 <~ cvColor(color3) <~ On.click {
+          anim(circle3, color3)
+        })
+    )
 
     toolBar map setSupportActionBar
 
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true)
+    getSupportActionBar.setDisplayHomeAsUpEnabled(true)
 
   }
 
@@ -62,16 +65,12 @@ class RippleBackgroundActivity extends ActionBarActivity with Contexts[ActionBar
       copy(
         resColor = color,
         listener = Some(new AnimatorListenerAdapter {
-          override def onAnimationStart(animation: Animator): Unit = {
-            runUi(circleView <~ vInvisible)
-          }
-
           override def onAnimationEnd(animation: Animator): Unit = {
-            runUi(circleView <~ vVisible <~ vTransformation(0, 0))
+            runUi(circleView <~ vTransformation(0, 0))
           }
         })
       )
-    (circleView <~~ move(rippleBackground)) ~~ (rippleBackground <~~ ripple(rippleData))
+    (circleView <~~ move(rippleBackground)) ~~ (rippleBackground <~~ ripple(rippleData)) ~~ (circleView <~~ fadeIn(1000))
 
   }
 

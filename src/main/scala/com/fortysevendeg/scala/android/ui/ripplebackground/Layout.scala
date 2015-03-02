@@ -19,20 +19,18 @@ trait Layout extends ToolbarLayout {
 
   var circle3 = slot[CircleView]
 
-  def layout(implicit appContext: AppContext, context: ActivityContext) = {
-    getUi(
-      l[LinearLayout](
-        toolBarLayout <~ tbTitle(R.string.title_ripple_background),
-        l[FrameLayout](
-          w[RippleBackgroundView] <~ wire(rippleBackground) <~ backgroundStyle,
-          l[LinearLayout](
-            w[CircleView] <~ wire(circle1) <~ circleStyle,
-            w[CircleView] <~ wire(circle2) <~ circleStyle,
-            w[CircleView] <~ wire(circle3) <~ circleStyle
-          ) <~ circlesContentStyle
-        ) <~ contentStyle
-      ) <~ rootStyle
-    )
-  }
+  def layout(implicit appContext: AppContext, context: ActivityContext) = getUi(
+    l[LinearLayout](
+      toolBarLayout <~ tbTitle(R.string.title_ripple_background),
+      l[FrameLayout](
+        w[RippleBackgroundView] <~ wire(rippleBackground) <~ backgroundStyle,
+        l[LinearLayout](
+          w[CircleView] <~ wire(circle1) <~ circleStyle,
+          w[CircleView] <~ wire(circle2) <~ circleStyle,
+          w[CircleView] <~ wire(circle3) <~ circleStyle
+        ) <~ circlesContentStyle
+      ) <~ colorContent
+    ) <~ rootStyle
+  )
 
 }

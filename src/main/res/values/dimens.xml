@@ -30,12 +30,8 @@
     <dimen name="path_morphing_size_content_drawable">132dp</dimen>
     <dimen name="path_morphing_size_circles">48dp</dimen>
 
-    <!-- CircleButton Default -->
-    <dimen name="circle_button_width">72dp</dimen>
-    <dimen name="circle_button_height">72dp</dimen>
-    <color name="circle_button_color">#ff3f51b5</color>
-    <color name="circle_button_shadow_color">#ff000000</color>
+    <!-- RippleBackground -->
+    <dimen name="ripple_bg_height_content">240dp</dimen>
+    <dimen name="ripple_bg_size_circle">64dp</dimen>
 
-    <dimen name="option_button_width">64dp</dimen>
-    <dimen name="option_button_height">64dp</dimen>
 </resources>
