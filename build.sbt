@@ -3,6 +3,7 @@ import Libraries.macroid._
 import Libraries.akka._
 import Libraries.playServices._
 import Libraries.json._
+import Libraries.test._
 
 android.Plugin.androidBuild
 
@@ -37,6 +38,9 @@ libraryDependencies ++= Seq(
   aar(playServicesActivityRecognition),
   playJson,
   akkaActor,
+  specs2,
+  mockito,
+  androidTest,
   compilerPlugin(Libraries.wartRemover))
 
 run <<= run in Android

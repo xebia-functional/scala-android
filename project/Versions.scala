@@ -11,4 +11,6 @@ object Versions {
   val wartremoverV = "0.11"
   val playServicesV = "6.5.87"
   val playJsonV = "2.3.4"
+  val specs2V = "2.4.15"
+  val mockitoV = "3.0-M2"
 }
