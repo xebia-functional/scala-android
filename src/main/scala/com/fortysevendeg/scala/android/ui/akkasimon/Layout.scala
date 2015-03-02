@@ -9,7 +9,6 @@ import com.fortysevendeg.macroid.extras.ToolbarTweaks._
 import com.fortysevendeg.macroid.extras.ViewTweaks._
 import com.fortysevendeg.macroid.extras.ResourcesExtras._
 import com.fortysevendeg.scala.android.R
-import com.fortysevendeg.scala.android.ui.akkasimon.Styles._
 import com.fortysevendeg.scala.android.ui.akkasimon.actors.ComputerActor.NewGame
 import com.fortysevendeg.scala.android.ui.akkasimon.fragments.ColorFragment._
 import com.fortysevendeg.scala.android.ui.akkasimon.fragments.ComputerFragment._
@@ -21,7 +20,10 @@ import macroid._
 
 import scala.language.postfixOps
 
-trait Layout extends ToolbarLayout with IdGeneration {
+trait Layout
+  extends ToolbarLayout
+  with IdGeneration
+  with Styles {
 
   var btnStart = slot[Button]
 

@@ -15,8 +15,7 @@
   ~  limitations under the License.
   -->
 
-<shape
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:shape="oval">
-    <solid android:color="@color/circular_reveal_fab_color"/>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+       android:shape="oval">
+    <solid android:color="@color/default_fab_shadow_color" />
 </shape>

@@ -3,7 +3,7 @@ package com.fortysevendeg.scala.android.ui.akkasimon.fragments
 import android.os.Bundle
 import android.view.{LayoutInflater, ViewGroup}
 import android.widget.Button
-import com.fortysevendeg.scala.android.ui.akkasimon.Styles._
+import com.fortysevendeg.scala.android.ui.akkasimon.Styles
 import com.fortysevendeg.scala.android.ui.akkasimon.actors.ComputerActor.ClickedUserColor
 import com.fortysevendeg.scala.android.ui.akkasimon.util.SimonAkkaFragment
 import com.fortysevendeg.macroid.extras.ViewTweaks._
@@ -13,7 +13,9 @@ import ColorFragment._
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
-class ColorFragment extends SimonAkkaFragment {
+class ColorFragment
+  extends SimonAkkaFragment
+  with Styles {
 
   lazy val actorName = getArguments.getString(nameColorKey)
   lazy val color = getArguments.getInt(colorKey)

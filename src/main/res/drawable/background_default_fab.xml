@@ -15,14 +15,19 @@
   ~  limitations under the License.
   -->
 
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-       android:shape="oval">
-    <gradient
-            android:type="radial"
-            android:gradientRadius="53%p"
-            android:startColor="@color/circular_reveal_fab_shadow_color"
-            android:centerColor="@color/circular_reveal_fab_shadow_color"
-            android:endColor="@android:color/transparent"
-            />
+<layer-list
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
-</shape>
+    <item
+            android:drawable="@drawable/background_default_fab_shadow"
+            android:top="@dimen/padding_fab_top"
+            android:left="@dimen/padding_fab"
+            android:right="@dimen/padding_fab"/>
+    <item
+            android:drawable="@drawable/background_default_fab_circle"
+            android:top="@dimen/padding_fab"
+            android:left="@dimen/padding_fab"
+            android:right="@dimen/padding_fab"
+            android:bottom="@dimen/padding_fab"/>
+
+</layer-list>

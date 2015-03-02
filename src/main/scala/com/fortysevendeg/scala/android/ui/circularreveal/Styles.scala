@@ -35,7 +35,7 @@ trait Styles {
     val size = resGetDimensionPixelSize(R.dimen.size_fab_default)
     lp[FrameLayout](size, size) +
       flLayoutGravity(Gravity.RIGHT | Gravity.BOTTOM) +
-      vBackground(R.drawable.circular_reveal_fab) +
+      vBackground(R.drawable.background_default_fab) +
       vPaddings(resGetDimensionPixelSize(R.dimen.padding_default_xlarge)) +
       ivSrc(new PathMorphDrawable(
         defaultIcon = ADD,
@@ -72,7 +72,7 @@ trait FragmentStyles {
     tvText(R.string.circular_reveal_title) +
       tvSizeResource(R.dimen.font_size_normal) +
       tvNormalLight +
-      tvText(R.string.lorem_ipsum)+
+      tvText(R.string.lorem_ipsum_large) +
       vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
 }

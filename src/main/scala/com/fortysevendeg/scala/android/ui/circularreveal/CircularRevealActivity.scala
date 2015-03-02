@@ -10,7 +10,10 @@ import macroid.{Ui, Contexts}
 import com.fortysevendeg.macroid.extras.FragmentExtras._
 import macroid.FullDsl._
 
-class CircularRevealActivity extends ActionBarActivity with Contexts[FragmentActivity] with Layout {
+class CircularRevealActivity
+  extends ActionBarActivity
+  with Contexts[FragmentActivity]
+  with Layout {
 
   override def onCreate(savedInstanceState: Bundle) = {
     super.onCreate(savedInstanceState)

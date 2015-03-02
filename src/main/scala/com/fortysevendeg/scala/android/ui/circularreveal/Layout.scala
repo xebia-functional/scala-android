@@ -18,7 +18,7 @@ trait Layout
   with IdGeneration
   with Styles {
 
-  val fragmentName = "name"
+  val fragmentName = "sample-fragment"
 
   var circleButton = slot[ImageView]
 

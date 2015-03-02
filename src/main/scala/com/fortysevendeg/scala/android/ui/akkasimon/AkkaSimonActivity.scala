@@ -2,6 +2,7 @@ package com.fortysevendeg.scala.android.ui.akkasimon
 
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
+import android.support.v7.app.ActionBarActivity
 import android.view.MenuItem
 import com.fortysevendeg.macroid.extras.TextTweaks._
 import com.fortysevendeg.scala.android.R
@@ -12,7 +13,7 @@ import macroid.FullDsl._
 import macroid.akkafragments.AkkaActivity
 
 class AkkaSimonActivity
-    extends FragmentActivity
+    extends ActionBarActivity
     with Contexts[FragmentActivity]
     with AkkaActivity
     with Layout {
@@ -33,6 +34,10 @@ class AkkaSimonActivity
     (computer, green, red, blue, yellow)
 
     setContentView(layout)
+
+    toolBar map setSupportActionBar
+
+    getSupportActionBar.setDisplayHomeAsUpEnabled(true)
   }
 
   override def onDestroy(): Unit = {

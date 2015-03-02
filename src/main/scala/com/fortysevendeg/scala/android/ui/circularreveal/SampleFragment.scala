@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.animation.{AccelerateInterpolator, DecelerateInterpolator}
 import android.view.{ViewAnimationUtils, View, ViewGroup, LayoutInflater}
 import com.fortysevendeg.macroid.extras.SnailsUtils
+import com.fortysevendeg.macroid.extras.DeviceVersion._
 import macroid.Contexts
 
 class SampleFragment extends Fragment with Contexts[Fragment] {
@@ -42,48 +43,58 @@ class SampleFragment extends Fragment with Contexts[Fragment] {
     lastHeight = Some(height)
     fragmentLayout.map {
       fLayout =>
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-          val cx = getArguments().getInt(SampleFragment.posX, 0)
-          val cy = getArguments().getInt(SampleFragment.posY, 0)
-          lastRevealX = Some(cx)
-          lastRevealY = Some(cy)
-          val endRadius = SnailsUtils.calculateRadius(cx, cy, width, height)
-          val reveal: Animator = ViewAnimationUtils.createCircularReveal(fLayout.layout, cx, cy, 0, endRadius)
-          reveal.setInterpolator(new DecelerateInterpolator(2f))
-          reveal.start()
-        } else {
-          val alpha: Animator = ObjectAnimator.ofFloat(fLayout.layout, "alpha", 0f, 1)
-          alpha.setInterpolator(new DecelerateInterpolator(2f))
-          alpha.start()
+        CurrentVersion match {
+          case version if version >= Lollipop =>
+            val cx = getArguments().getInt(SampleFragment.posX, 0)
+            val cy = getArguments().getInt(SampleFragment.posY, 0)
+            lastRevealX = Some(cx)
+            lastRevealY = Some(cy)
+            val endRadius = SnailsUtils.calculateRadius(cx, cy, width, height)
+            val reveal: Animator = ViewAnimationUtils.createCircularReveal(fLayout.layout, cx, cy, 0, endRadius)
+            reveal.setInterpolator(new DecelerateInterpolator(2f))
+            reveal.start()
+          case _ =>
+            val alpha: Animator = ObjectAnimator.ofFloat(fLayout.layout, "alpha", 0f, 1)
+            alpha.setInterpolator(new DecelerateInterpolator(2f))
+            alpha.start()
         }
     }
   }
 
   def unreveal(): Unit = {
-    for {
-      fLayout <- fragmentLayout
-      x <- lastRevealX
-      y <- lastRevealY
-      w <- lastWidth
-      h <- lastHeight
-    } yield {
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-        val radius = SnailsUtils.calculateRadius(x, y, w, h)
-        val reveal: Animator = ViewAnimationUtils.createCircularReveal(fLayout.layout, x, y, radius, 0)
-        reveal.setInterpolator(new DecelerateInterpolator(2f))
-        reveal.addListener(new AnimatorListenerAdapter {
-          override def onAnimationEnd(animation: Animator): Unit = {
-            super.onAnimationEnd(animation)
-            fragmentLayout.get.layout.setVisibility(View.GONE)
-            getActivity.asInstanceOf[CircularRevealActivity].remove(SampleFragment.this)
-          }
-        })
-        reveal.start()
-      } else {
-        val alpha: Animator = ObjectAnimator.ofFloat(fLayout.layout, "alpha", 1f, 0f)
-        alpha.setInterpolator(new AccelerateInterpolator(2f))
-        alpha.start()
-      }
+    fragmentLayout.map {
+      fLayout =>
+        val (x, y, w, h) = (for {
+          x <- lastRevealX
+          y <- lastRevealY
+          w <- lastWidth
+          h <- lastHeight
+        } yield (x, y, w, h)) getOrElse(0, 0, 0, 0)
+        CurrentVersion match {
+          case version if version >= Lollipop =>
+            val radius = SnailsUtils.calculateRadius(x, y, w, h)
+            val reveal: Animator = ViewAnimationUtils.createCircularReveal(fLayout.layout, x, y, radius, 0)
+            reveal.setInterpolator(new DecelerateInterpolator(2f))
+            reveal.addListener(new AnimatorListenerAdapter {
+              override def onAnimationEnd(animation: Animator): Unit = {
+                super.onAnimationEnd(animation)
+                fLayout.layout.setVisibility(View.GONE)
+                getActivity.asInstanceOf[CircularRevealActivity].remove(SampleFragment.this)
+              }
+            })
+            reveal.start()
+          case _ =>
+            val alpha: Animator = ObjectAnimator.ofFloat(fLayout.layout, "alpha", 1f, 0f)
+            alpha.setInterpolator(new AccelerateInterpolator(2f))
+            alpha.addListener(new AnimatorListenerAdapter {
+              override def onAnimationEnd(animation: Animator): Unit = {
+                super.onAnimationEnd(animation)
+                fLayout.layout.setVisibility(View.GONE)
+                getActivity.asInstanceOf[CircularRevealActivity].remove(SampleFragment.this)
+              }
+            })
+            alpha.start()
+        }
     }
   }
 
