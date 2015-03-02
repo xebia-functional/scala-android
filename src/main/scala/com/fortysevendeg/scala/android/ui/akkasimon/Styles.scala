@@ -2,7 +2,7 @@ package com.fortysevendeg.scala.android.ui.akkasimon
 
 import android.graphics.Color
 import android.view.Gravity
-import android.widget.{Button, FrameLayout, LinearLayout}
+import android.widget.{TextView, Button, FrameLayout, LinearLayout}
 import com.fortysevendeg.macroid.extras.LinearLayoutTweaks._
 import com.fortysevendeg.macroid.extras.FrameLayoutTweaks._
 import com.fortysevendeg.macroid.extras.TextTweaks._
@@ -37,8 +37,9 @@ object Styles {
       llVertical +
       vGone
 
-  val roundsStyle: Tweak[FrameLayout] =
-    vMatchWidth
+  val roundsStyle: Tweak[TextView] =
+    vMatchWidth +
+      tvGravity(Gravity.CENTER)
 
   val simonContainerStyle: Tweak[LinearLayout] =
     llMatchWeightVertical +

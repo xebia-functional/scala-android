@@ -10,7 +10,7 @@ import com.fortysevendeg.macroid.extras.ToolbarTweaks._
 import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.scala.android.ui.akkasimon.Styles._
 import com.fortysevendeg.scala.android.ui.akkasimon.actors.ComputerActor.NewGame
-import com.fortysevendeg.scala.android.ui.akkasimon.fragments.{ColorFragment, ComputerFragment, RoundFragment}
+import com.fortysevendeg.scala.android.ui.akkasimon.fragments.{ColorFragment, ComputerFragment}
 import com.fortysevendeg.scala.android.ui.akkasimon.util.FragmentEnum._
 import com.fortysevendeg.scala.android.ui.commons.ToolbarLayout
 import macroid.FullDsl._
@@ -25,6 +25,8 @@ trait Layout extends ToolbarLayout with IdGeneration {
   var optionsScreenLayout = slot[LinearLayout]
 
   var gameScreenLayout = slot[LinearLayout]
+
+  var rounds = slot[TextView]
 
   def layout
             (implicit appContext: AppContext,
@@ -54,7 +56,7 @@ trait Layout extends ToolbarLayout with IdGeneration {
                  context: ActivityContext,
                  managerContext: FragmentManagerContext[Fragment, FragmentManager]) = {
     l[LinearLayout](
-      f[RoundFragment].pass("name" -> ROUND.toLower).framed(Id.round, ROUND.toLower) <~ roundsStyle,
+      w[TextView] <~ roundsStyle <~ wire(rounds),
       l[LinearLayout](
         l[LinearLayout](
           f[ColorFragment]

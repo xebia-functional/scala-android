@@ -49,6 +49,7 @@
     <string name="title_akka_simon">Akka Simon</string>
     <string name="simon_start">Start</string>
     <string name="simon_round">Round</string>
+    <string name="simon_round_counter">Round: %s</string>
 
     <!-- Circular Reveal String resources -->
     <string name="circular_reveal_title">Beach</string>
