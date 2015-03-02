@@ -1,81 +1,95 @@
 package com.fortysevendeg.scala.android.ui.pathmorphing
 
 import android.view.Gravity
-import android.widget.LinearLayout
+import android.widget._
 import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.macroid.extras.ImageViewTweaks._
 import com.fortysevendeg.macroid.extras.LinearLayoutTweaks._
+import com.fortysevendeg.macroid.extras.FrameLayoutTweaks._
+import com.fortysevendeg.macroid.extras.ResourcesExtras._
 import com.fortysevendeg.macroid.extras.SeekBarTweaks._
 import com.fortysevendeg.macroid.extras.TextTweaks._
 import com.fortysevendeg.macroid.extras.ViewTweaks._
 import com.fortysevendeg.scala.android.ui.components.PathMorphDrawable
 import com.fortysevendeg.scala.android.ui.components.IconTypes._
-import macroid.AppContext
+import macroid.{Tweak, AppContext}
 import macroid.FullDsl._
 import scala.language.postfixOps
 
-object Styles {
+trait Styles {
 
-  val rootStyle =
+  val rootStyle: Tweak[LinearLayout] =
     vMatchParent +
       llVertical
 
-  val contentStyle =
+  val contentStyle: Tweak[LinearLayout] =
     vMatchParent +
       llVertical
 
-  def scrollViewStyle(implicit appContext: AppContext) =
+  def scrollViewStyle(implicit appContext: AppContext): Tweak[ScrollView] =
     vMatchParent +
-      vPaddings(8 dp)
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
-  val horizontalLinearLayoutStyle = llHorizontal
+  val horizontalLinearLayoutStyle: Tweak[LinearLayout] = llHorizontal
 
-  val verticalLinearLayoutStyle =
+  val verticalLinearLayoutStyle: Tweak[LinearLayout] =
     vMatchParent +
       llVertical
 
-  val contentItemsRadiosStyle = llMatchWeightHorizontal
+  val contentItemsRadiosStyle: Tweak[LinearLayout] = llMatchWeightHorizontal
 
-  val colorSelectorLayoutStyle = vMatchWidth
+  val titleStyle: Tweak[TextView] = tvNormalLight
 
-  val titleStyle = tvNormalLight
-
-  val strokeStyle =
+  val strokeStyle: Tweak[SeekBar] =
     sbMax(4) +
       sbProgress(0) +
       vMatchWidth
 
-  val sizeStyle = sbMax(3) + sbProgress(0) + vMatchWidth
+  val sizeStyle: Tweak[SeekBar] =
+    sbMax(3) +
+      sbProgress(0) +
+      vMatchWidth
 
-  def drawableStyle(width: Int, height: Int, stroke: Int)(implicit appContext: AppContext) =
+  def drawableContentStyle(implicit appContext: AppContext): Tweak[FrameLayout] = {
+    val size = resGetDimensionPixelSize(R.dimen.path_morphing_size_content_drawable)
+    lp[LinearLayout](size, size) +
+      llLayoutGravity(Gravity.CENTER)
+  }
+
+
+  def drawableStyle(width: Int, height: Int, stroke: Int)(implicit appContext: AppContext): Tweak[ImageView] =
     lp[LinearLayout](width, height) +
-      llLayoutGravity(Gravity.CENTER) +
-      vMargins(8 dp) +
+      flLayoutGravity(Gravity.CENTER) +
+      vMargins(resGetDimensionPixelSize(R.dimen.padding_default)) +
       ivSrc(new PathMorphDrawable(defaultStroke = stroke)) +
       vBackground(R.drawable.background_item_square)
 
-  def colorSelectorStyle(selected: Boolean = false)(implicit appContext: AppContext) =
-    lp[LinearLayout](48 dp, 48 dp) +
+  def colorSelectorStyle(selected: Boolean = false)(implicit appContext: AppContext): Tweak[ImageView] = {
+    val size = resGetDimensionPixelSize(R.dimen.path_morphing_size_circles)
+    lp[LinearLayout](size, size) +
       vPaddings(8 dp) +
       vMargins(8 dp) +
       (selected match {
         case true => ivSrc(new PathMorphDrawable(defaultIcon = CHECK, defaultStroke = 2 dp))
         case _ => ivSrc(new PathMorphDrawable(defaultStroke = 2 dp))
       })
+  }
 
-  def iconSelectorStyle(icon: Int, selected: Boolean = false)(implicit appContext: AppContext) =
-    lp[LinearLayout](48 dp, 48 dp) +
-      vPaddings(8 dp) +
+  def iconSelectorStyle(icon: Int, selected: Boolean = false)(implicit appContext: AppContext): Tweak[ImageView] = {
+    val size = resGetDimensionPixelSize(R.dimen.path_morphing_size_circles)
+    lp[LinearLayout](size, size) +
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default)) +
       vBackground(R.drawable.background_item_icon_selector) +
-      vMargins(8 dp) +
+      vMargins(resGetDimensionPixelSize(R.dimen.padding_default)) +
       ivSrc(new PathMorphDrawable(defaultIcon = icon, defaultStroke = 2 dp)) +
       vActivated(selected)
+  }
 
-  val tableLayoutStyle =
+  val tableLayoutStyle: Tweak[LinearLayout] =
     vMatchWidth +
       llVertical
 
-  def tableLayoutRowStyle(implicit appContext: AppContext) =
+  def tableLayoutRowStyle(implicit appContext: AppContext): Tweak[LinearLayout] =
     vMatchWidth +
       llHorizontal +
       llGravity(Gravity.CENTER)

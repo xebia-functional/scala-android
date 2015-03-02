@@ -13,12 +13,13 @@ import com.fortysevendeg.scala.android.ui.commons.ToolbarLayout
 import com.fortysevendeg.scala.android.ui.components.PathMorphDrawableTweaks._
 import com.fortysevendeg.scala.android.ui.components.Dim
 import com.fortysevendeg.scala.android.ui.components.IconTypes._
-import com.fortysevendeg.scala.android.ui.pathmorphing.Styles._
 import macroid.FullDsl._
 import macroid.{ActivityContext, AppContext, Transformer}
 import scala.language.postfixOps
 
-trait Layout extends ToolbarLayout {
+trait Layout
+  extends ToolbarLayout
+  with Styles {
 
   val sizeOptionList = List(Dim(48, 48), Dim(72, 72), Dim(96, 96), Dim(128, 128))
 
@@ -47,7 +48,9 @@ trait Layout extends ToolbarLayout {
       l[LinearLayout](
         toolBarLayout <~ tbTitle(R.string.title_path_morphing),
         l[LinearLayout](
-          w[ImageView] <~ drawableStyle(width = 48 dp, height = 48 dp, stroke = 3 dp) <~ wire(icon),
+          l[FrameLayout](
+            w[ImageView] <~ drawableStyle(width = 48 dp, height = 48 dp, stroke = 3 dp) <~ wire(icon)
+          ) <~ drawableContentStyle,
           l[ScrollView](
             l[LinearLayout](
               w[TextView] <~ tvText(R.string.title_select_icon) <~ titleStyle,
