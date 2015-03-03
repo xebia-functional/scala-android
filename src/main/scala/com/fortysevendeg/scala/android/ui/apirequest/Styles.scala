@@ -1,8 +1,7 @@
 package com.fortysevendeg.scala.android.ui.apirequest
 
-import android.text.util.Linkify
 import android.view.Gravity
-import android.widget.{ProgressBar, LinearLayout, TextView}
+import android.widget.{ImageView, ProgressBar, LinearLayout, TextView}
 import com.fortysevendeg.macroid.extras.FrameLayoutTweaks._
 import com.fortysevendeg.macroid.extras.LinearLayoutTweaks._
 import com.fortysevendeg.macroid.extras.TextTweaks._
@@ -10,7 +9,6 @@ import com.fortysevendeg.macroid.extras.ImageViewTweaks._
 import com.fortysevendeg.macroid.extras.ViewTweaks._
 import com.fortysevendeg.macroid.extras.ResourcesExtras._
 import com.fortysevendeg.scala.android.R
-import macroid.FullDsl._
 import macroid.{AppContext, Tweak}
 
 import scala.language.postfixOps
@@ -51,23 +49,32 @@ object Styles {
       tvSizeResource(R.dimen.text_size_forecast_error_button) +
       tvGravity(Gravity.CENTER)
 
-  val forecastLayoutStyle = vMatchParent
+  val forecastFragmentLayoutStyle = vMatchParent
 
-  def forecastDetailLayoutStyle(implicit appContext: AppContext): Tweak[LinearLayout] = 
+  def forecastLayoutStyle(implicit appContext: AppContext): Tweak[LinearLayout] =
     vMatchParent +
       llVertical +
-      llGravity(Gravity.CENTER) +
       vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
-  val markerImageViewStyle = 
+  def forecastLocationLayoutStyle(implicit appContext: AppContext): Tweak[LinearLayout] = 
+    vMatchWidth +
+      llHorizontal +
+      llGravity(Gravity.CENTER_VERTICAL)
+
+  def forecastDetailLayoutStyle(implicit appContext: AppContext): Tweak[LinearLayout] =
+    vMatchParent +
+      llVertical +
+      llGravity(Gravity.CENTER)
+
+  def markerImageViewStyle(implicit appContext: AppContext): Tweak[ImageView] =
     vWrapContent +
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default)) +
       ivSrc(R.drawable.map_marker)
 
   def locationTextViewStyle(implicit appContext: AppContext) =
     vWrapContent +
-      tvGravity(Gravity.CENTER) +
       tvSizeResource(R.dimen.text_size_forecast_location) +
-      vPaddings(resGetDimensionPixelSize(R.dimen.margin_forecast_location))
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
   val forecastImageViewStyle = vWrapContent
 
@@ -76,7 +83,7 @@ object Styles {
       tvGravity(Gravity.CENTER) +
       tvSizeResource(R.dimen.text_size_forecast_temperature) +
       tvBoldCondensed +
-      vPaddings(resGetDimensionPixelSize(R.dimen.margin_forecast_location))
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
   def aboutDialogLayoutStyle(implicit appContext: AppContext) =
     vMatchParent +

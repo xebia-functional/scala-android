@@ -69,12 +69,16 @@ class ForecastFragmentLayout(implicit appContext: AppContext, context: ActivityC
     l[FrameLayout](
       layoutView <~ wire(errorLayoutContent),
       l[LinearLayout](
-        w[ImageView] <~ markerImageViewStyle,
-        w[TextView] <~ wire(locationTextView) <~ locationTextViewStyle,
-        w[ImageView] <~ wire(forecastImageView) <~ forecastImageViewStyle,
-        w[TextView] <~ wire(temperatureTextView) <~ temperatureTextViewStyle
-      ) <~ wire(detailLayoutContent) <~ forecastDetailLayoutStyle
-    ) <~ forecastLayoutStyle
+        l[LinearLayout](
+          w[ImageView] <~ markerImageViewStyle,
+          w[TextView] <~ wire(locationTextView) <~ locationTextViewStyle
+        ) <~ forecastLocationLayoutStyle,
+        l[LinearLayout](
+          w[ImageView] <~ wire(forecastImageView) <~ forecastImageViewStyle,
+          w[TextView] <~ wire(temperatureTextView) <~ temperatureTextViewStyle
+        ) <~ forecastDetailLayoutStyle
+      ) <~ wire(detailLayoutContent) <~ forecastLayoutStyle
+    ) <~ forecastFragmentLayoutStyle
   )
 
   def layout = content

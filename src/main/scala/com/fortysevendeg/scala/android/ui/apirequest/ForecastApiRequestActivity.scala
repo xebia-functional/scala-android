@@ -63,6 +63,9 @@ class ForecastApiRequestActivity
         dialogBuilder.setPositiveButton(android.R.string.ok, null)
         dialogBuilder.show()
         true
+      case android.R.id.home =>
+        finish()
+        true
       case _ => super.onOptionsItemSelected(item)
     }
 
