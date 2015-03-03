@@ -54,6 +54,8 @@ object Styles {
     vMatchParent +
       vGone
 
+  val forecastDetailLayoutStyle = vMatchParent
+
   def textViewStyle(implicit appContext: AppContext): Tweak[TextView] =
     vWrapContent +
       tvGravity(Gravity.CENTER) +

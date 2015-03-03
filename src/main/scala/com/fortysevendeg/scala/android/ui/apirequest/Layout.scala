@@ -76,13 +76,17 @@ class LoaderFragmentLayout(implicit appContext: AppContext, context: ActivityCon
 class ForecastFragmentLayout(implicit appContext: AppContext, context: ActivityContext) extends ErrorLayout {
 
   var errorLayoutContent = slot[FrameLayout]
+  
+  var detailLayoutContent = slot[FrameLayout]
 
   var textView = slot[TextView]
 
   val content = getUi(
     l[FrameLayout](
       layoutView <~ wire(errorLayoutContent) <~ forecastErrorLayoutStyle,
-      w[TextView] <~ wire(textView) <~ textViewStyle
+      l[FrameLayout](
+        w[TextView] <~ wire(textView) <~ textViewStyle
+      ) <~ wire(detailLayoutContent) <~ forecastDetailLayoutStyle
     ) <~ forecastLayoutStyle
   )
 

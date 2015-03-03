@@ -14,9 +14,10 @@
  *  limitations under the License.
  */
 
-package com.fortysevendeg.scala.android.ui.apirequest.service
+package com.fortysevendeg.scala.android.modules.forecast
+
+import com.fortysevendeg.scala.android.ui.apirequest.service.model.Forecast
 
 case class ForecastRequest(latitude: Double, longitude: Double)
 
-case class ForecastResponse(success: Boolean,
-  downloaded: Boolean)
+case class ForecastResponse(forecastMaybe: Option[Forecast])

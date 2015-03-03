@@ -38,7 +38,7 @@ class LoaderFragment extends Fragment with Contexts[Fragment] {
   }
 
   def reload =
-    Option(getActivity) map (_.asInstanceOf[ForecastApiRequestActivity].reconnectApiClient())
+    Option(getActivity) map (_.asInstanceOf[ForecastApiRequestActivity].reconnectApiClient)
   
   def loading =
     fragmentLayout map { layout =>

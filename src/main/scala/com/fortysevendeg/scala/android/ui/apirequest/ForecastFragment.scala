@@ -4,10 +4,22 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.{LayoutInflater, View, ViewGroup}
 import com.fortysevendeg.macroid.extras.TextTweaks._
-import macroid.Contexts
+import com.fortysevendeg.scala.android.R
+import com.fortysevendeg.scala.android.modules.ComponentRegistryImpl
+import com.fortysevendeg.scala.android.modules.forecast.ForecastRequest
+import com.fortysevendeg.scala.android.ui.apirequest.service.model.Forecast
+import macroid.{Ui, AppContext, Contexts}
 import macroid.FullDsl._
+import com.fortysevendeg.macroid.extras.ViewTweaks._
 
-class ForecastFragment extends Fragment with Contexts[Fragment] {
+import scala.concurrent.ExecutionContext.Implicits.global
+
+class ForecastFragment 
+  extends Fragment 
+  with Contexts[Fragment]
+  with ComponentRegistryImpl {
+
+  override implicit lazy val appContextProvider: AppContext = fragmentAppContext
 
   private var fragmentLayout: Option[ForecastFragmentLayout] = None
 
@@ -17,22 +29,75 @@ class ForecastFragment extends Fragment with Contexts[Fragment] {
 
     fragmentLayout = Some(fLayout)
 
+    fLayout.reloadButton <~ On.click(Ui {
+      reload
+    })
+
     fLayout.layout
 
   }
 
   override def onViewCreated(view: View, savedInstanceState: Bundle) = {
     super.onViewCreated(view, savedInstanceState)
-    
-    import ForecastFragment._
-    
-    for {
-      bundle <- Option(getArguments)
-      layout <- fragmentLayout
-    } yield runUi(
-      layout.textView <~ tvText(s"Location: ${bundle.getDouble(latitudeKey)},${bundle.getDouble(longitudeKey)}"))
-    
+    reload
   }
+  
+  def reload = {
+    loading
+    loadLocationArguments map loadForecast
+  }
+
+  def loadLocationArguments: Option[(Double, Double)] = {
+    import ForecastFragment._
+
+    Option(getArguments) flatMap { bundle =>
+      if (bundle.containsKey(latitudeKey) && bundle.containsKey(longitudeKey))
+        Some((bundle.getDouble(latitudeKey), bundle.getDouble(longitudeKey)))
+      else None
+    }
+  }
+
+  def loadForecast(location: (Double, Double)) = {
+    val result = for {
+      forecast <- forecastServices.loadForecast(ForecastRequest(location._1, location._2))
+    } yield forecast.forecastMaybe
+
+    result map {
+      case Some(forecast) => showForecast(forecast)
+      case _ => error(Some(R.string.error_message_api_request_loading))
+    } recover {
+      case _ => error(Some(R.string.error_message_api_request_loading))
+    }
+  }
+
+  def showForecast(forecast: Forecast) =
+    fragmentLayout map { layout =>
+      runUi(
+        (layout.progressBar <~ vGone) ~
+          (layout.errorContent <~ vGone) ~
+          (layout.detailLayoutContent <~ vVisible) ~
+          (layout.textView <~ tvText(s"${forecast.location.name} - ${forecast.weather.get.description}"))
+      )
+    }
+  
+  def loading =
+    fragmentLayout map { layout =>
+      runUi(
+        (layout.progressBar <~ vVisible) ~
+          (layout.errorContent <~ vGone) ~
+          (layout.detailLayoutContent <~ vGone)
+      )
+    }
+  
+  def error(errorMessage: Option[Int]) =
+    fragmentLayout map { layout =>
+      runUi(
+        (layout.progressBar <~ vGone) ~
+          (layout.errorContent <~ vVisible) ~
+          (layout.errorText <~ tvText(errorMessage getOrElse R.string.error_message_api_request_default)) ~
+          (layout.detailLayoutContent <~ vGone)
+      )
+    }
 
 }
 

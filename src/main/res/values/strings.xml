@@ -56,4 +56,5 @@
     <string name="try_again_button">Try again</string>
     <string name="error_message_api_request_default">Unknown error</string>
     <string name="error_message_api_request_location_api">Error connecting to Play Services</string>
+    <string name="error_message_api_request_loading">Error connecting to Play Services</string>
 </resources>
