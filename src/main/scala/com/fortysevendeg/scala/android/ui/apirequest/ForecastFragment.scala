@@ -30,31 +30,16 @@ class ForecastFragment
     fragmentLayout = Some(fLayout)
 
     fLayout.reloadButton <~ On.click(Ui {
-      reload
+      loading
+      Option(getActivity) map (_.asInstanceOf[ForecastApiRequestActivity].loadClientLocation)
     })
 
     fLayout.layout
-
   }
 
   override def onViewCreated(view: View, savedInstanceState: Bundle) = {
     super.onViewCreated(view, savedInstanceState)
-    reload
-  }
-  
-  def reload = {
     loading
-    loadLocationArguments map loadForecast
-  }
-
-  def loadLocationArguments: Option[(Double, Double)] = {
-    import ForecastFragment._
-
-    Option(getArguments) flatMap { bundle =>
-      if (bundle.containsKey(latitudeKey) && bundle.containsKey(longitudeKey))
-        Some((bundle.getDouble(latitudeKey), bundle.getDouble(longitudeKey)))
-      else None
-    }
   }
 
   def loadForecast(location: (Double, Double)) = {
@@ -99,12 +84,4 @@ class ForecastFragment
       )
     }
 
-}
-
-object ForecastFragment {
-  
-  var latitudeKey = "latitude"
-  
-  var longitudeKey = "longitude"
-  
 }

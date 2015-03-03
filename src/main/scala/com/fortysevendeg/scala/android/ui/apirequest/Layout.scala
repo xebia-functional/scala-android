@@ -50,26 +50,6 @@ trait ErrorLayout {
       ) <~ wire(errorContent) <~ errorContentStyle
     ) <~ errorLayoutStyle
   }
-  
-  def loading() =
-    runUi(
-      (progressBar <~ vVisible) ~
-        (errorContent <~ vGone))
-
-  def error(errorMessage: Option[Int]) =
-    runUi(
-      (progressBar <~ vGone) ~
-        (errorContent <~ vVisible) ~
-        (errorText <~ tvText(errorMessage getOrElse R.string.error_message_api_request_default))
-    )
-
-}
-
-class LoaderFragmentLayout(implicit appContext: AppContext, context: ActivityContext) extends ErrorLayout {
-
-  val content = getUi(layoutView)
-
-  def layout = content
 
 }
 
@@ -83,7 +63,7 @@ class ForecastFragmentLayout(implicit appContext: AppContext, context: ActivityC
 
   val content = getUi(
     l[FrameLayout](
-      layoutView <~ wire(errorLayoutContent) <~ forecastErrorLayoutStyle,
+      layoutView <~ wire(errorLayoutContent),
       l[FrameLayout](
         w[TextView] <~ wire(textView) <~ textViewStyle
       ) <~ wire(detailLayoutContent) <~ forecastDetailLayoutStyle

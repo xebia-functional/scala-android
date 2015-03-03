@@ -30,26 +30,26 @@ class ForecastApiRequestActivity
     getSupportActionBar.setDisplayHomeAsUpEnabled(true)
 
     if (savedInstanceState == null) {
-      runUi(addFragment(f[LoaderFragment], Some(Id.fragment), Some(loaderFragmentName)))
+      runUi(addFragment(f[ForecastFragment], Some(Id.fragment), Some(forecastFragmentName)))
     }
 
-    reconnectApiClient
+    loadClientLocation
   }
 
-  def reconnectApiClient = {
+  def loadClientLocation = {
     val criteria = new Criteria()
     criteria.setAccuracy(Criteria.NO_REQUIREMENT)
     
     Option(locationManager.getBestProvider(criteria, true)) map { provider =>
       val last = Option(locationManager.getLastKnownLocation(provider))
-      if (last.isDefined) loadForecastFragment(last.get.getLatitude, last.get.getLongitude)
+      if (last.isDefined) loadForecast(last.get.getLatitude, last.get.getLongitude)
       else locationManager.requestLocationUpdates(provider, 0, 0, this)
     }
   }
 
   override def onLocationChanged(location: Location): Unit = {
     locationManager.removeUpdates(this)
-    loadForecastFragment(location.getLatitude, location.getLongitude)
+    loadForecast(location.getLatitude, location.getLongitude)
   }
 
   override def onProviderEnabled(provider: String): Unit = {}
@@ -60,21 +60,8 @@ class ForecastApiRequestActivity
     showError(R.string.error_message_api_request_location_api)
 
   private def showError(errorMessage: Int) =
-    findFragmentById[Fragment](Id.fragment) match {
-      case Some(fragment) if fragment.isInstanceOf[LoaderFragment] => fragment.asInstanceOf[LoaderFragment].error(Some(errorMessage))
-      case _ => runUi(replaceFragment(
-        f[LoaderFragment].pass((showErrorKey, true), (errorMessageKey, errorMessage)),
-        Id.fragment,
-        Some(loaderFragmentName)))
-  }
+    findFragmentByTag(forecastFragmentName)[ForecastFragment] map (_.error(Some(errorMessage)))
   
-  private def loadForecastFragment(latitude: Double, longitude: Double) = {
-    val bundle = new Bundle
-    bundle.putDouble(latitudeKey, latitude)
-    bundle.putDouble(longitudeKey, longitude)
-    runUi(replaceFragment(
-      f[ForecastFragment].pass(bundle),
-      Id.fragment,
-      Some(forecastFragmentName)))
-  }
+  private def loadForecast(latitude: Double, longitude: Double) = 
+    findFragmentByTag(forecastFragmentName)[ForecastFragment] map (_.loadForecast((latitude, longitude)))
 }

@@ -50,10 +50,6 @@ object Styles {
 
   val forecastLayoutStyle = vMatchParent
 
-  val forecastErrorLayoutStyle = 
-    vMatchParent +
-      vGone
-
   val forecastDetailLayoutStyle = vMatchParent
 
   def textViewStyle(implicit appContext: AppContext): Tweak[TextView] =
