@@ -6,6 +6,7 @@ import com.fortysevendeg.macroid.extras.FrameLayoutTweaks._
 import com.fortysevendeg.macroid.extras.LinearLayoutTweaks._
 import com.fortysevendeg.macroid.extras.TextTweaks._
 import com.fortysevendeg.macroid.extras.ViewTweaks._
+import com.fortysevendeg.macroid.extras.ResourcesExtras._
 import com.fortysevendeg.scala.android.R
 import macroid.FullDsl._
 import macroid.{AppContext, Tweak}
@@ -16,7 +17,7 @@ object Styles {
 
   val rootStyle = llVertical
 
-  val contentStyle = vMatchParent + vPaddings(24)
+  val contentStyle = vMatchParent
 
   val errorLayoutStyle = vMatchParent
 
@@ -35,17 +36,17 @@ object Styles {
     vWrapContent +
       tvGravity(Gravity.CENTER) +
       tvColorResource(R.color.text_error_message) +
-      tvSize(18) +
-      vPaddings(10 dp)
+      tvSizeResource(R.dimen.text_size_forecast_error_message) +
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_forecast_error_message))
 
   def errorButtonStyle(implicit appContext: AppContext): Tweak[TextView] =
     vWrapContent +
-      vMinWidth(160 dp) +
+      vMinWidth(resGetDimensionPixelSize(R.dimen.width_forecast_error_button)) +
       tvText(R.string.try_again_button) +
       tvColorResource(R.color.text_error_button) +
       vBackground(R.drawable.background_error_button) +
       tvAllCaps +
-      tvSize(14) +
+      tvSizeResource(R.dimen.text_size_forecast_error_button) +
       tvGravity(Gravity.CENTER)
 
   val forecastLayoutStyle = vMatchParent
