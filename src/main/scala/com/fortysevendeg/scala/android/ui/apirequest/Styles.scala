@@ -1,5 +1,6 @@
 package com.fortysevendeg.scala.android.ui.apirequest
 
+import android.text.util.Linkify
 import android.view.Gravity
 import android.widget.{ProgressBar, LinearLayout, TextView}
 import com.fortysevendeg.macroid.extras.FrameLayoutTweaks._
@@ -58,8 +59,9 @@ object Styles {
       llGravity(Gravity.CENTER) +
       vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
-  val markerImageViewStyle = vWrapContent +
-    ivSrc(R.drawable.map_marker)
+  val markerImageViewStyle = 
+    vWrapContent +
+      ivSrc(R.drawable.map_marker)
 
   def locationTextViewStyle(implicit appContext: AppContext) =
     vWrapContent +
@@ -75,5 +77,13 @@ object Styles {
       tvSizeResource(R.dimen.text_size_forecast_temperature) +
       tvBoldCondensed +
       vPaddings(resGetDimensionPixelSize(R.dimen.margin_forecast_location))
+
+  def aboutDialogLayoutStyle(implicit appContext: AppContext) =
+    vMatchParent +
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
+
+  val dialogTextViewStyle =
+    vWrapContent +
+      tvText(R.string.forecast_icons_attribution)
 
 }

@@ -60,7 +60,10 @@
     <!-- Forecast String resources -->
     <string name="forecast_api_request_activity_name">Forecast API Request</string>
     <string name="forecast_api_request_activity_description">Description for Forecast API Request</string>
-
+    <string name="menu_about_icons">About icons</string>
+    <string name="forecast_icons_attribution">
+        Icons made by Yannick (http://www.flaticon.com/authors/yannick) from http://www.flaticon.com.
+        \n\nIs licensed by Creative Commons BY 3.0 (http://creativecommons.org/licenses/by/3.0/)</string>
     <string name="title_forecast_api_request">API Request Sample</string>
     <string name="try_again_button">Try again</string>
     <string name="error_message_api_request_default">Unknown error</string>

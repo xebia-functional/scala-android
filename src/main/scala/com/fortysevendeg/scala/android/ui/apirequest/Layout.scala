@@ -80,3 +80,17 @@ class ForecastFragmentLayout(implicit appContext: AppContext, context: ActivityC
   def layout = content
 
 }
+
+class AboutDialogLayout(implicit appContext: AppContext, context: ActivityContext) {
+
+  var textView = slot[TextView]
+
+  val content = getUi(
+    l[FrameLayout](
+      w[TextView] <~ wire(textView) <~ dialogTextViewStyle
+    ) <~ aboutDialogLayoutStyle
+  )
+
+  def layout = content
+
+}

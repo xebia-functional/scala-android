@@ -1,10 +1,15 @@
 package com.fortysevendeg.scala.android.ui.apirequest
 
+import android.app.AlertDialog
 import android.content.Context
 import android.location.{Criteria, Location, LocationListener, LocationManager}
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
 import android.support.v7.app.ActionBarActivity
+import android.text.SpannableString
+import android.text.util.Linkify
+import android.view.{MenuItem, Menu}
+import android.widget.TextView
 import com.fortysevendeg.macroid.extras.FragmentExtras._
 import com.fortysevendeg.scala.android.R
 import macroid.Contexts
@@ -40,6 +45,25 @@ class ForecastApiRequestActivity
       val last = Option(locationManager.getLastKnownLocation(provider))
       if (last.isDefined) loadForecast(last.get.getLatitude, last.get.getLongitude)
       else locationManager.requestLocationUpdates(provider, 0, 0, this)
+    }
+  }
+
+  override def onCreateOptionsMenu(menu: Menu): Boolean = {
+    getMenuInflater.inflate(R.menu.activity_forecast, menu)
+    true
+  }
+
+  override def onOptionsItemSelected(item: MenuItem): Boolean = {
+    item.getItemId match {
+      case R.id.about_icons =>
+        val dialogView = new AboutDialogLayout
+        dialogView.textView map (Linkify.addLinks(_, Linkify.WEB_URLS))
+        val dialogBuilder = new AlertDialog.Builder(this)
+        dialogBuilder.setView(dialogView.content)
+        dialogBuilder.setPositiveButton(android.R.string.ok, null)
+        dialogBuilder.show()
+        true
+      case _ => super.onOptionsItemSelected(item)
     }
   }
 
