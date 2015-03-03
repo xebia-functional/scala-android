@@ -1,22 +1,20 @@
 package com.fortysevendeg.scala.android.ui.apirequest
 
 import android.content.Context
-import android.location.{LocationListener, Criteria, LocationManager, Location}
+import android.location.{Criteria, Location, LocationListener, LocationManager}
 import android.os.Bundle
-import android.support.v4.app.{Fragment, FragmentActivity}
+import android.support.v4.app.FragmentActivity
 import android.support.v7.app.ActionBarActivity
-import macroid.Contexts
-import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.macroid.extras.FragmentExtras._
-import LoaderFragment._
-import ForecastFragment._
+import com.fortysevendeg.scala.android.R
+import macroid.Contexts
 import macroid.FullDsl._
 
 class ForecastApiRequestActivity 
   extends ActionBarActivity 
   with Contexts[FragmentActivity] 
   with Layout
-  with LocationListener {
+  with DefaultLocationListener {
 
   lazy val locationManager = this.getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
 
@@ -32,8 +30,6 @@ class ForecastApiRequestActivity
     if (savedInstanceState == null) {
       runUi(addFragment(f[ForecastFragment], Some(Id.fragment), Some(forecastFragmentName)))
     }
-
-    loadClientLocation
   }
 
   def loadClientLocation = {
@@ -47,21 +43,30 @@ class ForecastApiRequestActivity
     }
   }
 
-  override def onLocationChanged(location: Location): Unit = {
+  override def onLocationChanged(location: Location) = {
     locationManager.removeUpdates(this)
     loadForecast(location.getLatitude, location.getLongitude)
   }
 
-  override def onProviderEnabled(provider: String): Unit = {}
-
-  override def onStatusChanged(provider: String, status: Int, extras: Bundle): Unit = {}
-
-  override def onProviderDisabled(provider: String): Unit =
+  override def onProviderDisabled(provider: String) = {
+    locationManager.removeUpdates(this)
     showError(R.string.error_message_api_request_location_api)
+  }
 
   private def showError(errorMessage: Int) =
-    findFragmentByTag(forecastFragmentName)[ForecastFragment] map (_.error(Some(errorMessage)))
+    findFragmentByTag[ForecastFragment](forecastFragmentName) map (_.error(Some(errorMessage)))
   
   private def loadForecast(latitude: Double, longitude: Double) = 
-    findFragmentByTag(forecastFragmentName)[ForecastFragment] map (_.loadForecast((latitude, longitude)))
+    findFragmentByTag[ForecastFragment](forecastFragmentName) map (_.loadForecast((latitude, longitude)))
+}
+
+trait DefaultLocationListener extends LocationListener {
+  
+  override def onLocationChanged(location: Location) = {}
+
+  override def onProviderEnabled(provider: String) = {}
+
+  override def onStatusChanged(provider: String, status: Int, extras: Bundle) = {}
+
+  override def onProviderDisabled(provider: String) = {}
 }

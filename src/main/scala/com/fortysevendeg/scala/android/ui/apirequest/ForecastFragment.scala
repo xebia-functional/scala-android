@@ -30,8 +30,7 @@ class ForecastFragment
     fragmentLayout = Some(fLayout)
 
     fLayout.reloadButton <~ On.click(Ui {
-      loading
-      Option(getActivity) map (_.asInstanceOf[ForecastApiRequestActivity].loadClientLocation)
+      reload
     })
 
     fLayout.layout
@@ -39,8 +38,14 @@ class ForecastFragment
 
   override def onViewCreated(view: View, savedInstanceState: Bundle) = {
     super.onViewCreated(view, savedInstanceState)
-    loading
+    reload
   }
+  
+  def reload = {
+    loading
+    Option(getActivity) map (_.asInstanceOf[ForecastApiRequestActivity].loadClientLocation)
+  }
+
 
   def loadForecast(location: (Double, Double)) = {
     val result = for {
