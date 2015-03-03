@@ -31,6 +31,10 @@ class ForecastFragment
   val decimalFormatter = new DecimalFormat("#.##'°'")
   
   val resourceName = "forecast_%s"
+  
+  val placeholderTemperature = "-°"
+  
+  val iconSizeIdentifier = 2
 
   override def onCreateView(inflater: LayoutInflater, container: ViewGroup, savedInstanceState: Bundle): View = {
 
@@ -84,16 +88,15 @@ class ForecastFragment
   def loadWeatherIcon(weatherMaybe: Option[Weather]): Drawable = {
     val result = weatherMaybe flatMap { weather =>
       Option(weather.icon) match {
-        case Some(icon) if icon.length == 3 => resGetDrawable(String.format(resourceName, icon.substring(0, 2)))
+        case Some(icon) if icon.length >= iconSizeIdentifier => resGetDrawable(String.format(resourceName, icon.substring(0, iconSizeIdentifier)))
         case _ => Option(resGetDrawable(R.drawable.unknown))
       }
     }
     result getOrElse resGetDrawable(R.drawable.unknown)
   }
 
-  def loadWeatherTemperature(weatherMaybe: Option[Weather]): String = {
-    weatherMaybe map (weather => decimalFormatter.format(weather.temperature)) getOrElse "-°"
-  }
+  def loadWeatherTemperature(weatherMaybe: Option[Weather]): String = 
+    weatherMaybe map (weather => decimalFormatter.format(weather.temperature)) getOrElse placeholderTemperature
   
   def loading =
     fragmentLayout map { layout =>

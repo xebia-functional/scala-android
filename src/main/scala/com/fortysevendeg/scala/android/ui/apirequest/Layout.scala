@@ -41,7 +41,8 @@ trait ErrorLayout {
 
   var errorText = slot[TextView]
 
-  def layoutView(implicit appContext: AppContext, context: ActivityContext) = {
+  def layoutView(implicit appContext: AppContext, 
+    context: ActivityContext) =
     l[FrameLayout](
       w[ProgressBar] <~ wire(progressBar) <~ progressBarStyle,
       l[LinearLayout](
@@ -49,7 +50,6 @@ trait ErrorLayout {
         w[Button] <~ errorButtonStyle <~ wire(reloadButton)
       ) <~ wire(errorContent) <~ errorContentStyle
     ) <~ errorLayoutStyle
-  }
 
 }
 

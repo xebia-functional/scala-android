@@ -53,7 +53,7 @@ class ForecastApiRequestActivity
     true
   }
 
-  override def onOptionsItemSelected(item: MenuItem): Boolean = {
+  override def onOptionsItemSelected(item: MenuItem): Boolean =
     item.getItemId match {
       case R.id.about_icons =>
         val dialogView = new AboutDialogLayout
@@ -65,7 +65,6 @@ class ForecastApiRequestActivity
         true
       case _ => super.onOptionsItemSelected(item)
     }
-  }
 
   override def onLocationChanged(location: Location) = {
     locationManager.removeUpdates(this)
