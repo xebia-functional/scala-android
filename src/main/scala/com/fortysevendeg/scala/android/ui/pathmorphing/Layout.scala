@@ -120,22 +120,22 @@ trait Layout
               l[LinearLayout](
                 l[LinearLayout](
                   w[ImageView] <~ colorSelectorStyle(true) <~ wire(sampleColor1Icon) <~ pmdColor(Color.WHITE) <~ vBackground(R.drawable.background_item_pathmorphsample_1) <~ On.click {
-                    (icon <~ pmdColorResource(R.color.pathMorphSample1)) ~
+                    (icon <~ pmdColorResource(R.color.path_morph_sample_1)) ~
                         (colorSelectorGroup <~ setNoIconImageViewWidgets) ~
                         (sampleColor1Icon <~ pmdAnimIcon(CHECK))
                   },
                   w[ImageView] <~ colorSelectorStyle(false) <~ wire(sampleColor2Icon) <~ vBackground(R.drawable.background_item_pathmorphsample_2) <~ On.click {
-                    (icon <~ pmdColorResource(R.color.pathMorphSample2)) ~
+                    (icon <~ pmdColorResource(R.color.path_morph_sample_2)) ~
                         (colorSelectorGroup <~ setNoIconImageViewWidgets) ~
                         (sampleColor2Icon <~ pmdAnimIcon(CHECK))
                   },
                   w[ImageView] <~ colorSelectorStyle(false) <~ wire(sampleColor3Icon) <~ vBackground(R.drawable.background_item_pathmorphsample_3) <~ On.click {
-                    (icon <~ pmdColorResource(R.color.pathMorphSample3)) ~
+                    (icon <~ pmdColorResource(R.color.path_morph_sample_3)) ~
                         (colorSelectorGroup <~ setNoIconImageViewWidgets) ~
                         (sampleColor3Icon <~ pmdAnimIcon(CHECK))
                   },
                   w[ImageView] <~ colorSelectorStyle(false) <~ wire(sampleColor4Icon) <~ pmdColor(Color.WHITE) <~ vBackground(R.drawable.background_item_pathmorphsample_4) <~ On.click {
-                    (icon <~ pmdColorResource(R.color.pathMorphSample4)) ~
+                    (icon <~ pmdColorResource(R.color.path_morph_sample_4)) ~
                         (colorSelectorGroup <~ setNoIconImageViewWidgets) ~
                         (sampleColor4Icon <~ pmdAnimIcon(CHECK))
                   }
@@ -162,7 +162,7 @@ trait Layout
                         (colorSelectorGroup <~ setNoIconImageViewWidgets) ~
                         (sampleColor1Icon <~ pmdAnimIcon(CHECK)) ~
                         (strokeSelector <~ sbProgress(2)) ~
-                        (icon <~ drawableStyle(width dp, height dp, 3 dp) <~ pmdColorResource(R.color.pathMorphSample1)) ~
+                        (icon <~ drawableStyle(width dp, height dp, 3 dp) <~ pmdColorResource(R.color.path_morph_sample_1)) ~
                         (iconSelectorGroup <~ deactivateImageViewWidgets)
                   }
                 )

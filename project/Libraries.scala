@@ -46,6 +46,10 @@ object Libraries {
     lazy val playServicesBase = playServicesDep("play-services-base")
   }
 
+  object graphics {
+    lazy val picasso = "com.squareup.picasso" % "picasso" % Versions.picassoV
+  }
+
   object akka {
 
     def akka(module: String) = "com.typesafe.akka" %% s"akka-$module" % Versions.akkaV

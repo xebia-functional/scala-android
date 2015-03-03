@@ -4,5 +4,5 @@
         android:shape="oval">
 
     <corners android:radius="1000dp"/>
-    <solid android:color="@color/pathMorphSample3" />
+    <solid android:color="@color/path_morph_sample_3" />
 </shape>

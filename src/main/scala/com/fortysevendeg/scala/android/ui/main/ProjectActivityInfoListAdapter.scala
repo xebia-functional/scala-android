@@ -2,26 +2,28 @@ package com.fortysevendeg.scala.android.ui.main
 
 import java.io.FileNotFoundException
 
-import android.os.Build
 import android.support.v7.widget.RecyclerView
 import android.view.View.OnClickListener
 import android.view.{View, ViewGroup}
 import com.fortysevendeg.macroid.extras.ActionsExtras._
 import com.fortysevendeg.macroid.extras.ResourcesExtras._
+import com.fortysevendeg.macroid.extras.DeviceVersion._
 import com.fortysevendeg.macroid.extras.TextTweaks._
 import com.fortysevendeg.macroid.extras.ViewTweaks._
 import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.scala.android.ui.commons.JsonReads
 import macroid.FullDsl._
-import macroid.{ActivityContext, AppContext}
+import macroid.{Tweak, ActivityContext, AppContext}
 import play.api.libs.json.{JsResultException, Json}
 
 import scala.io.Source
 import scala.util.{Failure, Success, Try}
 
 class ProjectActivityInfoListAdapter(listener: RecyclerClickListener)
-    (implicit context: ActivityContext, appContext: AppContext)
-    extends RecyclerView.Adapter[ViewHolder] with JsonReads {
+                                    (implicit context: ActivityContext, appContext: AppContext)
+  extends RecyclerView.Adapter[ViewHolder] with JsonReads {
+
+  import APIType._
 
   val recyclerClickListener = listener
 
@@ -54,9 +56,14 @@ class ProjectActivityInfoListAdapter(listener: RecyclerClickListener)
     viewHolder.content.setTag(position)
 
     runUi(
-      (viewHolder.title <~ tvText(resGetString(projectActivityInfo.name) getOrElse projectActivityInfo.name)) ~
-          (viewHolder.description <~ tvText(resGetString(projectActivityInfo.description) getOrElse projectActivityInfo.description)) ~
-          (viewHolder.api <~ tvText(resGetString("min_api_required",resourceStringFormatArgs:_*) getOrElse "") <~ setApiBackground(projectActivityInfo))
+      (viewHolder.title <~ tvText(projectActivityInfo.name)) ~
+        (viewHolder.description <~ tvText(projectActivityInfo.description)) ~
+        (viewHolder.api <~ tvText(resGetString(R.string.min_api_required, projectActivityInfo.minApi.toString)) <~
+          (projectActivityInfo.apiType match {
+            case SUCCESS => vBackground(R.drawable.background_item_api_success)
+            case ADVISED => vBackground(R.drawable.background_item_api_advised)
+            case _ => vBackground(R.drawable.background_item_api_required)
+          }))
     )
   }
 
@@ -68,10 +75,6 @@ class ProjectActivityInfoListAdapter(listener: RecyclerClickListener)
     } yield activityInfoList
   }
 
-  private def setApiBackground(projectActivityInfo: ProjectActivityInfo) = {
-    if (projectActivityInfo.apiRequired) vBackground(R.drawable.background_item_api_required)
-    else vBackground(R.drawable.background_item_api_not_required)
-  }
 }
 
 trait RecyclerClickListener {
@@ -90,6 +93,33 @@ case class ViewHolder(adapter: Adapter)(implicit context: ActivityContext, appCo
 
 }
 
-case class ProjectActivityInfo(name: String, description: String, className: String, minApi: Int, targetApi: Int) {
-  val apiRequired = Build.VERSION.SDK_INT < this.minApi
+case class ProjectActivityInfo(
+  name: String,
+  description: String,
+  className: String,
+  minApi: Int,
+  targetApi: Int,
+  scalaLevel: Int,
+  androidLevel: Int,
+  user: UserInfo) {
+
+  import APIType._
+
+  val apiType: APIType.Value = CurrentVersion match {
+    case current if current.version >= targetApi => SUCCESS
+    case current if current.version >= minApi => ADVISED
+    case _ => REQUIRED
+  }
+}
+
+case class UserInfo(
+  avatar: String,
+  name: String,
+  twitter: String)
+
+object APIType extends Enumeration {
+
+  type APIType = Value
+
+  val SUCCESS, ADVISED, REQUIRED = Value
 }

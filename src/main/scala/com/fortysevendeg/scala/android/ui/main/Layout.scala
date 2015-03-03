@@ -1,7 +1,7 @@
 package com.fortysevendeg.scala.android.ui.main
 
 import android.support.v7.widget.{CardView, RecyclerView}
-import android.widget.{LinearLayout, TextView}
+import android.widget.{ImageView, LinearLayout, TextView}
 import com.fortysevendeg.scala.android.ui.commons.ToolbarLayout
 import macroid.FullDsl._
 import macroid.{ActivityContext, AppContext}
@@ -42,7 +42,17 @@ class Adapter(implicit appContext: AppContext, context: ActivityContext)
             w[TextView] <~ wire(title) <~ titleStyle,
             w[TextView] <~ wire(api) <~ apiStyle
           ) <~ itemTopStyle,
-          w[TextView] <~ wire(description) <~ descriptionStyle
+          w[TextView] <~ wire(description) <~ descriptionStyle,
+          w[ImageView] <~ lineHorizontalStyle,
+          l[LinearLayout](
+            l[LinearLayout](
+
+            ) <~ bottomUserContentStyle,
+            w[ImageView] <~ lineVerticalStyle,
+            l[LinearLayout](
+
+            ) <~ bottomContentStyle
+          ) <~ bottomContentStyle
         ) <~ itemStyle
       ) <~ cardStyle
     )

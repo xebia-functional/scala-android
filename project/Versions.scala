@@ -11,4 +11,5 @@ object Versions {
   val wartremoverV = "0.11"
   val playServicesV = "6.5.87"
   val playJsonV = "2.3.4"
+  val picassoV = "2.5.0"
 }
