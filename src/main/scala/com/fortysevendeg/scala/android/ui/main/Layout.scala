@@ -1,14 +1,14 @@
 package com.fortysevendeg.scala.android.ui.main
 
 import android.support.v7.widget.{CardView, RecyclerView}
-import android.widget.{TextView, Button, LinearLayout}
-import com.fortysevendeg.scala.android.R
+import android.widget.{LinearLayout, TextView}
 import com.fortysevendeg.scala.android.ui.commons.ToolbarLayout
 import macroid.FullDsl._
-import macroid.{IdGeneration, Tweak, ActivityContext, AppContext}
-import Styles._
+import macroid.{ActivityContext, AppContext}
 
-trait Layout extends ToolbarLayout {
+trait Layout
+  extends ToolbarLayout
+  with Styles {
 
   var content = slot[LinearLayout]
 
@@ -25,7 +25,8 @@ trait Layout extends ToolbarLayout {
 
 }
 
-class Adapter(implicit appContext: AppContext, context: ActivityContext) {
+class Adapter(implicit appContext: AppContext, context: ActivityContext)
+  extends AdapterStyles {
 
   var title = slot[TextView]
 

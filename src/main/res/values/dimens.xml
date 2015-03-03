@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Default -->
     <dimen name="radius">3dp</dimen>
+    <dimen name="padding_default_small">4dp</dimen>
+    <dimen name="padding_default">8dp</dimen>
+    <dimen name="padding_default_large">8dp</dimen>
+    <dimen name="padding_default_xlarge">16dp</dimen>
 
-    <!-- CircleButton Default -->
-    <dimen name="circle_button_width">72dp</dimen>
-    <dimen name="circle_button_height">72dp</dimen>
-    <color name="circle_button_color">#ff3f51b5</color>
-    <color name="circle_button_shadow_color">#ff000000</color>
+    <dimen name="padding_fab">2dp</dimen>
+    <dimen name="padding_fab_top">4dp</dimen>
 
-    <dimen name="option_button_width">64dp</dimen>
-    <dimen name="option_button_height">64dp</dimen>
+    <dimen name="font_size_micro">10sp</dimen>
+    <dimen name="font_size_small">12sp</dimen>
+    <dimen name="font_size_normal">14sp</dimen>
+    <dimen name="font_size_medium">16sp</dimen>
+    <dimen name="font_size_large">20sp</dimen>
+    <dimen name="font_size_xlarge">24sp</dimen>
+
+    <dimen name="size_fab_default">56dp</dimen>
+
+    <!-- Circular Reveal -->
+    <dimen name="circular_reveal_fab_stroke">2dp</dimen>
+    <dimen name="circular_reveal_fab_size">64dp</dimen>
+
+    <dimen name="circular_reveal_height_image">200dp</dimen>
+
+    <!-- Path morphing -->
+    <dimen name="path_morphing_size_content_drawable">132dp</dimen>
+    <dimen name="path_morphing_size_circles">48dp</dimen>
+
+    <!-- RippleBackground -->
+    <dimen name="ripple_bg_height_content">240dp</dimen>
+    <dimen name="ripple_bg_size_circle">64dp</dimen>
+
 </resources>

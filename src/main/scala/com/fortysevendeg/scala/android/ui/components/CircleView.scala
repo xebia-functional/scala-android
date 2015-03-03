@@ -2,9 +2,10 @@ package com.fortysevendeg.scala.android.ui.components
 
 import android.content.Context
 import android.graphics.Paint.Style
-import android.graphics.{Paint, Canvas}
+import android.graphics.{Canvas, Paint}
 import android.util.AttributeSet
 import android.view.View
+import macroid.Tweak
 
 class CircleView(context: Context, attr: AttributeSet, defStyleAttr: Int)
     extends View(context, attr, defStyleAttr) {
@@ -28,4 +29,10 @@ class CircleView(context: Context, attr: AttributeSet, defStyleAttr: Int)
     canvas.drawCircle(getWidth() / 2, getHeight() / 2, getWidth() / 2, paint)
   }
 
+}
+
+object CircleView {
+  type W = CircleView
+
+  def cvColor(color: Int) = Tweak[W] (_.setColor(color))
 }
