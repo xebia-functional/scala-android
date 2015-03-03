@@ -17,7 +17,7 @@
 package com.fortysevendeg.scala.android.modules
 
 import com.fortysevendeg.macroid.extras.AppContextProvider
-import com.fortysevendeg.scala.android.ui.apirequest.service.impl.ForecastServicesComponentImpl
+import com.fortysevendeg.scala.android.modules.forecast.impl.ForecastServicesComponentImpl
 
 trait ComponentRegistryImpl
     extends ComponentRegistry
