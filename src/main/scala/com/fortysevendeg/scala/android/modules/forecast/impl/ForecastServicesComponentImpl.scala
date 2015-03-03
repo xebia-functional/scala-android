@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.fortysevendeg.scala.android.ui.apirequest.service.impl
+package com.fortysevendeg.scala.android.modules.forecast.impl
 
 import com.fortysevendeg.macroid.extras.AppContextProvider
 import com.fortysevendeg.scala.android.commons.Service
@@ -41,7 +41,8 @@ trait ApiReads {
 }
 
 trait ForecastServicesComponentImpl
-    extends ForecastServicesComponent {
+    extends ForecastServicesComponent
+    with NetUtils {
 
   self: AppContextProvider =>
 
@@ -50,7 +51,6 @@ trait ForecastServicesComponentImpl
   class ForecastServicesImpl
       extends ForecastServices
       with Conversions
-      with NetUtils
       with ApiReads {
     
     val openWeatherApiUrl = "http://api.openweathermap.org/data/2.5/weather?lat=%s&lon=%s"
