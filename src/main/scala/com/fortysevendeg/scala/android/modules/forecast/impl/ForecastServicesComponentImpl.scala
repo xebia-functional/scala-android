@@ -47,6 +47,12 @@ trait ForecastServicesComponentImpl
     with NetUtils {
 
   self: AppContextProvider =>
+  
+  def loadJsonUrl(latitude: Double, longitude: Double): String =
+    resGetString(R.string.openweather_url, latitude.toString, longitude.toString)
+  
+  def loadHeaderTuple: (String, String) =
+    (resGetString(R.string.openweather_key_name), resGetString(R.string.openweather_key_value))
 
   val forecastServices = new ForecastServicesImpl
 
@@ -57,10 +63,8 @@ trait ForecastServicesComponentImpl
 
     override def loadForecast: Service[ForecastRequest, ForecastResponse] = request =>
       Future {
-        val jsonUrl = resGetString(R.string.openweather_url, request.latitude.toString, request.longitude.toString)
-        val header = (resGetString(R.string.openweather_key_name), resGetString(R.string.openweather_key_value))
         (for {
-          json <- getJson(jsonUrl, Seq(header))
+          json <- getJson(loadJsonUrl(request.latitude, request.longitude), Seq(loadHeaderTuple))
           apiModel <- Try(Json.parse(json).as[ApiModel])
         } yield apiModel) match {
           case Success(apiModel) => ForecastResponse(Some(toForecast(apiModel)))

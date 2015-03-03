@@ -6,12 +6,15 @@ import com.fortysevendeg.scala.android.utils.TestUtils._
 import com.fortysevendeg.scala.android.{AppContextTestSupport, BaseTestSupport}
 import org.specs2.mutable.Specification
 
-import scala.util.{Success, Try}
+import scala.util.{Success, Failure, Try}
 
 trait ForecastServicesComponentSupport
   extends ForecastServicesComponentImpl
   with AppContextTestSupport {
+  
+  override def loadJsonUrl(latitude: Double, longitude: Double): String = "http://api.openweathermap.org/"
 
+  override def loadHeaderTuple: (String, String) = ("key_name", "key_value")
 }
 
 class ForecastServicesComponentSpec
@@ -98,6 +101,16 @@ class ForecastServicesComponentSpec
 
         override def getJson(url: String, headers: Seq[(String, String)] = Seq.empty): Try[String] = {
           Success(invalidJson)
+        }
+
+        forecastServices.loadForecast(ForecastRequest(0, 0)) *=== ForecastResponse(None)
+      }
+
+    "return None with a failed call to getJson" in
+      new ForecastServicesComponentSupport {
+
+        override def getJson(url: String, headers: Seq[(String, String)] = Seq.empty): Try[String] = {
+          Failure(new RuntimeException)
         }
 
         forecastServices.loadForecast(ForecastRequest(0, 0)) *=== ForecastResponse(None)
