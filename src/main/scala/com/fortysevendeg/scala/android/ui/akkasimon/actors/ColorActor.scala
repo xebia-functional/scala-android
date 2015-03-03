@@ -7,6 +7,7 @@ import macroid.Ui
 import macroid.akkafragments.FragmentActor
 
 class ColorActor extends FragmentActor[ColorFragment] with ActorLogging {
+
   import com.fortysevendeg.scala.android.ui.akkasimon.actors.ColorActor._
   import macroid.akkafragments.FragmentActor._
 

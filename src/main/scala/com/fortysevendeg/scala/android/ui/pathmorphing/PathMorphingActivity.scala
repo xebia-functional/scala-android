@@ -7,7 +7,7 @@ import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.macroid.extras.SeekBarTweaks._
 import com.fortysevendeg.macroid.extras.TextTweaks._
 import com.fortysevendeg.scala.android.ui.components.PathMorphDrawableTweaks._
-import com.fortysevendeg.scala.android.ui.components.TypeIcons
+import com.fortysevendeg.scala.android.ui.components.IconTypes._
 import macroid.Contexts
 import macroid.FullDsl._
 
@@ -23,7 +23,7 @@ class PathMorphingActivity extends ActionBarActivity with Contexts[ActionBarActi
     getSupportActionBar().setDisplayHomeAsUpEnabled(true)
 
     runUi(
-      (icon <~ pmdAnimIcon(TypeIcons.BURGER)) ~
+      (icon <~ pmdAnimIcon(BURGER)) ~
           (strokeSelector <~ sbProgress(2)) ~
           (sizeTitle <~ tvText(getApplicationContext().getString(R.string.title_select_size, 48.toString, 48.toString)))
     )

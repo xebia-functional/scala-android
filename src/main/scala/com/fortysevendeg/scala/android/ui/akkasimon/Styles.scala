@@ -1,30 +1,71 @@
 package com.fortysevendeg.scala.android.ui.akkasimon
 
-import android.view.View
+import android.view.Gravity
+import android.widget.{TextView, Button, FrameLayout, LinearLayout}
+import com.fortysevendeg.macroid.extras.DeviceVersion.Lollipop
 import com.fortysevendeg.macroid.extras.LinearLayoutTweaks._
+import com.fortysevendeg.macroid.extras.ResourcesExtras._
 import com.fortysevendeg.macroid.extras.TextTweaks._
 import com.fortysevendeg.macroid.extras.ViewTweaks._
-import macroid.{AppContext, Tweak}
+import com.fortysevendeg.scala.android.R
+import macroid.FullDsl._
+import macroid.{Tweak, AppContext}
 
 import scala.language.postfixOps
 
-object Styles {
+trait Styles {
 
   def simonButton(color: Int, alpha: Float = 0.3f)(implicit appCtx: AppContext) =
-    vBackgroundColor(color) + vAlpha(alpha)
+    vBackgroundColor(color) +
+      vAlpha(alpha)
 
-  def vAlpha(alpha: Float) = Tweak[View](_.setAlpha(alpha))
+  val rootStyle: Tweak[LinearLayout] = llVertical
 
-  val rootStyle = llVertical
+  val contentStyle: Tweak[FrameLayout] = llMatchWeightVertical
 
-  val buttonsStyle = llWrapWeightHorizontal + tvMaxLines(1)
+  val optionsContentStyle: Tweak[LinearLayout] =
+    vMatchParent +
+      llGravity(Gravity.CENTER) +
+      llVertical
 
-  val horizontalLinearLayoutStyle = vMatchWidth + llHorizontal
+  def messageStyle(implicit appCtx: AppContext): Tweak[TextView] =
+    vWrapContent +
+      tvText(R.string.simon_welcome) +
+      tvSizeResource(R.dimen.font_size_large) +
+      tvAllCaps +
+      tvGravity(Gravity.CENTER) +
+      vPadding(paddingBottom = resGetDimensionPixelSize(R.dimen.padding_default_xlarge)) +
+      tvNormalLight
 
-  val colorsContainerStyle = llMatchWeightVertical + llHorizontal
+  def buttonsStyle(implicit appCtx: AppContext): Tweak[Button] = {
+    val size = resGetDimensionPixelSize(R.dimen.size_fab_default)
+    lp[LinearLayout](size, size) +
+      tvText(R.string.simon_start) +
+      vBackground(R.drawable.background_default_fab) +
+      (Lollipop ifSupportedThen vElevation(resGetDimension(R.dimen.padding_default_small)) getOrElse Tweak.blank)
+  }
 
-  val columnColorsStyle = llMatchWeightHorizontal + llVertical
+  val gameContentStyle: Tweak[LinearLayout] =
+    vMatchParent +
+      llVertical +
+      vGone
 
-  val fragmentStyle = llMatchWeightVertical
+  def roundsStyle(implicit appCtx: AppContext): Tweak[TextView] =
+    vMatchWidth +
+      tvGravity(Gravity.CENTER) +
+      tvAllCaps +
+      tvSizeResource(R.dimen.font_size_large) +
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default)) +
+      tvNormalLight
+
+  val simonContainerStyle: Tweak[LinearLayout] =
+    llMatchWeightVertical +
+      llHorizontal
+
+  val columnStyle: Tweak[LinearLayout] =
+    llMatchWeightHorizontal +
+      llVertical
+
+  val rowStyle: Tweak[FrameLayout] = llMatchWeightVertical
 
 }

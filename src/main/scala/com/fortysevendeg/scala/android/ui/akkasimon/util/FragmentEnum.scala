@@ -9,7 +9,6 @@ object FragmentEnum {
   case object YELLOW extends FragmentEnumType
 
   case object COMPUTER extends FragmentEnumType
-  case object ROUND extends FragmentEnumType
 
   implicit class RichSimonColor(sc: FragmentEnumType) {
     def toLower = sc.toString.toLowerCase

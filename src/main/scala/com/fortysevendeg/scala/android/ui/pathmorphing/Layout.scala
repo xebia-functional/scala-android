@@ -11,13 +11,15 @@ import com.fortysevendeg.macroid.extras.ToolbarTweaks._
 import com.fortysevendeg.macroid.extras.ViewTweaks._
 import com.fortysevendeg.scala.android.ui.commons.ToolbarLayout
 import com.fortysevendeg.scala.android.ui.components.PathMorphDrawableTweaks._
-import com.fortysevendeg.scala.android.ui.components.{Dim, TypeIcons}
-import com.fortysevendeg.scala.android.ui.pathmorphing.Styles._
+import com.fortysevendeg.scala.android.ui.components.Dim
+import com.fortysevendeg.scala.android.ui.components.IconTypes._
 import macroid.FullDsl._
 import macroid.{ActivityContext, AppContext, Transformer}
 import scala.language.postfixOps
 
-trait Layout extends ToolbarLayout {
+trait Layout
+  extends ToolbarLayout
+  with Styles {
 
   val sizeOptionList = List(Dim(48, 48), Dim(72, 72), Dim(96, 96), Dim(128, 128))
 
@@ -38,7 +40,7 @@ trait Layout extends ToolbarLayout {
   }
 
   val setNoIconImageViewWidgets = Transformer {
-    case i: ImageView => i <~ pmdAnimIcon(TypeIcons.NOICON)
+    case i: ImageView => i <~ pmdAnimIcon(NOICON)
   }
 
   def layout(implicit appContext: AppContext, context: ActivityContext) = {
@@ -46,67 +48,69 @@ trait Layout extends ToolbarLayout {
       l[LinearLayout](
         toolBarLayout <~ tbTitle(R.string.title_path_morphing),
         l[LinearLayout](
-          w[ImageView] <~ drawableStyle(width = 48 dp, height = 48 dp, stroke = 3 dp) <~ wire(icon),
+          l[FrameLayout](
+            w[ImageView] <~ drawableStyle(width = 48 dp, height = 48 dp, stroke = 3 dp) <~ wire(icon)
+          ) <~ drawableContentStyle,
           l[ScrollView](
             l[LinearLayout](
               w[TextView] <~ tvText(R.string.title_select_icon) <~ titleStyle,
               l[LinearLayout](
                 l[LinearLayout](
-                  w[ImageView] <~ iconSelectorStyle(TypeIcons.BURGER, false) <~ FuncOn.click {
+                  w[ImageView] <~ iconSelectorStyle(BURGER, false) <~ FuncOn.click {
                     (view: View) => {
                       (iconSelectorGroup <~ deactivateImageViewWidgets) ~
-                          (icon <~ pmdAnimIcon(TypeIcons.BURGER)) ~
+                          (icon <~ pmdAnimIcon(BURGER)) ~
                           (view <~ vActivated(true))
                     }
                   },
-                  w[ImageView] <~ iconSelectorStyle(TypeIcons.CHECK, false) <~ FuncOn.click {
+                  w[ImageView] <~ iconSelectorStyle(CHECK, false) <~ FuncOn.click {
                     (view: View) => {
                       (iconSelectorGroup <~ deactivateImageViewWidgets) ~
-                          (icon <~ pmdAnimIcon(TypeIcons.CHECK)) ~
+                          (icon <~ pmdAnimIcon(CHECK)) ~
                           (view <~ vActivated(true))
                     }
                   },
-                  w[ImageView] <~ iconSelectorStyle(TypeIcons.ADD, false) <~ FuncOn.click {
+                  w[ImageView] <~ iconSelectorStyle(ADD, false) <~ FuncOn.click {
                     (view: View) => {
                       (iconSelectorGroup <~ deactivateImageViewWidgets) ~
-                          (icon <~ pmdAnimIcon(TypeIcons.ADD)) ~
+                          (icon <~ pmdAnimIcon(ADD)) ~
                           (view <~ vActivated(true))
                     }
                   },
-                  w[ImageView] <~ iconSelectorStyle(TypeIcons.CLOSE, false) <~ FuncOn.click {
+                  w[ImageView] <~ iconSelectorStyle(CLOSE, false) <~ FuncOn.click {
                     (view: View) => {
                       (iconSelectorGroup <~ deactivateImageViewWidgets) ~
-                          (icon <~ pmdAnimIcon(TypeIcons.CLOSE)) ~
+                          (icon <~ pmdAnimIcon(CLOSE)) ~
                           (view <~ vActivated(true))
                     }
                   }
                 ) <~ tableLayoutRowStyle,
                 l[LinearLayout](
-                  w[ImageView] <~ iconSelectorStyle(TypeIcons.UP, false) <~ FuncOn.click {
+                  w[ImageView] <~ iconSelectorStyle(UP, false) <~ FuncOn.click {
                     (view: View) => {
                       (iconSelectorGroup <~ deactivateImageViewWidgets) ~
-                          (icon <~ pmdAnimIcon(TypeIcons.UP)) ~
+                          (icon <~ pmdAnimIcon(UP)) ~
                           (view <~ vActivated(true))
                     }
                   },
-                  w[ImageView] <~ iconSelectorStyle(TypeIcons.NEXT, false) <~ FuncOn.click {
+                  w[ImageView] <~ iconSelectorStyle(NEXT, false) <~ FuncOn.click {
                     (view: View) => {
                       (iconSelectorGroup <~ deactivateImageViewWidgets) ~
-                          (icon <~ pmdAnimIcon(TypeIcons.NEXT)) ~
+                          (icon <~ pmdAnimIcon(NEXT)) ~
                           (view <~ vActivated(true))
                     }
                   },
-                  w[ImageView] <~ iconSelectorStyle(TypeIcons.DOWN, false) <~ FuncOn.click {
+                  w[ImageView] <~ iconSelectorStyle(DOWN, false) <~ FuncOn.click {
                     (view: View) => {
                       (iconSelectorGroup <~ deactivateImageViewWidgets) ~
-                          (icon <~ pmdAnimIcon(TypeIcons.DOWN)) ~
+                          (icon <~ pmdAnimIcon(DOWN)) ~
                           (view <~ vActivated(true))
                     }
                   },
-                  w[ImageView] <~ iconSelectorStyle(TypeIcons.BACK, false) <~ FuncOn.click {
+                  w[ImageView] <~ iconSelectorStyle(BACK, false) <~ FuncOn.click {
                     (view: View) => {
                       (iconSelectorGroup <~ deactivateImageViewWidgets) ~
-                          (icon <~ pmdAnimIcon(TypeIcons.BACK)) ~
+                          (icon <~ pmdAnimIcon(BACK)) ~
                           (view <~ vActivated(true))
                     }
                   }
@@ -118,22 +122,22 @@ trait Layout extends ToolbarLayout {
                   w[ImageView] <~ colorSelectorStyle(true) <~ wire(sampleColor1Icon) <~ pmdColor(Color.WHITE) <~ vBackground(R.drawable.background_item_pathmorphsample_1) <~ On.click {
                     (icon <~ pmdColorResource(R.color.pathMorphSample1)) ~
                         (colorSelectorGroup <~ setNoIconImageViewWidgets) ~
-                        (sampleColor1Icon <~ pmdAnimIcon(TypeIcons.CHECK))
+                        (sampleColor1Icon <~ pmdAnimIcon(CHECK))
                   },
                   w[ImageView] <~ colorSelectorStyle(false) <~ wire(sampleColor2Icon) <~ vBackground(R.drawable.background_item_pathmorphsample_2) <~ On.click {
                     (icon <~ pmdColorResource(R.color.pathMorphSample2)) ~
                         (colorSelectorGroup <~ setNoIconImageViewWidgets) ~
-                        (sampleColor2Icon <~ pmdAnimIcon(TypeIcons.CHECK))
+                        (sampleColor2Icon <~ pmdAnimIcon(CHECK))
                   },
                   w[ImageView] <~ colorSelectorStyle(false) <~ wire(sampleColor3Icon) <~ vBackground(R.drawable.background_item_pathmorphsample_3) <~ On.click {
                     (icon <~ pmdColorResource(R.color.pathMorphSample3)) ~
                         (colorSelectorGroup <~ setNoIconImageViewWidgets) ~
-                        (sampleColor3Icon <~ pmdAnimIcon(TypeIcons.CHECK))
+                        (sampleColor3Icon <~ pmdAnimIcon(CHECK))
                   },
                   w[ImageView] <~ colorSelectorStyle(false) <~ wire(sampleColor4Icon) <~ pmdColor(Color.WHITE) <~ vBackground(R.drawable.background_item_pathmorphsample_4) <~ On.click {
                     (icon <~ pmdColorResource(R.color.pathMorphSample4)) ~
                         (colorSelectorGroup <~ setNoIconImageViewWidgets) ~
-                        (sampleColor4Icon <~ pmdAnimIcon(TypeIcons.CHECK))
+                        (sampleColor4Icon <~ pmdAnimIcon(CHECK))
                   }
                 ) <~ tableLayoutRowStyle
               ) <~ tableLayoutStyle <~ wire(colorSelectorGroup),
@@ -156,7 +160,7 @@ trait Layout extends ToolbarLayout {
 
                     (sizeTitle <~ tvText(context.get.getResources().getString(R.string.title_select_size, width.toString, height.toString))) ~
                         (colorSelectorGroup <~ setNoIconImageViewWidgets) ~
-                        (sampleColor1Icon <~ pmdAnimIcon(TypeIcons.CHECK)) ~
+                        (sampleColor1Icon <~ pmdAnimIcon(CHECK)) ~
                         (strokeSelector <~ sbProgress(2)) ~
                         (icon <~ drawableStyle(width dp, height dp, 3 dp) <~ pmdColorResource(R.color.pathMorphSample1)) ~
                         (iconSelectorGroup <~ deactivateImageViewWidgets)
