@@ -5,3 +5,4 @@ project/target/
 .idea_modules
 gen/
 local.properties
+proguard-sbt.txt
