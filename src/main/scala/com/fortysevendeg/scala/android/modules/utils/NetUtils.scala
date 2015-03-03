@@ -12,11 +12,14 @@ trait NetUtils {
   
   val encoding = "UTF-8"
 
-  def getJson(url: String): Try[String] = {
+  def getJson(url: String, headers: Seq[(String, String)] = Seq.empty): Try[String] = {
     Try {
       val httpClient: DefaultHttpClient = new DefaultHttpClient
-      val httpPost: HttpGet = new HttpGet(url)
-      val httpResponse: HttpResponse = httpClient.execute(httpPost)
+      val httpGet: HttpGet = new HttpGet(url)
+      headers map { header =>
+        httpGet.addHeader(header._1, header._2)
+      }
+      val httpResponse: HttpResponse = httpClient.execute(httpGet)
       val httpEntity: HttpEntity = httpResponse.getEntity
       val is: InputStream = httpEntity.getContent
       val reader: BufferedReader = new BufferedReader(new InputStreamReader(is, encoding), 8)

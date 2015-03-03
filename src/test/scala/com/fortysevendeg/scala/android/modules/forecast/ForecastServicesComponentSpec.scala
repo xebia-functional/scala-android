@@ -1,9 +1,9 @@
 package com.fortysevendeg.scala.android.modules.forecast
 
-import com.fortysevendeg.scala.android.ui.apirequest.service.model.{Weather, Location, Forecast}
-import com.fortysevendeg.scala.android.{BaseTestSupport, AppContextTestSupport}
-import com.fortysevendeg.scala.android.ui.apirequest.service.impl.ForecastServicesComponentImpl
+import com.fortysevendeg.scala.android.modules.forecast.impl.ForecastServicesComponentImpl
+import com.fortysevendeg.scala.android.ui.apirequest.service.model.{Forecast, Location, Weather}
 import com.fortysevendeg.scala.android.utils.TestUtils._
+import com.fortysevendeg.scala.android.{AppContextTestSupport, BaseTestSupport}
 import org.specs2.mutable.Specification
 
 import scala.util.{Success, Try}
@@ -72,13 +72,13 @@ class ForecastServicesComponentSpec
     "return forecast with right JSON" in
       new ForecastServicesComponentSupport {
         
-        override def getJson(url: String): Try[String] = {
+        override def getJson(url: String, headers: Seq[(String, String)] = Seq.empty): Try[String] = {
           Success(validJson)
         }
         
         val forecast = Forecast(
           Location(2512169, "Puerto Real", 36.46, -6.2),
-          Some(Weather(800, "Clear", "Sky is Clear", 15.486)))
+          Some(Weather(800, "Clear", "Sky is Clear", "01d", 15.486)))
         
         forecastServices.loadForecast(ForecastRequest(0, 0)) *=== ForecastResponse(Some(forecast))
       }
@@ -86,7 +86,7 @@ class ForecastServicesComponentSpec
     "return None with a wrong JSON" in
       new ForecastServicesComponentSupport {
 
-        override def getJson(url: String): Try[String] = {
+        override def getJson(url: String, headers: Seq[(String, String)] = Seq.empty): Try[String] = {
           Success(wrongJson)
         }
 
@@ -96,7 +96,7 @@ class ForecastServicesComponentSpec
     "return None with a invalid JSON" in
       new ForecastServicesComponentSupport {
 
-        override def getJson(url: String): Try[String] = {
+        override def getJson(url: String, headers: Seq[(String, String)] = Seq.empty): Try[String] = {
           Success(invalidJson)
         }
 

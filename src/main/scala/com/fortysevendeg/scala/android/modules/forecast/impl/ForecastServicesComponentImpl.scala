@@ -17,10 +17,12 @@
 package com.fortysevendeg.scala.android.modules.forecast.impl
 
 import com.fortysevendeg.macroid.extras.AppContextProvider
+import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.scala.android.commons.Service
 import com.fortysevendeg.scala.android.modules.forecast.{ForecastResponse, ForecastRequest, ForecastServicesComponent, ForecastServices}
 import com.fortysevendeg.scala.android.modules.utils.NetUtils
 import com.fortysevendeg.scala.android.ui.apirequest.service.model._
+import com.fortysevendeg.macroid.extras.ResourcesExtras._
 import play.api.libs.json.Json
 
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -52,13 +54,13 @@ trait ForecastServicesComponentImpl
       extends ForecastServices
       with Conversions
       with ApiReads {
-    
-    val openWeatherApiUrl = "http://api.openweathermap.org/data/2.5/weather?lat=%s&lon=%s"
 
     override def loadForecast: Service[ForecastRequest, ForecastResponse] = request =>
       Future {
+        val jsonUrl = resGetString(R.string.weather_url, request.latitude.toString, request.longitude.toString)
+        val header = (resGetString(R.string.weather_key_name), resGetString(R.string.weather_key_value))
         (for {
-          json <- getJson(String.format(openWeatherApiUrl, request.latitude.toString, request.longitude.toString))
+          json <- getJson(jsonUrl, Seq(header))
           apiModel <- Try(Json.parse(json).as[ApiModel])
         } yield apiModel) match {
           case Success(apiModel) => ForecastResponse(Some(toForecast(apiModel)))

@@ -5,6 +5,7 @@ import android.widget.{ProgressBar, LinearLayout, TextView}
 import com.fortysevendeg.macroid.extras.FrameLayoutTweaks._
 import com.fortysevendeg.macroid.extras.LinearLayoutTweaks._
 import com.fortysevendeg.macroid.extras.TextTweaks._
+import com.fortysevendeg.macroid.extras.ImageViewTweaks._
 import com.fortysevendeg.macroid.extras.ViewTweaks._
 import com.fortysevendeg.macroid.extras.ResourcesExtras._
 import com.fortysevendeg.scala.android.R
@@ -37,7 +38,7 @@ object Styles {
       tvGravity(Gravity.CENTER) +
       tvColorResource(R.color.text_error_message) +
       tvSizeResource(R.dimen.text_size_forecast_error_message) +
-      vPaddings(resGetDimensionPixelSize(R.dimen.padding_forecast_error_message))
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
   def errorButtonStyle(implicit appContext: AppContext): Tweak[TextView] =
     vWrapContent +
@@ -51,12 +52,28 @@ object Styles {
 
   val forecastLayoutStyle = vMatchParent
 
-  val forecastDetailLayoutStyle = vMatchParent
+  def forecastDetailLayoutStyle(implicit appContext: AppContext): Tweak[LinearLayout] = 
+    vMatchParent +
+      llVertical +
+      llGravity(Gravity.CENTER) +
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
-  def textViewStyle(implicit appContext: AppContext): Tweak[TextView] =
+  val markerImageViewStyle = vWrapContent +
+    ivSrc(R.drawable.map_marker)
+
+  def locationTextViewStyle(implicit appContext: AppContext) =
     vWrapContent +
       tvGravity(Gravity.CENTER) +
-      tvSize(18) +
-      vPaddings(10 dp)
+      tvSizeResource(R.dimen.text_size_forecast_location) +
+      vPaddings(resGetDimensionPixelSize(R.dimen.margin_forecast_location))
+
+  val forecastImageViewStyle = vWrapContent
+
+  def temperatureTextViewStyle(implicit appContext: AppContext) =
+    vWrapContent +
+      tvGravity(Gravity.CENTER) +
+      tvSizeResource(R.dimen.text_size_forecast_temperature) +
+      tvBoldCondensed +
+      vPaddings(resGetDimensionPixelSize(R.dimen.margin_forecast_location))
 
 }

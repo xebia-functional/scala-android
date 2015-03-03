@@ -57,15 +57,22 @@ class ForecastFragmentLayout(implicit appContext: AppContext, context: ActivityC
 
   var errorLayoutContent = slot[FrameLayout]
   
-  var detailLayoutContent = slot[FrameLayout]
+  var detailLayoutContent = slot[LinearLayout]
 
-  var textView = slot[TextView]
+  var locationTextView = slot[TextView]
+
+  var forecastImageView = slot[ImageView]
+
+  var temperatureTextView = slot[TextView]
 
   val content = getUi(
     l[FrameLayout](
       layoutView <~ wire(errorLayoutContent),
-      l[FrameLayout](
-        w[TextView] <~ wire(textView) <~ textViewStyle
+      l[LinearLayout](
+        w[ImageView] <~ markerImageViewStyle,
+        w[TextView] <~ wire(locationTextView) <~ locationTextViewStyle,
+        w[ImageView] <~ wire(forecastImageView) <~ forecastImageViewStyle,
+        w[TextView] <~ wire(temperatureTextView) <~ temperatureTextViewStyle
       ) <~ wire(detailLayoutContent) <~ forecastDetailLayoutStyle
     ) <~ forecastLayoutStyle
   )

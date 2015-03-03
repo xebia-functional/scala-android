@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="map_key">AIzaSyDTOPsObkrYB1zVfUF0y7Os8gglytk1SQU</string>
+    <string name="weather_url">http://api.openweathermap.org/data/2.5/weather?lat=%1$s&amp;lon=%2$s</string>
+    <string name="weather_key_name">x-api-key</string>
+    <string name="weather_key_value">e1ed2f8c402600a566a329cc6e4b4a37</string>
 </resources>

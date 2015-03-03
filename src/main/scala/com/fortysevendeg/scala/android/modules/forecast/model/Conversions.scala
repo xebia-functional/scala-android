@@ -8,6 +8,6 @@ trait Conversions {
       apiModel.weather.headOption map (toWeather(_, apiModel.main.temp)))
   
   def toWeather(weather: ApiWeather, temperature: Double) =
-    Weather(weather.id, weather.main, weather.description, temperature)
+    Weather(weather.id, weather.main, weather.description, weather.icon, temperature)
 
 }

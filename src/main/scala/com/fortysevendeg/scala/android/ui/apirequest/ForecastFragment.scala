@@ -1,13 +1,18 @@
 package com.fortysevendeg.scala.android.ui.apirequest
 
+import java.text.DecimalFormat
+
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.{LayoutInflater, View, ViewGroup}
 import com.fortysevendeg.macroid.extras.TextTweaks._
+import com.fortysevendeg.macroid.extras.ImageViewTweaks._
+import com.fortysevendeg.macroid.extras.ResourcesExtras._
 import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.scala.android.modules.ComponentRegistryImpl
 import com.fortysevendeg.scala.android.modules.forecast.ForecastRequest
-import com.fortysevendeg.scala.android.ui.apirequest.service.model.Forecast
+import com.fortysevendeg.scala.android.ui.apirequest.service.model.{Weather, Forecast}
 import macroid.{Ui, AppContext, Contexts}
 import macroid.FullDsl._
 import com.fortysevendeg.macroid.extras.ViewTweaks._
@@ -22,6 +27,10 @@ class ForecastFragment
   override implicit lazy val appContextProvider: AppContext = fragmentAppContext
 
   private var fragmentLayout: Option[ForecastFragmentLayout] = None
+  
+  val decimalFormatter = new DecimalFormat("#.##'°'")
+  
+  val resourceName = "forecast_%s"
 
   override def onCreateView(inflater: LayoutInflater, container: ViewGroup, savedInstanceState: Bundle): View = {
 
@@ -66,9 +75,25 @@ class ForecastFragment
         (layout.progressBar <~ vGone) ~
           (layout.errorContent <~ vGone) ~
           (layout.detailLayoutContent <~ vVisible) ~
-          (layout.textView <~ tvText(s"${forecast.location.name} - ${forecast.weather.get.description}"))
+          (layout.locationTextView <~ tvText(forecast.location.name)) ~
+          (layout.forecastImageView <~ ivSrc(loadWeatherIcon(forecast.weather))) ~
+          (layout.temperatureTextView <~ tvText(loadWeatherTemperature(forecast.weather)))
       )
     }
+  
+  def loadWeatherIcon(weatherMaybe: Option[Weather]): Drawable = {
+    val result = weatherMaybe flatMap { weather =>
+      Option(weather.icon) match {
+        case Some(icon) if icon.length == 3 => resGetDrawable(String.format(resourceName, icon.substring(0, 2)))
+        case _ => Option(resGetDrawable(R.drawable.unknown))
+      }
+    }
+    result getOrElse resGetDrawable(R.drawable.unknown)
+  }
+
+  def loadWeatherTemperature(weatherMaybe: Option[Weather]): String = {
+    weatherMaybe map (weather => decimalFormatter.format(weather.temperature)) getOrElse "-°"
+  }
   
   def loading =
     fragmentLayout map { layout =>
