@@ -13,7 +13,6 @@ object Settings {
         Resolver.sonatypeRepo("snapshots"),
         Resolver.defaultLocal,
         "jcenter" at "http://jcenter.bintray.com",
-        "47Deg Bintray Repo" at "http://dl.bintray.com/47deg/maven/",
         "Scalaz Bintray Repo" at "http://dl.bintray.com/scalaz/releases"
       )
 
