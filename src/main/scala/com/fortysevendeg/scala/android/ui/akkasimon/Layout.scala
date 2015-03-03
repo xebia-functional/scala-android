@@ -42,7 +42,9 @@ trait Layout
     l[LinearLayout](
       toolBarLayout <~ tbTitle(R.string.simon_title),
       l[FrameLayout](
-        f[ComputerFragment].pass(nameComputerKey -> COMPUTER.toLower).framed(Id.computer, COMPUTER.toLower),
+        f[ComputerFragment].
+          pass(nameComputerKey -> COMPUTER.toLower).
+          framed(Id.computer, COMPUTER.toLower),
         optionsScreen,
         gameScreen
       ) <~ contentStyle
@@ -86,9 +88,7 @@ trait Layout
     ) <~ gameContentStyle <~ wire(gameScreenLayout)
   }
 
-  def goToGame() = {
-    (optionsScreenLayout <~ vGone) ~ (gameScreenLayout <~ vVisible)
-  }
+  def goToGame() = (optionsScreenLayout <~ vGone) ~ (gameScreenLayout <~ vVisible)
 
   def goToOptions(rounds: Int)(implicit appContext: AppContext) = {
     (optionsScreenLayout <~ vVisible) ~

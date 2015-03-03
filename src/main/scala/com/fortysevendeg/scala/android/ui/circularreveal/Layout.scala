@@ -30,8 +30,7 @@ trait Layout
     l[LinearLayout](
       toolBarLayout <~ tbTitle(R.string.title_circular_reveal_styles),
       l[FrameLayout](
-        l[FrameLayout](
-        ) <~ wire(content) <~ id(Id.fragment) <~ fragmentStyle,
+        l[FrameLayout]() <~ wire(content) <~ id(Id.fragment) <~ fragmentStyle,
         w[ImageView] <~ wire(circleButton) <~ fabStyle <~ On.Click {
           findFragmentByTag[SampleFragment](fragmentName) match {
             case Some(f) =>

@@ -14,8 +14,6 @@ trait SimonAkkaFragment extends AkkaFragment with Contexts[AkkaFragment] {
 
   def customActorPath(actorName: String) = s"/user/$actorName"
 
-  lazy val roundActor = actorSystem.actorSelection(customActorPath(ROUND.toLower))
-
   lazy val computerActor = actorSystem.actorSelection(customActorPath(COMPUTER.toLower))
 
   lazy val greenActor = actorSystem.actorSelection(customActorPath(GREEN.toLower))
@@ -31,9 +29,7 @@ trait SimonAkkaFragment extends AkkaFragment with Contexts[AkkaFragment] {
       RoundItemActorColor(greenActor, Color.GREEN),
       RoundItemActorColor(redActor, Color.RED),
       RoundItemActorColor(blueActor, Color.BLUE),
-      RoundItemActorColor(yellowActor, Color.YELLOW)
-    )
-
+      RoundItemActorColor(yellowActor, Color.YELLOW))
     actorList(random.nextInt(4))
   }
 }

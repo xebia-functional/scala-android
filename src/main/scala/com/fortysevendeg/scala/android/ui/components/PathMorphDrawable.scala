@@ -172,7 +172,7 @@ class PathMorphDrawable(val defaultIcon: Int = NOICON, val defaultStroke: Int = 
     case UP => setToIcon(upIcon)
   }
 
-  private def drawIcon(canvas: Canvas, icon: Icon): Unit = icon.map(drawSegment(canvas, _))
+  private def drawIcon(canvas: Canvas, icon: Icon): Unit = icon foreach (drawSegment(canvas, _))
 
   private def drawSegment(canvas: Canvas, segment: Segment): Unit = {
     iconPaint.setAlpha((segment.alpha * 255).toInt)
@@ -188,13 +188,9 @@ class PathMorphDrawable(val defaultIcon: Int = NOICON, val defaultStroke: Int = 
         val fromOver = from.drop(to.length)
         val toOver = to.drop(from.length)
 
-        val transform = from.zip(to) map { i =>
-          transformSegment(i._1, i._2, fraction)
-        }
+        val transform = from.zip(to) map (i => transformSegment(i._1, i._2, fraction))
 
-        val segmentFromOver = fromOver map { segment =>
-          segment.copy(alpha = 1 - fraction)
-        }
+        val segmentFromOver = fromOver map (_.copy(alpha = 1 - fraction))
 
         val segmentToOver = toOver map { segment =>
           transformSegment(new Segment(
@@ -268,9 +264,9 @@ case class Dim(wight: Int, height: Int)
 case class Point(x: Float, y: Float)
 
 case class Segment(
-                    point1: Point = Point(0, 0),
-                    point2: Point = Point(0, 0),
-                    alpha: Float = 1) {
+  point1: Point = Point(0, 0),
+  point2: Point = Point(0, 0),
+  alpha: Float = 1) {
 
   def fromRatios(ratioX1: Float,
                  ratioY1: Float,

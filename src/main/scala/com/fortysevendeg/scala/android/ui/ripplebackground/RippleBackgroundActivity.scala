@@ -16,7 +16,10 @@ import macroid.FullDsl._
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
-class RippleBackgroundActivity extends ActionBarActivity with Contexts[ActionBarActivity] with Layout {
+class RippleBackgroundActivity
+  extends ActionBarActivity
+  with Contexts[ActionBarActivity]
+  with Layout {
 
   override def onCreate(savedInstanceState: Bundle) = {
     super.onCreate(savedInstanceState)
@@ -31,15 +34,9 @@ class RippleBackgroundActivity extends ActionBarActivity with Contexts[ActionBar
 
     runUi(
       (rippleBackground <~ vBackgroundColor(color1)) ~
-        (circle1 <~ cvColor(color1) <~ On.click {
-          anim(circle1, color1)
-        }) ~
-        (circle2 <~ cvColor(color2) <~ On.click {
-          anim(circle2, color2)
-        }) ~
-        (circle3 <~ cvColor(color3) <~ On.click {
-          anim(circle3, color3)
-        })
+        (circle1 <~ cvColor(color1) <~ On.click(anim(circle1, color1))) ~
+        (circle2 <~ cvColor(color2) <~ On.click(anim(circle2, color2))) ~
+        (circle3 <~ cvColor(color3) <~ On.click(anim(circle3, color3)))
     )
 
     toolBar map setSupportActionBar
@@ -70,7 +67,6 @@ class RippleBackgroundActivity extends ActionBarActivity with Contexts[ActionBar
         })
       )
     (circleView <~~ move(rippleBackground)) ~~ (rippleBackground <~~ ripple(rippleData)) ~~ (circleView <~~ fadeIn(1000))
-
   }
 
 }
