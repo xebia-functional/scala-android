@@ -57,8 +57,8 @@ trait ForecastServicesComponentImpl
 
     override def loadForecast: Service[ForecastRequest, ForecastResponse] = request =>
       Future {
-        val jsonUrl = resGetString(R.string.weather_url, request.latitude.toString, request.longitude.toString)
-        val header = (resGetString(R.string.weather_key_name), resGetString(R.string.weather_key_value))
+        val jsonUrl = resGetString(R.string.openweather_url, request.latitude.toString, request.longitude.toString)
+        val header = (resGetString(R.string.openweather_key_name), resGetString(R.string.openweather_key_value))
         (for {
           json <- getJson(jsonUrl, Seq(header))
           apiModel <- Try(Json.parse(json).as[ApiModel])
