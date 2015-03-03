@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package com.fortysevendeg.scala.android.ui.apirequest.service.model
+package com.fortysevendeg.scala.android.modules.forecast.model
 
+import com.fortysevendeg.scala.android.ui.apirequest.service.model.ApiModel
 import org.specs2.mutable._
 import play.api.libs.json.{JsValue, Json}
 
@@ -30,12 +31,12 @@ class JsonModelSpec
       
       import JsonImplicits._
 
-      val jsonSource = scala.io.Source.fromInputStream(JsonImplicits.getClass.getResourceAsStream("/weather_1.json")).mkString
+      val jsonSource = scala.io.Source.fromInputStream(JsonImplicits.getClass.getResourceAsStream("/weather.json")).mkString
       val json: JsValue = Json.parse(jsonSource)
       val jsonValue = json.as[ApiModel]
 
       jsonValue.weather.size shouldEqual 1
-      jsonValue.name shouldEqual "Puerto Real"
+      jsonValue.name shouldEqual "Seattle"
     }
 
   }

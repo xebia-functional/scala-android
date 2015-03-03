@@ -6,25 +6,24 @@ import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.{LayoutInflater, View, ViewGroup}
-import com.fortysevendeg.macroid.extras.TextTweaks._
 import com.fortysevendeg.macroid.extras.ImageViewTweaks._
 import com.fortysevendeg.macroid.extras.ResourcesExtras._
-import com.fortysevendeg.scala.android.R
-import com.fortysevendeg.scala.android.modules.ComponentRegistryImpl
-import com.fortysevendeg.scala.android.modules.forecast.ForecastRequest
-import com.fortysevendeg.scala.android.ui.apirequest.service.model.{Weather, Forecast}
-import macroid.{Ui, AppContext, Contexts}
-import macroid.FullDsl._
+import com.fortysevendeg.macroid.extras.TextTweaks._
 import com.fortysevendeg.macroid.extras.ViewTweaks._
+import com.fortysevendeg.scala.android.R
+import com.fortysevendeg.scala.android.modules.forecast.ForecastRequest
+import com.fortysevendeg.scala.android.modules.forecast.impl.ForecastServices
+import com.fortysevendeg.scala.android.ui.apirequest.service.model.{Forecast, Weather}
+import macroid.FullDsl._
+import macroid.{AppContext, Contexts, Ui}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
 class ForecastFragment 
   extends Fragment 
-  with Contexts[Fragment]
-  with ComponentRegistryImpl {
+  with Contexts[Fragment] {
 
-  override implicit lazy val appContextProvider: AppContext = fragmentAppContext
+  implicit lazy val appContextProvider: AppContext = fragmentAppContext
 
   private var fragmentLayout: Option[ForecastFragmentLayout] = None
   
@@ -62,7 +61,7 @@ class ForecastFragment
 
   def loadForecast(location: (Double, Double)) = {
     val result = for {
-      forecast <- forecastServices.loadForecast(ForecastRequest(location._1, location._2))
+      forecast <- ForecastServices.loadForecast(ForecastRequest(location._1, location._2))
     } yield forecast.forecastMaybe
 
     result map {

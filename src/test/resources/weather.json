@@ -1,0 +1,44 @@
+{
+  "coord": {
+    "lon": -122.38,
+    "lat": 47.66
+  },
+  "sys": {
+    "message": 0.0168,
+    "country": "US",
+    "sunrise": 1425048757,
+    "sunset": 1425088297
+  },
+  "weather": [
+    {
+      "id": 501,
+      "main": "Rain",
+      "description": "moderate rain",
+      "icon": "10d"
+    }
+  ],
+  "base": "cmc stations",
+  "main": {
+    "temp": 6.636,
+    "temp_min": 6.636,
+    "temp_max": 6.636,
+    "pressure": 1009.8,
+    "sea_level": 1021.74,
+    "grnd_level": 1009.8,
+    "humidity": 100
+  },
+  "wind": {
+    "speed": 2.17,
+    "deg": 36.0011
+  },
+  "clouds": {
+    "all": 92
+  },
+  "rain": {
+    "3h": 3.5
+  },
+  "dt": 1425060066,
+  "id": 5809844,
+  "name": "Seattle",
+  "cod": 200
+}
