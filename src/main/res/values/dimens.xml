@@ -34,4 +34,11 @@
     <dimen name="ripple_bg_height_content">240dp</dimen>
     <dimen name="ripple_bg_size_circle">64dp</dimen>
 
+    <!-- Forecast -->
+    <dimen name="text_size_forecast_location">24sp</dimen>
+    <dimen name="text_size_forecast_temperature">60sp</dimen>
+    <dimen name="text_size_forecast_error_message">18sp</dimen>
+    <dimen name="text_size_forecast_error_button">14sp</dimen>
+    <dimen name="width_forecast_error_button">160dp</dimen>
+
 </resources>

@@ -30,5 +30,9 @@
     <color name="pathMorphSample3">#72979C</color>
     <color name="pathMorphSample4">#EDB55A</color>
 
-
+    <!-- Forecast -->
+    <color name="text_error_message">#87364550</color>
+    <color name="text_error_button">#ffffff</color>
+    <color name="background_error_button_default">#E05F5E</color>
+    <color name="background_error_button_pressed">#ffc45453</color>
 </resources>

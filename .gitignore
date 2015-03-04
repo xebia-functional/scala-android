@@ -40,3 +40,8 @@ project/target
 
 #Proguard
 proguard-sbt.txt
+
+#Properties
+local.properties
+debug.properties
+release.properties
