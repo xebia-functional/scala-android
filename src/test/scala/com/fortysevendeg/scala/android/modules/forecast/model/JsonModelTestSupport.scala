@@ -17,7 +17,6 @@
 package com.fortysevendeg.scala.android.modules.forecast.model
 
 import com.fortysevendeg.scala.android.BaseTestSupport
-import com.fortysevendeg.scala.android.ui.apirequest.service.model._
 
 
 trait JsonModelTestSupportTestSupport
