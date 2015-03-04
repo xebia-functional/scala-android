@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.{FragmentManager, Fragment}
 import android.support.v7.widget.CardView
 import android.widget.{ImageView, TextView, FrameLayout, LinearLayout}
+import com.fortysevendeg.macroid.extras.ResourcesExtras._
 import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.macroid.extras.ToolbarTweaks._
 import com.fortysevendeg.scala.android.ui.commons.ToolbarLayout
@@ -37,11 +38,12 @@ trait Layout
               Ui(f.unreveal()) ~
                 (circleButton <~ pmdAnimIcon(ADD))
             case _ =>
+              val margin = resGetDimensionPixelSize(R.dimen.padding_default)
               val (x: Int, y: Int) = (for {
                 circle <- circleButton
                 c <- content
-              } yield (circle.getLeft - c.getLeft + circle.getWidth / 2,
-                  circle.getTop - c.getTop + (circle.getHeight / 2))).getOrElse(0, 0)
+              } yield (circle.getLeft - margin - c.getLeft + circle.getWidth / 2,
+                  circle.getTop - margin - c.getTop + (circle.getHeight / 2))).getOrElse(0, 0)
               val args = new Bundle()
               args.putInt(SampleFragment.posX, x)
               args.putInt(SampleFragment.posY, y)
