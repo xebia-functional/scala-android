@@ -16,18 +16,19 @@
 
 package com.fortysevendeg.scala.android.modules.forecast.impl
 
-import com.fortysevendeg.macroid.extras.AppContextProvider
+import java.io.InputStream
+
 import com.fortysevendeg.macroid.extras.ResourcesExtras._
 import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.scala.android.modules.forecast.{ForecastRequest, ForecastResponse}
 import com.fortysevendeg.scala.android.modules.utils.NetUtils
 import com.fortysevendeg.scala.android.ui.apirequest.service.model._
+import io.taig.communicator.response.Plain
+import io.taig.communicator.result.Parser
 import macroid.AppContext
 import play.api.libs.json.Json
 
-import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
-import scala.util.{Failure, Success, Try}
 
 trait ApiReads {
 
@@ -41,10 +42,19 @@ trait ApiReads {
 
 }
 
+object JsonParser 
+  extends Parser[ApiModel]
+  with ApiReads {
+  
+  override def parse(response: Plain, stream: InputStream): ApiModel = {
+    Json.parse(scala.io.Source.fromInputStream(stream).mkString).as[ApiModel]
+  }
+  
+}
+
 trait ForecastServices
     extends NetUtils
-    with Conversions
-    with ApiReads {
+    with Conversions {
   
   def loadJsonUrl(latitude: Double, longitude: Double)(implicit appContextProvider: AppContext): String =
     resGetString(R.string.openweather_url, latitude.toString, longitude.toString)
@@ -52,17 +62,16 @@ trait ForecastServices
   def loadHeaderTuple(implicit appContextProvider: AppContext): (String, String) =
     (resGetString(R.string.openweather_key_name), resGetString(R.string.openweather_key_value))
   
-  def loadForecast(request: ForecastRequest)(implicit appContextProvider: AppContext): Future[ForecastResponse] =
-    Future {
-      (for {
-        json <- getJson(loadJsonUrl(request.latitude, request.longitude), Seq(loadHeaderTuple))
-        apiModel <- Try(Json.parse(json).as[ApiModel])
-      } yield apiModel) match {
-        case Success(apiModel) => ForecastResponse(Some(toForecast(apiModel)))
-        case Failure(ex) => ForecastResponse(None)
-      }
-    }
-
+  def loadForecast(request: ForecastRequest)(implicit appContextProvider: AppContext): Future[ForecastResponse] = {
+    import scala.concurrent.ExecutionContext.Implicits.global
+    
+    implicit val parser = JsonParser
+    
+    val result = loadJson[ApiModel](loadJsonUrl(request.latitude, request.longitude), Seq(loadHeaderTuple))
+    result.transform(
+      response => ForecastResponse(Some(toForecast(response))),
+      throwable => throwable)
+  }
 }
 
 object ForecastServices extends ForecastServices

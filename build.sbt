@@ -3,6 +3,7 @@ import Libraries.macroid._
 import Libraries.akka._
 import Libraries.playServices._
 import Libraries.json._
+import Libraries.net._
 import Libraries.test._
 import ReplacePropertiesGenerator._
 
@@ -37,6 +38,7 @@ libraryDependencies ++= Seq(
   aar(macroidExtras),
   aar(playServicesMaps),
   playJson,
+  communicator,
   akkaActor,
   specs2,
   mockito,
