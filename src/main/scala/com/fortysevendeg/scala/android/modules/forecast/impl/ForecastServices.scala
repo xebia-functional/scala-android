@@ -46,10 +46,9 @@ object JsonParser
   extends Parser[ApiModel]
   with ApiReads {
   
-  override def parse(response: Plain, stream: InputStream): ApiModel = {
+  override def parse(response: Plain, stream: InputStream): ApiModel = 
     Json.parse(scala.io.Source.fromInputStream(stream).mkString).as[ApiModel]
-  }
-  
+ 
 }
 
 trait ForecastServices
