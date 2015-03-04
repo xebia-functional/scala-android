@@ -60,6 +60,7 @@ class ProjectActivityInfoListAdapter(listener: RecyclerClickListener)
 
     runUi(
       (viewHolder.title <~ tvText(projectActivityInfo.name)) ~
+        (viewHolder.userContent <~ vTag(projectActivityInfo.user.twitter)) ~
         (viewHolder.description <~ tvText(projectActivityInfo.description)) ~
         (viewHolder.avatar <~ roundedImage(projectActivityInfo.user.avatar, R.drawable.placeholder_circle, avatarSize)) ~
         (viewHolder.username <~ tvText(projectActivityInfo.user.name)) ~
@@ -69,7 +70,17 @@ class ProjectActivityInfoListAdapter(listener: RecyclerClickListener)
             case SUCCESS => vBackground(R.drawable.background_item_api_success)
             case ADVISED => vBackground(R.drawable.background_item_api_advised)
             case _ => vBackground(R.drawable.background_item_api_required)
-          }))
+          })) ~
+        (viewHolder.androidLevel <~ (projectActivityInfo.androidLevel match {
+          case 1 => tvText(R.string.beginning_level)
+          case 2 => tvText(R.string.intermediate_level)
+          case 3 => tvText(R.string.advanced_level)
+        })) ~
+        (viewHolder.scalaLevel <~ (projectActivityInfo.scalaLevel match {
+          case 1 => tvText(R.string.beginning_level)
+          case 2 => tvText(R.string.intermediate_level)
+          case 3 => tvText(R.string.advanced_level)
+        }))
     )
   }
 
@@ -102,6 +113,12 @@ case class ViewHolder(adapter: Adapter)(implicit context: ActivityContext, appCo
   val twitter = adapter.twitter
 
   val avatar = adapter.avatar
+  
+  val scalaLevel = adapter.scalaLevel
+
+  val androidLevel = adapter.androidLevel
+  
+  val userContent = adapter.userContent
 
 }
 

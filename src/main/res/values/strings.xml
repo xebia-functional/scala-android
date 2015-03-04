@@ -20,8 +20,12 @@
     <string name="map_hybrid">Hybrid</string>
     <string name="map_terrain">Terrain</string>
 
-    <string name="scala_level">Scala Level</string>
-    <string name="android_level">Android Level</string>
+    <string name="scala_level">Scala:</string>
+    <string name="android_level">Android:</string>
+
+    <string name="beginning_level">Beginning</string>
+    <string name="intermediate_level">Intermediate</string>
+    <string name="advanced_level">Advanced</string>
 
     <string name="min_api_not_available">You need an Android version upper</string>
     <string name="min_api_required">API %s</string>
@@ -48,8 +52,6 @@
     <string name="circular_reveal_title">Beach</string>
 
     <!-- Forecast String resources -->
-    <string name="forecast_api_request_activity_name">Forecast API Request</string>
-    <string name="forecast_api_request_activity_description">Description for Forecast API Request</string>
     <string name="menu_about_icons">About icons</string>
     <string name="forecast_icons_attribution">
         Icons made by Yannick (http://www.flaticon.com/authors/yannick) from http://www.flaticon.com.

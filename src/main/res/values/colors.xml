@@ -22,11 +22,9 @@
     <color name="main_list_api_success">#18B491</color>
     <color name="main_list_background">#ECF0F1</color>
     <color name="main_list_description">#b92d4053</color>
-    <color name="main_list_secondary">#802d4053</color>
-    <color name="main_list_text_level_number">#ffffff</color>
-    <color name="main_list_background_level_number">#E0E3E6</color>
-    <color name="main_list_background_level_number_selected">#4994CD</color>
     <color name="main_list_api">#ffffff</color>
+    <color name="main_list_secondary">#802d4053</color>
+    <color name="main_list_tag">#802d4053</color>
     <color name="main_list_line">#E0E3E6</color>
 
     <!-- Ripple Background -->

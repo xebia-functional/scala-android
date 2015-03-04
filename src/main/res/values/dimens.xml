@@ -3,6 +3,7 @@
 
     <!-- Default -->
     <dimen name="radius">3dp</dimen>
+    <dimen name="padding_default_micro">2dp</dimen>
     <dimen name="padding_default_small">4dp</dimen>
     <dimen name="padding_default">8dp</dimen>
     <dimen name="padding_default_large">8dp</dimen>
@@ -24,8 +25,8 @@
 
     <!-- Main List -->
     <dimen name="main_list_avatar_size">32dp</dimen>
-    <dimen name="main_list_min_with_levels_tag">90dp</dimen>
-
+    <dimen name="main_list_min_width_levels_tag">60dp</dimen>
+    
     <!-- Circular Reveal -->
     <dimen name="circular_reveal_fab_stroke">2dp</dimen>
     <dimen name="circular_reveal_fab_size">64dp</dimen>
