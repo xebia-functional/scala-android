@@ -19,19 +19,19 @@ case class ApiCoord(
   lat: Double)
 
 case class ApiSys(
-  message: Double, 
-  country: String, 
-  sunrise: Long, 
-  sunset: Long)
+  message: Option[Double],
+  country: Option[String],
+  sunrise: Option[Long],
+  sunset: Option[Long])
 
 case class ApiMain(
-  temp: Double, 
-  temp_min: Double, 
-  temp_max: Double, 
-  pressure: Double, 
+  temp: Option[Double],
+  temp_min: Option[Double],
+  temp_max: Option[Double],
+  pressure: Option[Double],
   sea_level: Option[Double],
   grnd_level: Option[Double],
-  humidity: Int)
+  humidity: Option[Int])
 
 case class ApiWeather(
   id: Int,
@@ -40,8 +40,8 @@ case class ApiWeather(
   icon: String)
 
 case class ApiWind(
-  speed: Double,
-  deg: Double)
+  speed: Option[Double],
+  deg: Option[Double])
 
 case class ApiClouds(
-  all: Int)
+  all: Option[Int])

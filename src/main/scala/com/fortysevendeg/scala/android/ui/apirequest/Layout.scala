@@ -47,7 +47,7 @@ trait ErrorLayout {
       w[ProgressBar] <~ wire(progressBar) <~ progressBarStyle,
       l[LinearLayout](
         w[TextView] <~ errorMessageStyle <~ wire(errorText),
-        w[Button] <~ errorButtonStyle <~ wire(reloadButton)
+        w[Button] <~ wire(reloadButton) <~ errorButtonStyle
       ) <~ wire(errorContent) <~ errorContentStyle
     ) <~ errorLayoutStyle
 

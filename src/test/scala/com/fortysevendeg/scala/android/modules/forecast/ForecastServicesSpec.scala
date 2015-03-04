@@ -1,7 +1,7 @@
 package com.fortysevendeg.scala.android.modules.forecast
 
 import com.fortysevendeg.scala.android.modules.forecast.impl.ForecastServices
-import com.fortysevendeg.scala.android.ui.apirequest.service.model._
+import com.fortysevendeg.scala.android.modules.forecast.model._
 import com.fortysevendeg.scala.android.{AppContextTestSupport, BaseTestSupport}
 import com.squareup.okhttp.OkHttpClient
 import io.taig.communicator.result.Parser
@@ -32,12 +32,23 @@ class ForecastServicesSpec
     cod = 200,
     name = "Seattle",
     coord = ApiCoord(-122.38, 47.66),
-    sys = ApiSys(message = 0.0168, country = "US", sunrise = 1425048757, sunset = 1425088297),
-    main = ApiMain(temp = 6.636, temp_min = 6.636, temp_max = 6.636, pressure = 1009.8, sea_level = Some(1021.71), grnd_level = Some(1009.8), humidity = 100),
+    sys = ApiSys(
+      message = Some(0.0168), 
+      country = Some("US"), 
+      sunrise = Some(1425048757), 
+      sunset = Some(1425088297)),
+    main = ApiMain(
+      temp = Some(6.636), 
+      temp_min = Some(6.636), 
+      temp_max = Some(6.636), 
+      pressure = Some(1009.8), 
+      sea_level = Some(1021.71), 
+      grnd_level = Some(1009.8), 
+      humidity = Some(100)),
     weather = Seq(ApiWeather(id = 501, main = "Rain", description = "moderate rain", icon = "10d")),
-    wind = ApiWind(speed = 2.17, deg = 36.0011),
+    wind = ApiWind(speed = Some(2.17), deg = Some(36.0011)),
     rain = Some(Map("3h" -> 3.5)),
-    clouds = ApiClouds(all = 92))
+    clouds = ApiClouds(all = Some(92)))
   
   "ForecastServices component" should {
     
@@ -49,7 +60,7 @@ class ForecastServicesSpec
         
         val forecast = Forecast(
           Location(5809844, "Seattle", 47.66, -122.38),
-          Some(Weather(501, "Rain", "moderate rain", "10d", 6.636)))
+          Some(Weather(501, "Rain", "moderate rain", "10d", Some(6.636))))
 
         Await.result(loadForecast(ForecastRequest(0, 0)), Duration.Inf) shouldEqual ForecastResponse(Some(forecast))
       }

@@ -40,13 +40,14 @@ class ForecastFragment
     val fLayout = new ForecastFragmentLayout
 
     fragmentLayout = Some(fLayout)
+    
+    fLayout.reloadButton <~ On.click(Ui { reload })
 
     fLayout.layout
   }
 
   override def onViewCreated(view: View, savedInstanceState: Bundle) = {
     super.onViewCreated(view, savedInstanceState)
-    fragmentLayout map (_.reloadButton <~ On.click(Ui { reload }))
     reload
   }
   
@@ -80,7 +81,7 @@ class ForecastFragment
           (layout.temperatureTextView <~ tvText(loadWeatherTemperature(forecast.weather)))
       )
     }
-  
+
   def loadWeatherIcon(weatherMaybe: Option[Weather]): Drawable = {
     val result = weatherMaybe flatMap { weather =>
       Option(weather.icon) match {
@@ -91,8 +92,12 @@ class ForecastFragment
     result getOrElse resGetDrawable(R.drawable.unknown)
   }
 
-  def loadWeatherTemperature(weatherMaybe: Option[Weather]): String = 
-    weatherMaybe map (weather => decimalFormatter.format(weather.temperature)) getOrElse placeholderTemperature
+  def loadWeatherTemperature(weatherMaybe: Option[Weather]): String = {
+    (for {
+      weather <- weatherMaybe
+      temperature <- weather.temperature      
+    } yield decimalFormatter.format(temperature)) getOrElse placeholderTemperature
+  }
   
   def loading =
     fragmentLayout map { layout =>
