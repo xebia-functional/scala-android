@@ -1,4 +1,4 @@
-package com.fortysevendeg.scala.android.ui.apirequest.service.model
+package com.fortysevendeg.scala.android.modules.forecast.model
 
 trait Conversions {
   

@@ -13,7 +13,7 @@ import com.fortysevendeg.macroid.extras.ViewTweaks._
 import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.scala.android.modules.forecast.ForecastRequest
 import com.fortysevendeg.scala.android.modules.forecast.impl.ForecastServices
-import com.fortysevendeg.scala.android.ui.apirequest.service.model.{Forecast, Weather}
+import com.fortysevendeg.scala.android.modules.forecast.model._
 import macroid.FullDsl._
 import macroid.{AppContext, Contexts, Ui}
 
@@ -41,15 +41,12 @@ class ForecastFragment
 
     fragmentLayout = Some(fLayout)
 
-    fLayout.reloadButton <~ On.click(Ui {
-      reload
-    })
-
     fLayout.layout
   }
 
   override def onViewCreated(view: View, savedInstanceState: Bundle) = {
     super.onViewCreated(view, savedInstanceState)
+    fragmentLayout map (_.reloadButton <~ On.click(Ui { reload }))
     reload
   }
   

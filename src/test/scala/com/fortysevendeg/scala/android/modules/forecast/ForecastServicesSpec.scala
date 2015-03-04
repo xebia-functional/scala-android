@@ -33,7 +33,7 @@ class ForecastServicesSpec
     name = "Seattle",
     coord = ApiCoord(-122.38, 47.66),
     sys = ApiSys(message = 0.0168, country = "US", sunrise = 1425048757, sunset = 1425088297),
-    main = ApiMain(temp = 6.636, temp_min = 6.636, temp_max = 6.636, pressure = 1009.8, sea_level = 1021.71, grnd_level = 1009.8, humidity = 100),
+    main = ApiMain(temp = 6.636, temp_min = 6.636, temp_max = 6.636, pressure = 1009.8, sea_level = Some(1021.71), grnd_level = Some(1009.8), humidity = 100),
     weather = Seq(ApiWeather(id = 501, main = "Rain", description = "moderate rain", icon = "10d")),
     wind = ApiWind(speed = 2.17, deg = 36.0011),
     rain = Some(Map("3h" -> 3.5)),

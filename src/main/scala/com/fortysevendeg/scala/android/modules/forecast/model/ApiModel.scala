@@ -1,4 +1,4 @@
-package com.fortysevendeg.scala.android.ui.apirequest.service.model
+package com.fortysevendeg.scala.android.modules.forecast.model
 
 case class ApiModel(
   id: Long, 
@@ -21,15 +21,16 @@ case class ApiCoord(
 case class ApiSys(
   message: Double, 
   country: String, 
-  sunrise: Long, sunset: Long)
+  sunrise: Long, 
+  sunset: Long)
 
 case class ApiMain(
   temp: Double, 
   temp_min: Double, 
   temp_max: Double, 
   pressure: Double, 
-  sea_level: Double, 
-  grnd_level: Double,
+  sea_level: Option[Double],
+  grnd_level: Option[Double],
   humidity: Int)
 
 case class ApiWeather(
