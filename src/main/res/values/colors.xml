@@ -7,6 +7,8 @@
     <color name="ascent">#F2554A</color>
     <color name="control_highlight">#ff49cb94</color>
 
+    <color name="placeholder_default">#E4E9EB</color>
+
     <color name="default_fab_color">#ff49cb94</color>
     <color name="default_fab_color_dark">#ff3da97c</color>
     <color name="default_fab_shadow_color">#46000000</color>
@@ -20,6 +22,10 @@
     <color name="main_list_api_success">#18B491</color>
     <color name="main_list_background">#ECF0F1</color>
     <color name="main_list_description">#b92d4053</color>
+    <color name="main_list_secondary">#802d4053</color>
+    <color name="main_list_text_level_number">#ffffff</color>
+    <color name="main_list_background_level_number">#E0E3E6</color>
+    <color name="main_list_background_level_number_selected">#4994CD</color>
     <color name="main_list_api">#ffffff</color>
     <color name="main_list_line">#E0E3E6</color>
 

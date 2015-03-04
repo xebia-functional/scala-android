@@ -6,14 +6,15 @@ import android.support.v7.widget.RecyclerView
 import android.view.View.OnClickListener
 import android.view.{View, ViewGroup}
 import com.fortysevendeg.macroid.extras.ActionsExtras._
-import com.fortysevendeg.macroid.extras.ResourcesExtras._
 import com.fortysevendeg.macroid.extras.DeviceVersion._
+import com.fortysevendeg.macroid.extras.ResourcesExtras._
 import com.fortysevendeg.macroid.extras.TextTweaks._
 import com.fortysevendeg.macroid.extras.ViewTweaks._
 import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.scala.android.ui.commons.JsonReads
 import macroid.FullDsl._
-import macroid.{Tweak, ActivityContext, AppContext}
+import macroid.{ActivityContext, AppContext}
+import com.fortysevendeg.scala.android.ui.commons.AsyncImageTweaks._
 import play.api.libs.json.{JsResultException, Json}
 
 import scala.io.Source
@@ -23,7 +24,7 @@ class ProjectActivityInfoListAdapter(listener: RecyclerClickListener)
                                     (implicit context: ActivityContext, appContext: AppContext)
   extends RecyclerView.Adapter[ViewHolder] with JsonReads {
 
-  import APIType._
+  import com.fortysevendeg.scala.android.ui.main.APIType._
 
   val recyclerClickListener = listener
 
@@ -55,9 +56,14 @@ class ProjectActivityInfoListAdapter(listener: RecyclerClickListener)
     val resourceStringFormatArgs = Seq(projectActivityInfo.minApi) map (_.asInstanceOf[Object])
     viewHolder.content.setTag(position)
 
+    val avatarSize = resGetDimensionPixelSize(R.dimen.main_list_avatar_size)
+
     runUi(
       (viewHolder.title <~ tvText(projectActivityInfo.name)) ~
         (viewHolder.description <~ tvText(projectActivityInfo.description)) ~
+        (viewHolder.avatar <~ roundedImage(projectActivityInfo.user.avatar, R.drawable.placeholder_circle, avatarSize)) ~
+        (viewHolder.username <~ tvText(projectActivityInfo.user.name)) ~
+        (viewHolder.twitter <~ tvText(projectActivityInfo.user.twitter)) ~
         (viewHolder.api <~ tvText(resGetString(R.string.min_api_required, projectActivityInfo.minApi.toString)) <~
           (projectActivityInfo.apiType match {
             case SUCCESS => vBackground(R.drawable.background_item_api_success)
@@ -83,13 +89,19 @@ trait RecyclerClickListener {
 
 case class ViewHolder(adapter: Adapter)(implicit context: ActivityContext, appContext: AppContext) extends RecyclerView.ViewHolder(adapter.layout) {
 
-  var content = adapter.layout
+  val content = adapter.layout
 
-  var title = adapter.title
+  val title = adapter.title
 
-  var description = adapter.description
+  val description = adapter.description
 
-  var api = adapter.api
+  val api = adapter.api
+
+  val username = adapter.username
+
+  val twitter = adapter.twitter
+
+  val avatar = adapter.avatar
 
 }
 
@@ -103,7 +115,7 @@ case class ProjectActivityInfo(
   androidLevel: Int,
   user: UserInfo) {
 
-  import APIType._
+  import com.fortysevendeg.scala.android.ui.main.APIType._
 
   val apiType: APIType.Value = CurrentVersion match {
     case current if current.version >= targetApi => SUCCESS

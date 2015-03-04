@@ -20,6 +20,9 @@
     <string name="map_hybrid">Hybrid</string>
     <string name="map_terrain">Terrain</string>
 
+    <string name="scala_level">Scala Level</string>
+    <string name="android_level">Android Level</string>
+
     <string name="min_api_not_available">You need an Android version upper</string>
     <string name="min_api_required">API %s</string>
     <string name="menu_add_marker">Add Marker</string>

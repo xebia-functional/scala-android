@@ -2,9 +2,11 @@ package com.fortysevendeg.scala.android.ui.main
 
 import android.support.v7.widget.{CardView, RecyclerView}
 import android.widget.{ImageView, LinearLayout, TextView}
+import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.scala.android.ui.commons.ToolbarLayout
 import macroid.FullDsl._
 import macroid.{ActivityContext, AppContext}
+import com.fortysevendeg.macroid.extras.TextTweaks._
 
 trait Layout
   extends ToolbarLayout
@@ -34,6 +36,12 @@ class Adapter(implicit appContext: AppContext, context: ActivityContext)
 
   var api = slot[TextView]
 
+  var username = slot[TextView]
+
+  var twitter = slot[TextView]
+
+  var avatar = slot[ImageView]
+
   val content = {
     getUi(
       l[CardView](
@@ -46,12 +54,27 @@ class Adapter(implicit appContext: AppContext, context: ActivityContext)
           w[ImageView] <~ lineHorizontalStyle,
           l[LinearLayout](
             l[LinearLayout](
-
+              w[ImageView] <~ wire(avatar) <~ avatarStyle,
+              l[LinearLayout](
+                w[TextView] <~ wire(username) <~ userNameStyle,
+                w[TextView] <~ wire(twitter) <~ twitterStyle
+              ) <~ userNameContentStyle
             ) <~ bottomUserContentStyle,
             w[ImageView] <~ lineVerticalStyle,
             l[LinearLayout](
-
-            ) <~ bottomContentStyle
+              l[LinearLayout](
+                w[TextView] <~ levelStyle <~ tvText(R.string.scala_level),
+                w[TextView] <~ levelNumberStyle <~ tvText("1"),
+                w[TextView] <~ levelNumberStyle <~ tvText("2"),
+                w[TextView] <~ levelNumberStyle <~ tvText("3")
+              ),
+              l[LinearLayout](
+                w[TextView] <~ levelStyle <~ tvText(R.string.android_level),
+                w[TextView] <~ levelNumberStyle <~ tvText("1"),
+                w[TextView] <~ levelNumberStyle <~ tvText("2"),
+                w[TextView] <~ levelNumberStyle <~ tvText("3")
+              )
+            ) <~ bottomLevelsContentStyle
           ) <~ bottomContentStyle
         ) <~ itemStyle
       ) <~ cardStyle
