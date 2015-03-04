@@ -2,10 +2,7 @@ package com.fortysevendeg.scala.android.ui.apirequest
 
 import android.support.v4.app.{Fragment, FragmentManager}
 import android.widget._
-import com.fortysevendeg.macroid.extras.ImageViewTweaks._
-import com.fortysevendeg.macroid.extras.TextTweaks._
 import com.fortysevendeg.macroid.extras.ToolbarTweaks._
-import com.fortysevendeg.macroid.extras.ViewTweaks._
 import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.scala.android.ui.apirequest.Styles._
 import com.fortysevendeg.scala.android.ui.commons.ToolbarLayout
@@ -46,7 +43,7 @@ trait ErrorLayout {
     l[FrameLayout](
       w[ProgressBar] <~ wire(progressBar) <~ progressBarStyle,
       l[LinearLayout](
-        w[TextView] <~ errorMessageStyle <~ wire(errorText),
+        w[TextView] <~ wire(errorText) <~ errorMessageStyle,
         w[Button] <~ wire(reloadButton) <~ errorButtonStyle
       ) <~ wire(errorContent) <~ errorContentStyle
     ) <~ errorLayoutStyle

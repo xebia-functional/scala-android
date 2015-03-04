@@ -40,9 +40,11 @@ class ForecastFragment
     val fLayout = new ForecastFragmentLayout
 
     fragmentLayout = Some(fLayout)
-    
-    fLayout.reloadButton <~ On.click(Ui { reload })
 
+    runUi(fLayout.reloadButton <~ On.click(Ui {
+      reload
+    }))
+    
     fLayout.layout
   }
 
