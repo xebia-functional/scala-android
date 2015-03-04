@@ -4,6 +4,9 @@ import Libraries.akka._
 import Libraries.playServices._
 import Libraries.graphics._
 import Libraries.json._
+import Libraries.net._
+import Libraries.test._
+import ReplacePropertiesGenerator._
 
 android.Plugin.androidBuild
 
@@ -37,8 +40,14 @@ libraryDependencies ++= Seq(
   aar(playServicesMaps),
   playJson,
   picasso,
+  communicator,
   akkaActor,
+  specs2,
+  mockito,
+  androidTest,
   compilerPlugin(Libraries.wartRemover))
+
+packageRelease <<= (packageRelease in Android).dependsOn(setDebugTask(false))
 
 run <<= run in Android
 
@@ -49,3 +58,5 @@ useProguard in Android := true
 proguardOptions in Android ++= Settings.proguardCommons ++ Settings.proguardAkka
 
 apkbuildExcludes in Android ++= Seq("META-INF/LICENSE.txt", "META-INF/NOTICE.txt", "META-INF/LICENSE", "META-INF/NOTICE")
+
+packageResources in Android <<= (packageResources in Android).dependsOn(replaceValuesTask)

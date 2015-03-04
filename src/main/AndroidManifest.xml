@@ -20,7 +20,7 @@
 
         <meta-data
                 android:name="com.google.android.maps.v2.API_KEY"
-                android:value="@string/map_key"/>
+                android:value="@string/google_map_key"/>
 
         <meta-data
                 android:name="com.google.android.gms.version"
@@ -47,6 +47,8 @@
 
         <activity android:name=".ui.akkasimon.AkkaSimonActivity">
         </activity>
+
+        <activity android:name=".ui.apirequest.ForecastApiRequestActivity" />
 
     </application>
 </manifest>

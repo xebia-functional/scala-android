@@ -82,5 +82,20 @@
       "name": "Juan Pedro Moreno",
       "twitter": "@juanpedromoreno"
     }
+    "targetApi": 21
+  },
+  {
+    "name": "forecast_api_request_activity_name",
+    "description": "forecast_api_request_activity_description",
+    "className": "com.fortysevendeg.scala.android.ui.apirequest.ForecastApiRequestActivity",
+    "minApi": 14,
+    "targetApi": 14,
+    "scalaLevel": 2,
+    "androidLevel": 1,
+    "user" : {
+      "avatar": "https://pbs.twimg.com/profile_images/378800000706511082/b4cddbd11caf33f592e26ddd9dd56042_400x400.jpeg",
+      "name": "Fede Fernández",
+      "twitter": "@fede_fdz"
+    }
   }
 ]
