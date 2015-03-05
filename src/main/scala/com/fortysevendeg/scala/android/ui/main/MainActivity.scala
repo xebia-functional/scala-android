@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.ActionBarActivity
 import android.support.v7.widget.{GridLayoutManager, LinearLayoutManager}
 import com.fortysevendeg.macroid.extras.DeviceMediaQueries._
+import com.fortysevendeg.macroid.extras.RecyclerViewTweaks._
 import com.fortysevendeg.macroid.extras.ActionsExtras._
 import com.fortysevendeg.scala.android.R
 import macroid.Contexts
@@ -21,7 +22,7 @@ class MainActivity
 
     val adapter = new ProjectActivityInfoListAdapter(new RecyclerClickListener {
       override def onClick(info: ProjectActivityInfo): Unit = {
-        if (info.apiRequired) {
+        if (info.apiType == APIType.REQUIRED) {
           aShortToast(getString(R.string.min_api_not_available))
         } else {
           aStartActivityFromComponentName(new ComponentName(getPackageName, info.className))
@@ -35,11 +36,9 @@ class MainActivity
           tablet ?
               new GridLayoutManager(this, 3) | new LinearLayoutManager(this)
 
-    recyclerView.map(view => {
-      view.setLayoutManager(layoutManager)
-      view.setAdapter(adapter)
-      view.addItemDecoration(new DividerItemDecorator)
-    })
+    runUi(recyclerView <~ rvLayoutManager(layoutManager) <~
+      rvAddItemDecoration(new MainItemDecorator) <~
+      rvAdapter(adapter))
 
     toolBar map setSupportActionBar
 

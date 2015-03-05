@@ -1,51 +1,100 @@
 [
   {
-    "name": "ripple_background_activity_name",
-    "description": "ripple_background_activity_description",
+    "name": "Ripple Background",
+    "description": "This example show how to make new Ripple animations in Lollipop and how to create several animations in serial using Macroid",
     "className": "com.fortysevendeg.scala.android.ui.ripplebackground.RippleBackgroundActivity",
     "minApi": 21,
-    "targetApi": 21
+    "targetApi": 21,
+    "scalaLevel": 1,
+    "androidLevel": 2,
+    "user" : {
+      "avatar": "http://www.47deg.com/assets/img/company/profile-javi.jpg",
+      "name": "Javi Pacheco",
+      "twitter": "@javielinux"
+    }
   },
   {
-    "name": "texts_styles_activity_name",
-    "description": "texts_styles_activity_description",
-    "className": "com.fortysevendeg.scala.android.ui.textstyles.TextStylesActivity",
-    "minApi": 14,
-    "targetApi": 14
-  },
-  {
-    "name": "path_morphing_activity_name",
-    "description": "path_morphing_activity_description",
+    "name": "Path Morphing",
+    "description": "This task shows a new drawable created for this project called PathMorphDrawable for transformations in segment in a Canvas",
     "className": "com.fortysevendeg.scala.android.ui.pathmorphing.PathMorphingActivity",
     "minApi": 14,
-    "targetApi": 14
+    "targetApi": 14,
+    "scalaLevel": 2,
+    "androidLevel": 2,
+    "user" : {
+      "avatar": "http://www.47deg.com/assets/img/company/profile-paco.jpg",
+      "name": "Francisco Díaz",
+      "twitter": "@francisco_dr"
+    }
   },
   {
-    "name": "circular_reveal_activity_name",
-    "description": "circular_reveal_activity_description",
+    "name": "Circular Reveal",
+    "description": "In Lollipop we have a new Circular Reveal and this task shows tihs animations in a Fragment. If you don't have Lollipop the fragment will be showed with fade animation",
     "className": "com.fortysevendeg.scala.android.ui.circularreveal.CircularRevealActivity",
     "minApi": 14,
-    "targetApi": 21
+    "targetApi": 21,
+    "scalaLevel": 1,
+    "androidLevel": 1,
+    "user" : {
+      "avatar": "http://www.47deg.com/assets/img/company/profile-javi.jpg",
+      "name": "Javi Pacheco",
+      "twitter": "@javielinux"
+    }
   },
   {
-    "name": "google_maps_activity_name",
-    "description": "google_maps_activity_description",
+    "name": "Google Maps",
+    "description": "Simple example using Google Maps in a project, changing type of maps and adding mark to map",
     "className": "com.fortysevendeg.scala.android.ui.googlemaps.GoogleMapsActivity",
     "minApi": 14,
-    "targetApi": 21
+    "targetApi": 14,
+    "scalaLevel": 1,
+    "androidLevel": 2,
+    "user" : {
+      "avatar": "http://www.47deg.com/assets/img/company/profile-fede.jpg",
+      "name": "Fede Fernández",
+      "twitter": "@fede_fdz"
+    }
   },
   {
-    "name": "akka_simon_activity_name",
-    "description": "akka_simon_activity_description",
+    "name": "Texts Styles",
+    "description": "Simple example showing the basic structure in the typical task used in this project and how to create layouts and styles using Macroid",
+    "className": "com.fortysevendeg.scala.android.ui.textstyles.TextStylesActivity",
+    "minApi": 14,
+    "targetApi": 14,
+    "scalaLevel": 1,
+    "androidLevel": 1,
+    "user" : {
+      "avatar": "http://www.47deg.com/assets/img/company/profile-javi.jpg",
+      "name": "Javi Pacheco",
+      "twitter": "@javielinux"
+    }
+  },
+  {
+    "name": "Akka Simon",
+    "description": "Simon is a classic game. This task shows Simon Game using Akka for communicate it between Fragments",
     "className": "com.fortysevendeg.scala.android.ui.akkasimon.AkkaSimonActivity",
     "minApi": 14,
-    "targetApi": 21
+    "targetApi": 14,
+    "scalaLevel": 3,
+    "androidLevel": 2,
+    "user" : {
+      "avatar": "http://www.47deg.com/assets/img/company/profile-juanpe.jpg",
+      "name": "Juan Pedro Moreno",
+      "twitter": "@juanpedromoreno"
+    }
   },
   {
-    "name": "forecast_api_request_activity_name",
-    "description": "forecast_api_request_activity_description",
+    "name": "Forecast API Request",
+    "description": "This sample shows how to call an endpoint with the use of Future, parse the json from the response and show the requested data in the view",
     "className": "com.fortysevendeg.scala.android.ui.apirequest.ForecastApiRequestActivity",
     "minApi": 14,
-    "targetApi": 21
+    "targetApi": 14,
+    "scalaLevel": 2,
+    "androidLevel": 1,
+    "user" : {
+      "avatar": "http://www.47deg.com/assets/img/company/profile-fede.jpg",
+      "name": "Fede Fernández",
+      "twitter": "@fede_fdz"
+    }
   }
 ]

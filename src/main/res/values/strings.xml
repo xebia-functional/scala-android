@@ -20,8 +20,15 @@
     <string name="map_hybrid">Hybrid</string>
     <string name="map_terrain">Terrain</string>
 
+    <string name="scala_level">Scala:</string>
+    <string name="android_level">Android:</string>
+
+    <string name="beginning_level">Beginning</string>
+    <string name="intermediate_level">Intermediate</string>
+    <string name="advanced_level">Advanced</string>
+
     <string name="min_api_not_available">You need an Android version upper</string>
-    <string name="min_api_required">API %1$d</string>
+    <string name="min_api_required">API %s</string>
     <string name="menu_add_marker">Add Marker</string>
     <string name="menu_clear_map">Clear Map</string>
 
@@ -32,19 +39,6 @@
 
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, vix vocent suscipit no. Definitionem delicatissimi at pri. Pro omnis civibus in, oporteat senserit instructior eos in. Ne usu tale definitionem, quo consetetur temporibus definitionem et, assum putent dolores mei in. No aliquam detraxit pro, quem eloquentiam id pro.</string>
     <string name="lorem_ipsum_large">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</string>
-
-    <string name="ripple_background_activity_name">Ripple Background</string>
-    <string name="ripple_background_activity_description">Description for Ripple Background</string>
-    <string name="texts_styles_activity_name">Texts Styles</string>
-    <string name="texts_styles_activity_description">Description for Texts Styles</string>
-    <string name="path_morphing_activity_name">Path Morphing</string>
-    <string name="path_morphing_activity_description">Description for Path Morphing</string>
-    <string name="circular_reveal_activity_name">Circular Reveal</string>
-    <string name="circular_reveal_activity_description">Description for Circular Reveal</string>
-    <string name="google_maps_activity_name">Google Maps</string>
-    <string name="google_maps_activity_description">Description for Google Maps</string>
-    <string name="akka_simon_activity_name">Akka Simon</string>
-    <string name="akka_simon_activity_description">Description for Akka Simon</string>
 
     <!-- Akka Simon String resources -->
     <string name="simon_title">Akka Simon</string>
@@ -58,8 +52,6 @@
     <string name="circular_reveal_title">Beach</string>
 
     <!-- Forecast String resources -->
-    <string name="forecast_api_request_activity_name">Forecast API Request</string>
-    <string name="forecast_api_request_activity_description">Description for Forecast API Request</string>
     <string name="menu_about_icons">About icons</string>
     <string name="forecast_icons_attribution">
         Icons made by Yannick (http://www.flaticon.com/authors/yannick) from http://www.flaticon.com.

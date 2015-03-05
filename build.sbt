@@ -2,6 +2,7 @@ import Libraries.android._
 import Libraries.macroid._
 import Libraries.akka._
 import Libraries.playServices._
+import Libraries.graphics._
 import Libraries.json._
 import Libraries.net._
 import Libraries.test._
@@ -25,8 +26,6 @@ scalaVersion := Versions.scalaV
 
 scalacOptions ++= Seq("-feature", "-deprecation")
 
-credentials += Credentials(new File(Path.userHome.absolutePath + "/.ivy2/.credentials"))
-
 resolvers ++= Settings.resolvers
 
 libraryDependencies ++= Seq(
@@ -38,6 +37,7 @@ libraryDependencies ++= Seq(
   aar(macroidExtras),
   aar(playServicesMaps),
   playJson,
+  picasso,
   communicator,
   akkaActor,
   specs2,

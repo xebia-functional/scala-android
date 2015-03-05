@@ -15,7 +15,7 @@
 
     <application
             android:label="@string/app_name"
-            android:icon="@drawable/ic_launcher"
+            android:icon="@drawable/icon_app"
             android:theme="@style/AppTheme">
 
         <meta-data

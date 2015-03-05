@@ -3,6 +3,7 @@
 
     <!-- Default -->
     <dimen name="radius">3dp</dimen>
+    <dimen name="padding_default_micro">2dp</dimen>
     <dimen name="padding_default_small">4dp</dimen>
     <dimen name="padding_default">8dp</dimen>
     <dimen name="padding_default_large">8dp</dimen>
@@ -10,6 +11,8 @@
 
     <dimen name="padding_fab">2dp</dimen>
     <dimen name="padding_fab_top">4dp</dimen>
+
+    <dimen name="line">1dp</dimen>
 
     <dimen name="font_size_micro">10sp</dimen>
     <dimen name="font_size_small">12sp</dimen>
@@ -20,6 +23,10 @@
 
     <dimen name="size_fab_default">56dp</dimen>
 
+    <!-- Main List -->
+    <dimen name="main_list_avatar_size">32dp</dimen>
+    <dimen name="main_list_min_width_levels_tag">60dp</dimen>
+    
     <!-- Circular Reveal -->
     <dimen name="circular_reveal_fab_stroke">2dp</dimen>
     <dimen name="circular_reveal_fab_size">64dp</dimen>

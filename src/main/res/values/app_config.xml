@@ -4,4 +4,5 @@
     <string name="openweather_url">http://api.openweathermap.org/data/2.5/weather?lat=%1$s&amp;lon=%2$s&amp;units=metric</string>
     <string name="openweather_key_name">x-api-key</string>
     <string name="openweather_key_value">${openweather.api.key}</string>
+    <string name="url_twitter_user">https://twitter.com/%s</string>
 </resources>

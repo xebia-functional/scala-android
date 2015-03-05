@@ -2,33 +2,47 @@
 <resources>
 
     <!-- Default -->
-    <color name="primary">#ffffc019</color>
-    <color name="primary_dark">#ffe6ae17</color>
-    <color name="color_control_highlight">#ffe6ae17</color>
+    <color name="primary">#2D4053</color>
+    <color name="primary_dark">#ff192533</color>
+    <color name="ascent">#F2554A</color>
+    <color name="control_highlight">#ff49cb94</color>
+
+    <color name="placeholder_default">#E4E9EB</color>
 
     <color name="default_fab_color">#ff49cb94</color>
     <color name="default_fab_color_dark">#ff3da97c</color>
     <color name="default_fab_shadow_color">#46000000</color>
 
+    <color name="background_list_selector_pressed">#22000000</color>
+    <color name="ripple_mask">#22000000</color>
+
     <!-- Main List -->
-    <color name="apiRequired">#ffe61a2b</color>
-    <color name="apiNotRequired">#ffe6ae17</color>
+    <color name="main_list_api_required">#F2554A</color>
+    <color name="main_list_api_advised">#E5B838</color>
+    <color name="main_list_api_success">#18B491</color>
+    <color name="main_list_background">#ECF0F1</color>
+    <color name="main_list_description">#b92d4053</color>
+    <color name="main_list_api">#ffffff</color>
+    <color name="main_list_secondary">#802d4053</color>
+    <color name="main_list_tag">#802d4053</color>
+    <color name="main_list_line">#E0E3E6</color>
 
     <!-- Ripple Background -->
     <color name="ripple_bg_color1">#F44336</color>
     <color name="ripple_bg_color2">#9C27B0</color>
     <color name="ripple_bg_color3">#03A9F4</color>
 
-    <color name="iconBackground">#ffe6e6e6</color>
-    <color name="iconStroke">#ffd6d6d6</color>
-    <color name="iconSelector">#ffb6b6b6</color>
-    <color name="iconSelectorActivated">#ff868686</color>
-    <color name="iconSelectorPressed">#ffa6a6a6</color>
-    <color name="iconSelectorStroke">#ff696969</color>
-    <color name="pathMorphSample1">#2E2E2E</color>
-    <color name="pathMorphSample2">#545756</color>
-    <color name="pathMorphSample3">#72979C</color>
-    <color name="pathMorphSample4">#EDB55A</color>
+    <!-- Path Morphing -->
+    <color name="path_icon_background">#ffe6e6e6</color>
+    <color name="path_icon_stroke">#ffd6d6d6</color>
+    <color name="path_icon_selector">#ffb6b6b6</color>
+    <color name="path_icon_selector_activated">#ff868686</color>
+    <color name="path_icon_selector_pressed">#ffa6a6a6</color>
+    <color name="path_icon_selector_stroke">#ff696969</color>
+    <color name="path_morph_sample_1">#2E2E2E</color>
+    <color name="path_morph_sample_2">#545756</color>
+    <color name="path_morph_sample_3">#72979C</color>
+    <color name="path_morph_sample_4">#EDB55A</color>
 
     <!-- Forecast -->
     <color name="text_error_message">#87364550</color>

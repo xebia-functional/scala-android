@@ -6,8 +6,12 @@
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/primary_dark</item>
-        <item name="colorControlHighlight">@color/color_control_highlight</item>
+        <item name="colorAccent">@color/ascent</item>
+        <item name="colorControlHighlight">@color/control_highlight</item>
+
+        <item name="selectableItemBackground">@drawable/background_default_list</item>
+        <item name="android:selectableItemBackground">@drawable/background_default_list</item>
+
     </style>
 
 </resources>
