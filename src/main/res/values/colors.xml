@@ -13,7 +13,7 @@
     <color name="default_fab_color_dark">#ff3da97c</color>
     <color name="default_fab_shadow_color">#46000000</color>
 
-    <color name="background_list_selector_pressed">#22000000</color>
+    <color name="background_list_selector_pressed">#11000000</color>
     <color name="ripple_mask">#22000000</color>
 
     <!-- Main List -->

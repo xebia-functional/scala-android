@@ -82,11 +82,11 @@ class Adapter(implicit appContext: AppContext, context: ActivityContext)
             l[LinearLayout](
               l[LinearLayout](
                 w[TextView] <~ levelStyle <~ tvText(R.string.scala_level),
-                w[TextView] <~ levelNumberStyle <~ wire(scalaLevel)
+                w[TextView] <~ levelTypeStyle <~ wire(scalaLevel)
               ) <~ levelItemContentStyle,
               l[LinearLayout](
                 w[TextView] <~ levelStyle <~ tvText(R.string.android_level),
-                w[TextView] <~ levelNumberStyle <~ wire(androidLevel)
+                w[TextView] <~ levelTypeStyle <~ wire(androidLevel)
               )
             ) <~ bottomLevelsContentStyle
           ) <~ bottomContentStyle
