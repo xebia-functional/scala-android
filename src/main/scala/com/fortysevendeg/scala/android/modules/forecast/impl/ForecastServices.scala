@@ -20,9 +20,9 @@ import java.io.InputStream
 
 import com.fortysevendeg.macroid.extras.ResourcesExtras._
 import com.fortysevendeg.scala.android.R
+import com.fortysevendeg.scala.android.modules.forecast.model._
 import com.fortysevendeg.scala.android.modules.forecast.{ForecastRequest, ForecastResponse}
 import com.fortysevendeg.scala.android.modules.utils.NetUtils
-import com.fortysevendeg.scala.android.ui.apirequest.service.model._
 import io.taig.communicator.response.Plain
 import io.taig.communicator.result.Parser
 import macroid.AppContext

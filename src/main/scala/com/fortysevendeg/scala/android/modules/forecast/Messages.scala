@@ -16,7 +16,7 @@
 
 package com.fortysevendeg.scala.android.modules.forecast
 
-import com.fortysevendeg.scala.android.ui.apirequest.service.model.Forecast
+import com.fortysevendeg.scala.android.modules.forecast.model.Forecast
 
 case class ForecastRequest(latitude: Double, longitude: Double)
 

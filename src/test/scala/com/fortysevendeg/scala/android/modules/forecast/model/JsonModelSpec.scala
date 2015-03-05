@@ -16,7 +16,6 @@
 
 package com.fortysevendeg.scala.android.modules.forecast.model
 
-import com.fortysevendeg.scala.android.ui.apirequest.service.model.ApiModel
 import org.specs2.mutable._
 import play.api.libs.json.{JsValue, Json}
 

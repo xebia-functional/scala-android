@@ -13,7 +13,7 @@ import com.fortysevendeg.macroid.extras.ViewTweaks._
 import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.scala.android.modules.forecast.ForecastRequest
 import com.fortysevendeg.scala.android.modules.forecast.impl.ForecastServices
-import com.fortysevendeg.scala.android.ui.apirequest.service.model.{Forecast, Weather}
+import com.fortysevendeg.scala.android.modules.forecast.model._
 import macroid.FullDsl._
 import macroid.{AppContext, Contexts, Ui}
 
@@ -41,10 +41,10 @@ class ForecastFragment
 
     fragmentLayout = Some(fLayout)
 
-    fLayout.reloadButton <~ On.click(Ui {
+    runUi(fLayout.reloadButton <~ On.click(Ui {
       reload
-    })
-
+    }))
+    
     fLayout.layout
   }
 
@@ -83,7 +83,7 @@ class ForecastFragment
           (layout.temperatureTextView <~ tvText(loadWeatherTemperature(forecast.weather)))
       )
     }
-  
+
   def loadWeatherIcon(weatherMaybe: Option[Weather]): Drawable = {
     val result = weatherMaybe flatMap { weather =>
       Option(weather.icon) match {
@@ -94,8 +94,12 @@ class ForecastFragment
     result getOrElse resGetDrawable(R.drawable.unknown)
   }
 
-  def loadWeatherTemperature(weatherMaybe: Option[Weather]): String = 
-    weatherMaybe map (weather => decimalFormatter.format(weather.temperature)) getOrElse placeholderTemperature
+  def loadWeatherTemperature(weatherMaybe: Option[Weather]): String = {
+    (for {
+      weather <- weatherMaybe
+      temperature <- weather.temperature      
+    } yield decimalFormatter.format(temperature)) getOrElse placeholderTemperature
+  }
   
   def loading =
     fragmentLayout map { layout =>
