@@ -4,13 +4,13 @@
     <string name="app_name">Scala API Demos</string>
     <string name="title_ripple_background">Ripple Background</string>
     <string name="title_text_styles">Text Styles</string>
-    <string name="title_circular_reveal_styles">Circular Reveal Styles</string>
-    <string name="title_path_morphing">Path morphing</string>
+    <string name="title_circular_reveal_styles">Circular Reveal</string>
+    <string name="title_path_morphing">Path Morphing</string>
     <string name="title_select_icon">Select icon</string>
     <string name="title_select_color">Select color</string>
     <string name="title_select_stroke">Stroke: %1$s dp</string>
     <string name="title_select_size">Size: %1$s x %2$s</string>
-    <string name="title_map">Google Map Sample</string>
+    <string name="title_map">Google Maps</string>
     <string name="marker_map_title">47 Degrees</string>
     <string name="marker_map_message">Reactive, scalable software solutions.</string>
     <string name="marker_map_sample_title">Sample Marker</string>
@@ -23,11 +23,11 @@
     <string name="scala_level">Scala:</string>
     <string name="android_level">Android:</string>
 
-    <string name="beginning_level">Beginning</string>
+    <string name="beginning_level">Beginner</string>
     <string name="intermediate_level">Intermediate</string>
     <string name="advanced_level">Advanced</string>
 
-    <string name="min_api_not_available">You need an Android version upper</string>
+    <string name="min_api_not_available">You need an Android version greater than</string>
     <string name="min_api_required">API %s</string>
     <string name="menu_add_marker">Add Marker</string>
     <string name="menu_clear_map">Clear Map</string>
@@ -54,9 +54,9 @@
     <!-- Forecast String resources -->
     <string name="menu_about_icons">About icons</string>
     <string name="forecast_icons_attribution">
-        Icons made by Yannick (http://www.flaticon.com/authors/yannick) from http://www.flaticon.com.
-        \n\nIs licensed by Creative Commons BY 3.0 (http://creativecommons.org/licenses/by/3.0/)</string>
-    <string name="title_forecast_api_request">API Request Sample</string>
+        Icons created by Yannick (http://www.flaticon.com/authors/yannick) from http://www.flaticon.com.
+        \n\nLicensed under Creative Commons BY 3.0 (http://creativecommons.org/licenses/by/3.0/)</string>
+    <string name="title_forecast_api_request">Forecast API Request</string>
     <string name="try_again_button">Try again</string>
     <string name="error_message_api_request_default">Unknown error</string>
     <string name="error_message_api_request_location_api">Error getting location</string>

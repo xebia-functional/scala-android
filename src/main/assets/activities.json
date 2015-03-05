@@ -1,7 +1,7 @@
 [
   {
     "name": "Ripple Background",
-    "description": "This example show how to make new Ripple animations in Lollipop and how to create several animations in serial using Macroid",
+    "description": "This example demonstrates usage of the new Ripple animations available in Lollipop and how to create several animations in serial using Macroid",
     "className": "com.fortysevendeg.scala.android.ui.ripplebackground.RippleBackgroundActivity",
     "minApi": 21,
     "targetApi": 21,
@@ -15,7 +15,7 @@
   },
   {
     "name": "Path Morphing",
-    "description": "This task shows a new drawable created for this project called PathMorphDrawable for transformations in segment in a Canvas",
+    "description": "This example demonstrates a new drawable created for this project called PathMorphDrawable, used for path segment transformations in Canvas",
     "className": "com.fortysevendeg.scala.android.ui.pathmorphing.PathMorphingActivity",
     "minApi": 14,
     "targetApi": 14,
@@ -29,7 +29,7 @@
   },
   {
     "name": "Circular Reveal",
-    "description": "In Lollipop we have a new Circular Reveal and this task shows tihs animations in a Fragment. If you don't have Lollipop the fragment will be showed with fade animation",
+    "description": "This example demonstrates Lollipop's new Circular Reveal and how it can be used in a Fragment. On non Lollipop devices it will fallback to using a fade animation",
     "className": "com.fortysevendeg.scala.android.ui.circularreveal.CircularRevealActivity",
     "minApi": 14,
     "targetApi": 21,
@@ -43,7 +43,7 @@
   },
   {
     "name": "Google Maps",
-    "description": "Simple example using Google Maps in a project, changing type of maps and adding mark to map",
+    "description": "A simple example of using Google Maps in a project. Includes - changing map type and adding markers",
     "className": "com.fortysevendeg.scala.android.ui.googlemaps.GoogleMapsActivity",
     "minApi": 14,
     "targetApi": 14,
@@ -56,8 +56,8 @@
     }
   },
   {
-    "name": "Texts Styles",
-    "description": "Simple example showing the basic structure in the typical task used in this project and how to create layouts and styles using Macroid",
+    "name": "Text Styles",
+    "description": "A basic example to demonstrate project setup and define layouts and styles using Macroid",
     "className": "com.fortysevendeg.scala.android.ui.textstyles.TextStylesActivity",
     "minApi": 14,
     "targetApi": 14,
@@ -71,7 +71,7 @@
   },
   {
     "name": "Akka Simon",
-    "description": "Simon is a classic game. This task shows Simon Game using Akka for communicate it between Fragments",
+    "description": "Using the classic game Simon, this example demonstrates the use of Akka to communicate between fragments",
     "className": "com.fortysevendeg.scala.android.ui.akkasimon.AkkaSimonActivity",
     "minApi": 14,
     "targetApi": 14,
@@ -85,7 +85,7 @@
   },
   {
     "name": "Forecast API Request",
-    "description": "This sample shows how to call an endpoint with the use of Future, parse the json from the response and show the requested data in the view",
+    "description": "This example demonstrates how to call an endpoint with the use of Future, parse the json from the response and show the requested data in a view",
     "className": "com.fortysevendeg.scala.android.ui.apirequest.ForecastApiRequestActivity",
     "minApi": 14,
     "targetApi": 14,
