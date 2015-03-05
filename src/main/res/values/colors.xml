@@ -4,8 +4,8 @@
     <!-- Default -->
     <color name="primary">#2D4053</color>
     <color name="primary_dark">#ff192533</color>
-    <color name="ascent">#F2554A</color>
-    <color name="control_highlight">#ff49cb94</color>
+    <color name="ascent">#009688</color>
+    <color name="control_highlight">#87364550</color>
 
     <color name="placeholder_default">#E4E9EB</color>
 
@@ -49,4 +49,8 @@
     <color name="text_error_button">#ffffff</color>
     <color name="background_error_button_default">#E05F5E</color>
     <color name="background_error_button_pressed">#ffc45453</color>
+
+    <!-- Validate Forms -->
+    <color name="validate_line">#46000000</color>
+
 </resources>

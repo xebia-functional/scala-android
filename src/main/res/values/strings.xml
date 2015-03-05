@@ -11,6 +11,7 @@
     <string name="title_select_stroke">Stroke: %1$s dp</string>
     <string name="title_select_size">Size: %1$s x %2$s</string>
     <string name="title_map">Google Map Sample</string>
+    <string name="title_validate_form">Validate Forms</string>
     <string name="marker_map_title">47 Degrees</string>
     <string name="marker_map_message">Reactive, scalable software solutions.</string>
     <string name="marker_map_sample_title">Sample Marker</string>
@@ -61,4 +62,11 @@
     <string name="error_message_api_request_default">Unknown error</string>
     <string name="error_message_api_request_location_api">Error getting location</string>
     <string name="error_message_api_request_loading">Error loading weather</string>
+
+    <!-- Validate Form Strings resources -->
+    <string name="validate_label_name">Name</string>
+    <string name="validate_label_email">Email</string>
+    <string name="validate_label_age">Age</string>
+    <string name="validate_save">Save</string>
+
 </resources>

@@ -96,5 +96,19 @@
       "name": "Fede Fernández",
       "twitter": "@fede_fdz"
     }
+  },
+  {
+    "name": "Validate Form with ScalaZ",
+    "description": "This sample shows how validate forms using Validations in ScalaZ",
+    "className": "com.fortysevendeg.scala.android.ui.validateforms.ValidateFormsActivity",
+    "minApi": 14,
+    "targetApi": 14,
+    "scalaLevel": 2,
+    "androidLevel": 1,
+    "user" : {
+      "avatar": "http://www.47deg.com/assets/img/company/profile-javi.jpg",
+      "name": "Javi Pacheco",
+      "twitter": "@javielinux"
+    }
   }
 ]
