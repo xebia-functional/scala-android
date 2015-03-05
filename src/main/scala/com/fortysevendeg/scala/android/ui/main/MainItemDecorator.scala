@@ -10,13 +10,14 @@ import macroid.AppContext
 
 import scala.language.postfixOps
 
-class MainItemDecorator(implicit appContext: AppContext) extends RecyclerView.ItemDecoration {
+class MainItemDecorator(implicit appContext: AppContext)
+  extends RecyclerView.ItemDecoration {
 
   override def getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: State): Unit = {
-    outRect.top = resGetDimensionPixelSize(R.dimen.padding_default_small)
+    outRect.top = resGetDimensionPixelSize(R.dimen.padding_default)
     outRect.bottom = resGetDimensionPixelSize(R.dimen.padding_default)
-    outRect.left = resGetDimensionPixelSize(R.dimen.padding_default_xlarge)
-    outRect.right = resGetDimensionPixelSize(R.dimen.padding_default_xlarge)
+    outRect.left = resGetDimensionPixelSize(R.dimen.padding_default)
+    outRect.right = resGetDimensionPixelSize(R.dimen.padding_default)
   }
 
 }

@@ -32,9 +32,9 @@ class MainActivity
 
     val layoutManager =
       landscapeTablet ?
-          new GridLayoutManager(this, 4) |
+          new GridLayoutManager(this, 3) |
           tablet ?
-              new GridLayoutManager(this, 3) | new LinearLayoutManager(this)
+              new GridLayoutManager(this, 2) | new LinearLayoutManager(this)
 
     runUi(recyclerView <~ rvLayoutManager(layoutManager) <~
       rvAddItemDecoration(new MainItemDecorator) <~

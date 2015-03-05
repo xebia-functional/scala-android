@@ -21,7 +21,9 @@ import scala.language.postfixOps
 
 trait Styles {
 
-  val listStyle: Tweak[RecyclerView] = llMatchWeightVertical
+  def listStyle(implicit appContext: AppContext): Tweak[RecyclerView] =
+    llMatchWeightVertical +
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
   def contentStyle(implicit appContext: AppContext): Tweak[LinearLayout] =
     llVertical +
@@ -134,12 +136,14 @@ trait AdapterStyles {
       tvColorResource(R.color.main_list_secondary) +
       vMinWidth(resGetDimensionPixelSize(R.dimen.main_list_min_width_levels_tag))
 
-  def levelNumberStyle(implicit appContext: AppContext): Tweak[TextView] =
+  def levelTypeStyle(implicit appContext: AppContext): Tweak[TextView] =
     tvSizeResource(R.dimen.font_size_small) +
       tvColorResource(R.color.main_list_tag) +
       tvNormalLight +
       vPaddings(
         paddingTopBottom = 0,
-        paddingLeftRight = resGetDimensionPixelSize(R.dimen.padding_default_small))
+        paddingLeftRight = resGetDimensionPixelSize(R.dimen.padding_default_small)) +
+      tvMaxLines(1) +
+      tvEllipsize(TruncateAt.END)
 
 }
