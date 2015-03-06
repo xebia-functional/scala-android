@@ -12,6 +12,7 @@ import com.fortysevendeg.macroid.extras.LinearLayoutTweaks._
 import com.fortysevendeg.macroid.extras.ResourcesExtras._
 import com.fortysevendeg.macroid.extras.TextTweaks._
 import com.fortysevendeg.macroid.extras.ThemeExtras._
+import com.fortysevendeg.macroid.extras.ViewGroupTweaks._
 import com.fortysevendeg.macroid.extras.ViewTweaks._
 import com.fortysevendeg.scala.android.R
 import macroid.FullDsl._
@@ -23,7 +24,8 @@ trait Styles {
 
   def listStyle(implicit appContext: AppContext): Tweak[RecyclerView] =
     llMatchWeightVertical +
-      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
+      vPaddings(resGetDimensionPixelSize(R.dimen.padding_default)) +
+      vgClipToPadding(false)
 
   def contentStyle(implicit appContext: AppContext): Tweak[LinearLayout] =
     llVertical +
