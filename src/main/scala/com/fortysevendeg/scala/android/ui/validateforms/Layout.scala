@@ -4,13 +4,18 @@ import android.widget._
 import com.fortysevendeg.macroid.extras.TextTweaks._
 import com.fortysevendeg.macroid.extras.ToolbarTweaks._
 import com.fortysevendeg.scala.android.R
+import com.fortysevendeg.scala.android.modules.utils.validation._
+import com.fortysevendeg.scala.android.modules.validators.DummyFormValidation
 import com.fortysevendeg.scala.android.ui.commons.ToolbarLayout
 import macroid.FullDsl._
 import macroid.{ActivityContext, AppContext}
 
+import scala.util.{Failure, Success, Try}
+
 trait Layout
     extends ToolbarLayout
-    with Styles {
+    with Styles
+    with DummyFormValidation {
 
   var name = slot[EditText]
 
@@ -37,9 +42,38 @@ trait Layout
           ) <~ scrollContentStyle
         ) <~ scrollStyle,
         w[ImageView] <~ lineHorizontalStyle,
-        w[Button] <~ saveButtonStyle <~ On.click(validationResultLabel <~ tvText("Hi"))
+        w[Button] <~ saveButtonStyle <~ On.click({
+          validationResultLabel <~ tvText(getValidationResult)
+        })
       ) <~ contentStyle
     )
   }
 
+  def getValidationResult: String = {
+
+    implicit val model = FormModel(name, email, age)
+
+    Try(
+      WithValidation(
+        isNameNonEmpty,
+        isEmailNonEmpty,
+        isAgeNonEmpty) {
+        saveAction(model)
+      }) match {
+      case Success(message) => message
+      case Failure(ex: ValidationException) => {
+        val sb = new StringBuilder()
+
+        sb.append(ex.errorHead.message)
+        sb.append("\n").append(ex.errorHead.details)
+        ex.errorTail foreach( err => sb.append("\n").append(err.details))
+
+        sb.toString()
+      }
+      case _ =>
+        defaultMessage
+    }
+  }
+
+  def saveAction(model: FormModel) = "Your data have been saved successfully."
 }
