@@ -1,5 +1,6 @@
 import Libraries.android._
 import Libraries.macroid._
+import Libraries.scala._
 import Libraries.akka._
 import Libraries.playServices._
 import Libraries.graphics._
@@ -41,6 +42,7 @@ libraryDependencies ++= Seq(
   picasso,
   communicator,
   akkaActor,
+  scalaz,
   specs2,
   mockito,
   androidTest,
