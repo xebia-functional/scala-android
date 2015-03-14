@@ -7,6 +7,7 @@ import Libraries.json._
 import Libraries.net._
 import Libraries.test._
 import ReplacePropertiesGenerator._
+import android.PromptPasswordsSigningConfig
 
 android.Plugin.androidBuild
 
@@ -48,6 +49,11 @@ libraryDependencies ++= Seq(
 packageRelease <<= (packageRelease in Android).dependsOn(setDebugTask(false))
 
 run <<= run in Android
+
+apkSigningConfig in Android := Option(
+  PromptPasswordsSigningConfig(
+    keystore = new File(Path.userHome.absolutePath + "/.android/signed.keystore"),
+    alias = "47deg"))
 
 proguardScala in Android := true
 
