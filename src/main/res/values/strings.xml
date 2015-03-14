@@ -67,6 +67,8 @@
     <string name="validate_label_name">Name</string>
     <string name="validate_label_email">Email</string>
     <string name="validate_label_age">Age</string>
+    <string name="validate_label_result">Validation Result</string>
+    <string name="validate_result">…Pulse SAVE button to validate the form…</string>
     <string name="validate_save">Save</string>
 
 </resources>
