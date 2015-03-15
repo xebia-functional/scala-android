@@ -32,4 +32,14 @@ object validation {
       case _ => throw ValidationException(ValidationMessage(defaultMessage))
     }
   }
+
+  def defaultToStringErrors(ex: ValidationException) = {
+    val sb = new StringBuilder()
+
+    sb.append(ex.errorHead.message)
+    sb.append("\n* ").append(ex.errorHead.details)
+    ex.errorTail foreach( err => sb.append("\n* ").append(err.details))
+
+    sb.toString()
+  }
 }

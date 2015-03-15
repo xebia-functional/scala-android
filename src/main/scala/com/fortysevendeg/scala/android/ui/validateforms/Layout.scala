@@ -61,15 +61,7 @@ trait Layout
         saveAction(model)
       }) match {
       case Success(message) => message
-      case Failure(ex: ValidationException) => {
-        val sb = new StringBuilder()
-
-        sb.append(ex.errorHead.message)
-        sb.append("\n").append(ex.errorHead.details)
-        ex.errorTail foreach( err => sb.append("\n").append(err.details))
-
-        sb.toString()
-      }
+      case Failure(ex: ValidationException) => defaultToStringErrors(ex)
       case _ =>
         defaultMessage
     }
