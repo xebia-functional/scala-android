@@ -55,9 +55,9 @@ trait Layout
 
     Try(
       WithValidation(
-        isNameNonEmpty,
-        isEmailNonEmpty,
-        isAgeNonEmpty) {
+        isValidNameField,
+        isValidEmailField,
+        isValidAgeField) {
         saveAction(model)
       }) match {
       case Success(message) => message
