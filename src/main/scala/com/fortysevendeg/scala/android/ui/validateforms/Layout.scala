@@ -62,8 +62,7 @@ trait Layout
       }) match {
       case Success(message) => message
       case Failure(ex: ValidationException) => defaultToStringErrors(ex)
-      case _ =>
-        defaultMessage
+      case _ => defaultMessage
     }
   }
 
