@@ -28,7 +28,6 @@ trait BaseValidation {
     }
 
   def isValidEMail[T](
-      name: String,
       value: String,
       action: String): Validator[T] = input =>
     emailRegex.findFirstMatchIn(value)
@@ -36,7 +35,6 @@ trait BaseValidation {
         .getOrElse(ValidationMessage(s"Error $action.", s"$value is not a valid email address.").failure)
 
   def isValidNum[T](
-      name: String,
       value: String,
       action: String): Validator[T] = input =>
     numericRegex.findFirstMatchIn(value)
