@@ -74,7 +74,8 @@ class Adapter(implicit appContext: AppContext, context: ActivityContext)
                   content <- userContent
                   tag <- Option(content.getTag)
                 } yield {
-                  context.get.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(resGetString(R.string.url_twitter_user, tag.toString))))
+                  val twitterName = if (tag.toString.startsWith("@")) tag.toString.substring(1) else tag.toString
+                  context.get.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(resGetString(R.string.url_twitter_user, twitterName))))
                 }
               }
             },

@@ -28,21 +28,27 @@ object Styles {
       llVertical +
       vGone
 
+  val progressContentStyle: Tweak[LinearLayout] =
+    vWrapContent +
+      flLayoutGravity(Gravity.CENTER) +
+      llGravity(Gravity.CENTER_HORIZONTAL) +
+      llVertical +
+      vGone
+
   val progressBarStyle: Tweak[ProgressBar] =
     vWrapContent +
       flLayoutGravity(Gravity.CENTER)
 
-  def errorMessageStyle(implicit appContext: AppContext): Tweak[TextView] =
+  def messageStyle(implicit appContext: AppContext): Tweak[TextView] =
     vWrapContent +
       tvGravity(Gravity.CENTER) +
       tvColorResource(R.color.text_error_message) +
       tvSizeResource(R.dimen.text_size_forecast_error_message) +
       vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
-  def errorButtonStyle(implicit appContext: AppContext): Tweak[TextView] =
+  def buttonStyle(implicit appContext: AppContext): Tweak[TextView] =
     vWrapContent +
       vMinWidth(resGetDimensionPixelSize(R.dimen.width_forecast_error_button)) +
-      tvText(R.string.try_again_button) +
       tvColorResource(R.color.text_error_button) +
       vBackground(R.drawable.background_error_button) +
       tvAllCaps +
@@ -91,6 +97,6 @@ object Styles {
 
   val dialogTextViewStyle =
     vWrapContent +
-      tvText(R.string.forecast_icons_attribution)
+      tvText(R.string.forecast_attribution)
 
 }
