@@ -2,6 +2,7 @@ package com.fortysevendeg.scala.android.ui.apirequest
 
 import android.support.v4.app.{Fragment, FragmentManager}
 import android.widget._
+import com.fortysevendeg.macroid.extras.TextTweaks._
 import com.fortysevendeg.macroid.extras.ToolbarTweaks._
 import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.scala.android.ui.apirequest.Styles._
@@ -30,7 +31,13 @@ trait Layout extends ToolbarLayout with IdGeneration {
 
 trait ErrorLayout {
 
+  var progressContent = slot[LinearLayout]
+
   var progressBar = slot[ProgressBar]
+
+  var progressText = slot[TextView]
+
+  var progressButton = slot[Button]
 
   var errorContent = slot[LinearLayout]
 
@@ -41,10 +48,14 @@ trait ErrorLayout {
   def layoutView(implicit appContext: AppContext, 
     context: ActivityContext) =
     l[FrameLayout](
-      w[ProgressBar] <~ wire(progressBar) <~ progressBarStyle,
       l[LinearLayout](
-        w[TextView] <~ wire(errorText) <~ errorMessageStyle,
-        w[Button] <~ wire(reloadButton) <~ errorButtonStyle
+        w[ProgressBar] <~ wire(progressBar) <~ progressBarStyle,
+        w[TextView] <~ wire(progressText) <~ messageStyle,
+        w[Button] <~ wire(progressButton) <~ buttonStyle
+      ) <~ wire(progressContent) <~ progressContentStyle,
+      l[LinearLayout](
+        w[TextView] <~ wire(errorText) <~ messageStyle,
+        w[Button] <~ wire(reloadButton) <~ tvText(R.string.try_again_button) <~ buttonStyle
       ) <~ wire(errorContent) <~ errorContentStyle
     ) <~ errorLayoutStyle
 

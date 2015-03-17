@@ -52,12 +52,17 @@
     <string name="circular_reveal_title">Beach</string>
 
     <!-- Forecast String resources -->
-    <string name="menu_about_icons">About icons</string>
-    <string name="forecast_icons_attribution">
-        Icons created by Yannick (http://www.flaticon.com/authors/yannick) from http://www.flaticon.com.
+    <string name="menu_about_icons">About</string>
+    <string name="forecast_attribution">
+        The weather source of this demo is OpenWeatherMap
+        \n\nAll data provided by OpenWeatherMap is distributed under terms of the Creative Commons license http://creativecommons.org/licenses/by-sa/2.0/.
+        \n\n\nIcons created by Yannick (http://www.flaticon.com/authors/yannick) from http://www.flaticon.com.
         \n\nLicensed under Creative Commons BY 3.0 (http://creativecommons.org/licenses/by/3.0/)</string>
     <string name="title_forecast_api_request">Forecast API Request</string>
     <string name="try_again_button">Try again</string>
+    <string name="loading_location_message">Waiting for a valid location</string>
+    <string name="loading_forecast_message">Loading weather</string>
+    <string name="try_sample_location_button">Too long? Try a sample location</string>
     <string name="error_message_api_request_default">Unknown error</string>
     <string name="error_message_api_request_location_api">Error getting location</string>
     <string name="error_message_api_request_loading">Error loading weather</string>

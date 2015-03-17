@@ -6,10 +6,9 @@ import android.location.{Criteria, Location, LocationListener, LocationManager}
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
 import android.support.v7.app.ActionBarActivity
-import android.text.SpannableString
 import android.text.util.Linkify
-import android.view.{MenuItem, Menu}
-import android.widget.TextView
+import android.util.Log
+import android.view.{Menu, MenuItem}
 import com.fortysevendeg.macroid.extras.FragmentExtras._
 import com.fortysevendeg.scala.android.R
 import macroid.Contexts
