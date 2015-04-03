@@ -66,4 +66,9 @@
     <string name="error_message_api_request_default">Unknown error</string>
     <string name="error_message_api_request_location_api">Error getting location</string>
     <string name="error_message_api_request_loading">Error loading weather</string>
+
+    <!-- Inflate views String resources -->
+    <string name="inflate_view_title">Inflated View</string>
+    <string name="inflate_view_text">This is a textView</string>
+    <string name="inflate_view_button">Click me!</string>
 </resources>
