@@ -96,5 +96,19 @@
       "name": "Fede Fernández",
       "twitter": "@fede_fdz"
     }
+  },
+  {
+    "name": "Inflate your XMLs",
+    "description": "This example demonstrates how to inflate your layouts designed in a xml file",
+    "className": "com.fortysevendeg.scala.android.ui.inflatedview.InflatedViewActivity",
+    "minApi": 14,
+    "targetApi": 14,
+    "scalaLevel": 3,
+    "androidLevel": 1,
+    "user" : {
+      "avatar": "http://www.47deg.com/assets/img/company/profile-juanpe.jpg",
+      "name": "Juan Pedro Moreno",
+      "twitter": "@juanpedromoreno"
+    }
   }
 ]
