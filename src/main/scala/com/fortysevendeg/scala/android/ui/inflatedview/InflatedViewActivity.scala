@@ -21,8 +21,6 @@ class InflatedViewActivity
     initLayout
   }
 
-  def remove(fragment: Fragment): Unit = removeFragment(fragment)
-
   override def onOptionsItemSelected(item: MenuItem): Boolean = {
     item.getItemId match {
       case android.R.id.home => {
