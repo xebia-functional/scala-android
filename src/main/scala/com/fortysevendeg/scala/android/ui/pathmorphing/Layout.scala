@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.view.View
 import android.widget._
 import com.fortysevendeg.scala.android.R
-import com.fortysevendeg.macroid.extras.SeekBarEventsExtras.OnSeekBarChangeListenerHandler
 import com.fortysevendeg.macroid.extras.SeekBarTweaks._
 import com.fortysevendeg.macroid.extras.TextTweaks._
 import com.fortysevendeg.macroid.extras.ToolbarTweaks._
@@ -14,12 +13,13 @@ import com.fortysevendeg.scala.android.ui.components.PathMorphDrawableTweaks._
 import com.fortysevendeg.scala.android.ui.components.Dim
 import com.fortysevendeg.scala.android.ui.components.IconTypes._
 import macroid.FullDsl._
-import macroid.{ActivityContext, AppContext, Transformer}
+import macroid.MultiEventTweakMacros.OverrideMethodType
+import macroid.{Ui, ActivityContext, AppContext, Transformer}
 import scala.language.postfixOps
 
 trait Layout
-  extends ToolbarLayout
-  with Styles {
+    extends ToolbarLayout
+    with Styles {
 
   val sizeOptionList = List(Dim(48, 48), Dim(72, 72), Dim(96, 96), Dim(128, 128))
 
@@ -142,30 +142,32 @@ trait Layout
                 ) <~ tableLayoutRowStyle
               ) <~ tableLayoutStyle <~ wire(colorSelectorGroup),
               w[TextView] <~ wire(strokeTitle) <~ tvText(R.string.title_select_stroke) <~ titleStyle,
-              w[SeekBar] <~ wire(strokeSelector) <~ strokeStyle <~ sbOnSeekBarChangeListener(
-                OnSeekBarChangeListenerHandler(
-                  onProgressChangedHandler = (view: SeekBar, progress: Int, fromUser: Boolean) => {
+              w[SeekBar] <~ wire(strokeSelector) <~ strokeStyle <~ MultFuncOn.SeekBarChange[SeekBar](
+                (onProgressChanged: OverrideMethodType) => {
+                  (view: SeekBar, progress: Int, fromUser: Boolean) => {
                     val stroke = progress + 1
 
-                    (strokeTitle <~ tvText(context.get.getResources().getString(R.string.title_select_stroke, stroke.toString))) ~
+                    (strokeTitle <~ tvText(context.get.getResources.getString(R.string.title_select_stroke, stroke.toString))) ~
                         (icon <~ pmdStroke(stroke dp))
                   }
-                )
+                },
+                (onStartTrackingTouch: OverrideMethodType) => (seekBar: SeekBar) => Ui(Some(seekBar)),
+                (onStopTrackingTouch: OverrideMethodType) => (seekBar: SeekBar) => Ui(Some(seekBar))
               ),
               w[TextView] <~ wire(sizeTitle) <~ tvText(R.string.title_select_size) <~ titleStyle,
-              w[SeekBar] <~ wire(sizeSelector) <~ sizeStyle <~ sbOnSeekBarChangeListener(
-                OnSeekBarChangeListenerHandler(
-                  onStopTrackingTouchHandler = (view: SeekBar) => {
-                    val Dim(width, height) = sizeOptionList(view.getProgress())
+              w[SeekBar] <~ wire(sizeSelector) <~ sizeStyle <~ MultFuncOn.SeekBarChange[SeekBar](
+                (onProgressChanged: OverrideMethodType) => (seekBar: SeekBar, progress: Int, fromUser: Boolean) => Ui(Some(seekBar)),
+                (onStartTrackingTouch: OverrideMethodType) => (seekBar: SeekBar) => Ui(Some(seekBar)),
+                (onStopTrackingTouch: OverrideMethodType) => (seekBar: SeekBar) => {
+                  val Dim(width, height) = sizeOptionList(seekBar.getProgress)
 
-                    (sizeTitle <~ tvText(context.get.getResources().getString(R.string.title_select_size, width.toString, height.toString))) ~
-                        (colorSelectorGroup <~ setNoIconImageViewWidgets) ~
-                        (sampleColor1Icon <~ pmdAnimIcon(CHECK)) ~
-                        (strokeSelector <~ sbProgress(2)) ~
-                        (icon <~ drawableStyle(width dp, height dp, 3 dp) <~ pmdColorResource(R.color.path_morph_sample_1)) ~
-                        (iconSelectorGroup <~ deactivateImageViewWidgets)
-                  }
-                )
+                  (sizeTitle <~ tvText(context.get.getResources.getString(R.string.title_select_size, width.toString, height.toString))) ~
+                      (colorSelectorGroup <~ setNoIconImageViewWidgets) ~
+                      (sampleColor1Icon <~ pmdAnimIcon(CHECK)) ~
+                      (strokeSelector <~ sbProgress(2)) ~
+                      (icon <~ drawableStyle(width dp, height dp, 3 dp) <~ pmdColorResource(R.color.path_morph_sample_1)) ~
+                      (iconSelectorGroup <~ deactivateImageViewWidgets)
+                }
               )
             ) <~ verticalLinearLayoutStyle
           ) <~ scrollViewStyle

@@ -64,7 +64,7 @@ object Libraries {
     def macroid(module: String = "") =
       "org.macroid" %% s"macroid${if(!module.isEmpty) s"-$module" else ""}" % Versions.macroidV
 
-    lazy val macroidRoot = macroid()
+    lazy val macroidRoot = "org.macroid" %% "macroid" % "2.0.1"
     lazy val macroidAkkaFragments = macroid("akka-fragments")
     lazy val macroidExtras = "com.fortysevendeg" %% "macroid-extras" % Versions.macroidExtras
   }
