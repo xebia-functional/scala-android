@@ -6,7 +6,8 @@ import com.fortysevendeg.scala.android.ui.akkasimon.util.SimonAkkaFragment
 import macroid._
 import ComputerFragment._
 
-class ComputerFragment extends SimonAkkaFragment {
+class ComputerFragment
+  extends SimonAkkaFragment {
 
   lazy val actorName = getArguments.getString(nameComputerKey)
 

@@ -25,7 +25,7 @@ import com.fortysevendeg.scala.android.modules.forecast.{ForecastRequest, Foreca
 import com.fortysevendeg.scala.android.modules.utils.NetUtils
 import io.taig.communicator.response.Plain
 import io.taig.communicator.result.Parser
-import macroid.AppContext
+import macroid.ContextWrapper
 import play.api.libs.json.Json
 
 import scala.concurrent.Future
@@ -55,13 +55,13 @@ trait ForecastServices
     extends NetUtils
     with Conversions {
   
-  def loadJsonUrl(latitude: Double, longitude: Double)(implicit appContextProvider: AppContext): String =
+  def loadJsonUrl(latitude: Double, longitude: Double)(implicit context: ContextWrapper): String =
     resGetString(R.string.openweather_url, latitude.toString, longitude.toString)
   
-  def loadHeaderTuple(implicit appContextProvider: AppContext): (String, String) =
+  def loadHeaderTuple(implicit context: ContextWrapper): (String, String) =
     (resGetString(R.string.openweather_key_name), resGetString(R.string.openweather_key_value))
   
-  def loadForecast(request: ForecastRequest)(implicit appContextProvider: AppContext): Future[ForecastResponse] = {
+  def loadForecast(request: ForecastRequest)(implicit context: ContextWrapper): Future[ForecastResponse] = {
     import scala.concurrent.ExecutionContext.Implicits.global
     
     implicit val parser = JsonParser

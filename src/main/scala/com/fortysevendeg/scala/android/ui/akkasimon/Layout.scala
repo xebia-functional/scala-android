@@ -36,8 +36,7 @@ trait Layout
   var message = slot[TextView]
 
   def layout
-            (implicit appContext: AppContext,
-             context: ActivityContext,
+            (implicit context: ActivityContextWrapper,
              managerContext: FragmentManagerContext[Fragment, FragmentManager]) = getUi(
     l[LinearLayout](
       toolBarLayout <~ tbTitle(R.string.simon_title),
@@ -51,8 +50,7 @@ trait Layout
     ) <~ rootStyle
   )
 
-  def optionsScreen(implicit appContext: AppContext,
-                    context: ActivityContext,
+  def optionsScreen(implicit context: ActivityContextWrapper,
                     managerContext: FragmentManagerContext[Fragment, FragmentManager]) = {
     l[LinearLayout](
       w[TextView] <~ wire(message) <~ messageStyle,
@@ -62,8 +60,7 @@ trait Layout
     ) <~ optionsContentStyle <~ wire(optionsScreenLayout)
   }
 
-  def gameScreen(implicit appContext: AppContext,
-                 context: ActivityContext,
+  def gameScreen(implicit context: ActivityContextWrapper,
                  managerContext: FragmentManagerContext[Fragment, FragmentManager]) = {
     l[LinearLayout](
       w[TextView] <~ roundsStyle <~ wire(rounds),
@@ -90,7 +87,7 @@ trait Layout
 
   def goToGame() = (optionsScreenLayout <~ vGone) ~ (gameScreenLayout <~ vVisible)
 
-  def goToOptions(rounds: Int)(implicit appContext: AppContext) = {
+  def goToOptions(rounds: Int)(implicit context: ContextWrapper) = {
     (optionsScreenLayout <~ vVisible) ~
       (gameScreenLayout <~ vGone) ~
       (message <~ tvText(resGetString(R.string.simon_rounds_message, rounds.toString)))

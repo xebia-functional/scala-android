@@ -1,19 +1,17 @@
 package com.fortysevendeg.scala.android.ui.akkasimon.actors
 
 import akka.actor.{ActorLogging, ActorSelection, Props}
-import android.graphics.Color
 import com.fortysevendeg.scala.android.ui.akkasimon.AkkaSimonActivity
 import com.fortysevendeg.scala.android.ui.akkasimon.actors.ColorActor.LightOn
 import com.fortysevendeg.scala.android.ui.akkasimon.fragments.ComputerFragment
-import macroid.Ui
-import macroid.akkafragments.FragmentActor
+import macroid.akka.FragmentActor
 
 import scala.collection.mutable.ArrayBuffer
 
 class ComputerActor extends FragmentActor[ComputerFragment] with ActorLogging {
 
   import com.fortysevendeg.scala.android.ui.akkasimon.actors.ComputerActor._
-  import macroid.akkafragments.FragmentActor._
+  import macroid.akka.FragmentActor._
 
   var gameList: List[RoundItemActorColor] = List.empty
 

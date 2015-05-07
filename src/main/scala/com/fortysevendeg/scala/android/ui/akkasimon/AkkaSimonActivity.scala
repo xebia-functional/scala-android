@@ -10,7 +10,7 @@ import com.fortysevendeg.scala.android.ui.akkasimon.actors.{ColorActor, Computer
 import com.fortysevendeg.scala.android.ui.akkasimon.util.FragmentEnum._
 import macroid.Contexts
 import macroid.FullDsl._
-import macroid.akkafragments.AkkaActivity
+import macroid.akka.AkkaActivity
 
 class AkkaSimonActivity
     extends ActionBarActivity

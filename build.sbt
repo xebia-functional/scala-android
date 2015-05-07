@@ -46,6 +46,8 @@ libraryDependencies ++= Seq(
   androidTest,
   compilerPlugin(Libraries.wartRemover))
 
+dexMaxHeap in Android := "2048m"
+
 packageRelease <<= (packageRelease in Android).dependsOn(setDebugTask(false))
 
 run <<= run in Android

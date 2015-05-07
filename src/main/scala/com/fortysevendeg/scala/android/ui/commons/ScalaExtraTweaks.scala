@@ -21,7 +21,7 @@ import com.fortysevendeg.macroid.extras.DeviceVersion._
 import com.fortysevendeg.macroid.extras.ViewTweaks._
 import com.fortysevendeg.scala.android.ui.components.CircularTransformation
 import com.squareup.picasso.Picasso
-import macroid.{ActivityContext, AppContext, Tweak}
+import macroid.{ActivityContextWrapper, Tweak}
 
 import scala.language.postfixOps
 
@@ -30,9 +30,9 @@ object AsyncImageTweaks {
 
   def roundedImage(url: String,
         placeHolder: Int,
-        size: Int)(implicit appContext: AppContext, activityContext: ActivityContext) = CurrentVersion match {
+        size: Int)(implicit context: ActivityContextWrapper) = CurrentVersion match {
     case sdk if sdk >= Lollipop =>
-      srcImage(url, placeHolder) + vCircleOutlineProvider
+      srcImage(url, placeHolder) + vCircleOutlineProvider(0)
     case _ =>
       roundedImageTweak(url, placeHolder, size)
   }
@@ -41,9 +41,9 @@ object AsyncImageTweaks {
       url: String,
       placeHolder: Int,
       size: Int
-      )(implicit appContext: AppContext, activityContext: ActivityContext): Tweak[W] = Tweak[W](
+      )(implicit context: ActivityContextWrapper): Tweak[W] = Tweak[W](
     imageView => {
-      Picasso.`with`(activityContext.get)
+      Picasso.`with`(context.getOriginal)
           .load(url)
           .transform(new CircularTransformation(size))
           .placeholder(placeHolder)
@@ -54,18 +54,18 @@ object AsyncImageTweaks {
   def srcImage(
       url: String,
       placeHolder: Int
-      )(implicit appContext: AppContext, activityContext: ActivityContext): Tweak[W] = Tweak[W](
+      )(implicit context: ActivityContextWrapper): Tweak[W] = Tweak[W](
     imageView => {
-      Picasso.`with`(activityContext.get)
+      Picasso.`with`(context.getOriginal)
           .load(url)
           .placeholder(placeHolder)
           .into(imageView)
     }
   )
 
-  def srcImage(url: String)(implicit appContext: AppContext, activityContext: ActivityContext): Tweak[W] = Tweak[W](
+  def srcImage(url: String)(implicit context: ActivityContextWrapper): Tweak[W] = Tweak[W](
     imageView => {
-      Picasso.`with`(activityContext.get)
+      Picasso.`with`(context.getOriginal)
           .load(url)
           .into(imageView)
     }

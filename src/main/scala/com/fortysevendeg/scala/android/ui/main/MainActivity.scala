@@ -12,9 +12,9 @@ import macroid.Contexts
 import macroid.FullDsl._
 
 class MainActivity
-    extends ActionBarActivity
-    with Contexts[ActionBarActivity]
-    with Layout {
+  extends ActionBarActivity
+  with Contexts[ActionBarActivity]
+  with Layout {
 
   override def onCreate(savedInstanceState: Bundle) = {
     super.onCreate(savedInstanceState)

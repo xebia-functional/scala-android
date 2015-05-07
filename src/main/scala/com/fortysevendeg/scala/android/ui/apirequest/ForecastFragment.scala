@@ -15,15 +15,13 @@ import com.fortysevendeg.scala.android.modules.forecast.ForecastRequest
 import com.fortysevendeg.scala.android.modules.forecast.impl.ForecastServices
 import com.fortysevendeg.scala.android.modules.forecast.model.{Weather, Forecast}
 import macroid.FullDsl._
-import macroid.{AppContext, Contexts, Ui}
+import macroid.{ContextWrapper, Contexts, Ui}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
 class ForecastFragment 
   extends Fragment 
   with Contexts[Fragment] {
-
-  implicit lazy val appContextProvider: AppContext = fragmentAppContext
 
   private var fragmentLayout: Option[ForecastFragmentLayout] = None
   

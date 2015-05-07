@@ -5,13 +5,13 @@ import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.macroid.extras.ToolbarTweaks._
 import com.fortysevendeg.scala.android.ui.commons.ToolbarLayout
 import macroid.FullDsl._
-import macroid.{ActivityContext, AppContext}
+import macroid.ActivityContextWrapper
 
 trait Layout
   extends ToolbarLayout
   with Styles {
 
-  def layout(implicit appContext: AppContext, context: ActivityContext) = {
+  def layout(implicit context: ActivityContextWrapper) = {
     getUi(
       l[LinearLayout](
         toolBarLayout <~ tbTitle(R.string.title_text_styles),

@@ -11,7 +11,10 @@ import googlemaps._
 
 import scala.util.Random
 
-class GoogleMapsActivity extends ActionBarActivity with Contexts[FragmentActivity] with Layout {
+class GoogleMapsActivity
+  extends ActionBarActivity
+  with Contexts[FragmentActivity]
+  with Layout {
   
   val random = new Random()
 
