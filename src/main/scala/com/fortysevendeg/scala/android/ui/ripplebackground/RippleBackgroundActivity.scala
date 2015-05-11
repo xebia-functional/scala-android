@@ -2,7 +2,7 @@ package com.fortysevendeg.scala.android.ui.ripplebackground
 
 import android.animation.{Animator, AnimatorListenerAdapter}
 import android.os.Bundle
-import android.support.v7.app.ActionBarActivity
+import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.fortysevendeg.macroid.extras.MoveSnails._
 import com.fortysevendeg.macroid.extras.ResourcesExtras._
@@ -17,8 +17,8 @@ import macroid.FullDsl._
 import scala.concurrent.ExecutionContext.Implicits.global
 
 class RippleBackgroundActivity
-  extends ActionBarActivity
-  with Contexts[ActionBarActivity]
+  extends AppCompatActivity
+  with Contexts[AppCompatActivity]
   with Layout {
 
   override def onCreate(savedInstanceState: Bundle) = {

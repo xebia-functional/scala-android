@@ -2,7 +2,7 @@ package com.fortysevendeg.scala.android.ui.akkasimon
 
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
-import android.support.v7.app.ActionBarActivity
+import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.fortysevendeg.macroid.extras.TextTweaks._
 import com.fortysevendeg.scala.android.R
@@ -13,7 +13,7 @@ import macroid.FullDsl._
 import macroid.akka.AkkaActivity
 
 class AkkaSimonActivity
-    extends ActionBarActivity
+    extends AppCompatActivity
     with Contexts[FragmentActivity]
     with AkkaActivity
     with Layout {

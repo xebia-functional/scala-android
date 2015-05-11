@@ -2,7 +2,7 @@ package com.fortysevendeg.scala.android.ui.main
 
 import android.content.ComponentName
 import android.os.Bundle
-import android.support.v7.app.ActionBarActivity
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.{GridLayoutManager, LinearLayoutManager}
 import com.fortysevendeg.macroid.extras.DeviceMediaQueries._
 import com.fortysevendeg.macroid.extras.RecyclerViewTweaks._
@@ -12,8 +12,8 @@ import macroid.Contexts
 import macroid.FullDsl._
 
 class MainActivity
-  extends ActionBarActivity
-  with Contexts[ActionBarActivity]
+  extends AppCompatActivity
+  with Contexts[AppCompatActivity]
   with Layout {
 
   override def onCreate(savedInstanceState: Bundle) = {
