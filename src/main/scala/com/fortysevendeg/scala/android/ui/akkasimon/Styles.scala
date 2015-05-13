@@ -9,13 +9,13 @@ import com.fortysevendeg.macroid.extras.TextTweaks._
 import com.fortysevendeg.macroid.extras.ViewTweaks._
 import com.fortysevendeg.scala.android.R
 import macroid.FullDsl._
-import macroid.{Tweak, AppContext}
+import macroid.{ContextWrapper, Tweak}
 
 import scala.language.postfixOps
 
 trait Styles {
 
-  def simonButton(color: Int, alpha: Float = 0.3f)(implicit appCtx: AppContext) =
+  def simonButton(color: Int, alpha: Float = 0.3f)(implicit context: ContextWrapper) =
     vBackgroundColor(color) +
       vAlpha(alpha)
 
@@ -28,7 +28,7 @@ trait Styles {
       llGravity(Gravity.CENTER) +
       llVertical
 
-  def messageStyle(implicit appCtx: AppContext): Tweak[TextView] =
+  def messageStyle(implicit context: ContextWrapper): Tweak[TextView] =
     vWrapContent +
       tvText(R.string.simon_welcome) +
       tvSizeResource(R.dimen.font_size_large) +
@@ -37,7 +37,7 @@ trait Styles {
       vPadding(paddingBottom = resGetDimensionPixelSize(R.dimen.padding_default_xlarge)) +
       tvNormalLight
 
-  def buttonsStyle(implicit appCtx: AppContext): Tweak[Button] = {
+  def buttonsStyle(implicit context: ContextWrapper): Tweak[Button] = {
     val size = resGetDimensionPixelSize(R.dimen.size_fab_default)
     lp[LinearLayout](size, size) +
       tvText(R.string.simon_start) +
@@ -50,7 +50,7 @@ trait Styles {
       llVertical +
       vGone
 
-  def roundsStyle(implicit appCtx: AppContext): Tweak[TextView] =
+  def roundsStyle(implicit context: ContextWrapper): Tweak[TextView] =
     vMatchWidth +
       tvGravity(Gravity.CENTER) +
       tvAllCaps +

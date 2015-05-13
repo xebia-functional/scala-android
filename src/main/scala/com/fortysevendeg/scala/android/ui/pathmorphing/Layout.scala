@@ -14,7 +14,7 @@ import com.fortysevendeg.scala.android.ui.components.PathMorphDrawableTweaks._
 import com.fortysevendeg.scala.android.ui.components.Dim
 import com.fortysevendeg.scala.android.ui.components.IconTypes._
 import macroid.FullDsl._
-import macroid.{ActivityContext, AppContext, Transformer}
+import macroid.{ActivityContextWrapper, Transformer}
 import scala.language.postfixOps
 
 trait Layout
@@ -43,7 +43,7 @@ trait Layout
     case i: ImageView => i <~ pmdAnimIcon(NOICON)
   }
 
-  def layout(implicit appContext: AppContext, context: ActivityContext) = {
+  def layout(implicit context: ActivityContextWrapper) = {
     getUi(
       l[LinearLayout](
         toolBarLayout <~ tbTitle(R.string.title_path_morphing),
@@ -147,7 +147,7 @@ trait Layout
                   onProgressChangedHandler = (view: SeekBar, progress: Int, fromUser: Boolean) => {
                     val stroke = progress + 1
 
-                    (strokeTitle <~ tvText(context.get.getResources().getString(R.string.title_select_stroke, stroke.toString))) ~
+                    (strokeTitle <~ tvText(context.application.getResources().getString(R.string.title_select_stroke, stroke.toString))) ~
                         (icon <~ pmdStroke(stroke dp))
                   }
                 )
@@ -158,7 +158,7 @@ trait Layout
                   onStopTrackingTouchHandler = (view: SeekBar) => {
                     val Dim(width, height) = sizeOptionList(view.getProgress())
 
-                    (sizeTitle <~ tvText(context.get.getResources().getString(R.string.title_select_size, width.toString, height.toString))) ~
+                    (sizeTitle <~ tvText(context.application.getResources().getString(R.string.title_select_size, width.toString, height.toString))) ~
                         (colorSelectorGroup <~ setNoIconImageViewWidgets) ~
                         (sampleColor1Icon <~ pmdAnimIcon(CHECK)) ~
                         (strokeSelector <~ sbProgress(2)) ~

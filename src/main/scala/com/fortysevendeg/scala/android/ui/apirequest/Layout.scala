@@ -8,7 +8,7 @@ import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.scala.android.ui.apirequest.Styles._
 import com.fortysevendeg.scala.android.ui.commons.ToolbarLayout
 import macroid.FullDsl._
-import macroid.{ActivityContext, AppContext, FragmentManagerContext, IdGeneration}
+import macroid.{ActivityContextWrapper, ContextWrapper, FragmentManagerContext, IdGeneration}
 
 trait Layout extends ToolbarLayout with IdGeneration {
   
@@ -18,8 +18,7 @@ trait Layout extends ToolbarLayout with IdGeneration {
   
   var content = slot[FrameLayout]
 
-  def layout(implicit appContext: AppContext,
-    context: ActivityContext,
+  def layout(implicit context: ActivityContextWrapper,
     managerContext: FragmentManagerContext[Fragment, FragmentManager]) = getUi(
     l[LinearLayout](
       toolBarLayout <~ tbTitle(R.string.title_forecast_api_request),
@@ -45,8 +44,7 @@ trait ErrorLayout {
 
   var errorText = slot[TextView]
 
-  def layoutView(implicit appContext: AppContext, 
-    context: ActivityContext) =
+  def layoutView(implicit context: ActivityContextWrapper) =
     l[FrameLayout](
       l[LinearLayout](
         w[ProgressBar] <~ wire(progressBar) <~ progressBarStyle,
@@ -61,7 +59,7 @@ trait ErrorLayout {
 
 }
 
-class ForecastFragmentLayout(implicit appContext: AppContext, context: ActivityContext) extends ErrorLayout {
+class ForecastFragmentLayout(implicit context: ActivityContextWrapper) extends ErrorLayout {
 
   var errorLayoutContent = slot[FrameLayout]
   
@@ -93,7 +91,7 @@ class ForecastFragmentLayout(implicit appContext: AppContext, context: ActivityC
 
 }
 
-class AboutDialogLayout(implicit appContext: AppContext, context: ActivityContext) {
+class AboutDialogLayout(implicit context: ActivityContextWrapper) {
 
   var textView = slot[TextView]
 

@@ -6,7 +6,8 @@ import com.google.android.gms.maps.model.{MarkerOptions, LatLng}
 import com.google.android.gms.maps.{CameraUpdateFactory, GoogleMap, OnMapReadyCallback, SupportMapFragment}
 import googlemaps._
 
-trait CustomMapFragment extends SupportMapFragment {
+trait CustomMapFragment
+  extends SupportMapFragment {
   
   def changeMapType(mapType: Int): Unit
   def moveCamera(latitude: Double, longitude: Double, zoom: Int): Unit

@@ -7,19 +7,19 @@ import android.view.View._
 import android.view.{ViewAnimationUtils, View, ViewGroup}
 import android.widget.FrameLayout
 import com.fortysevendeg.macroid.extras.SnailsUtils
-import macroid.{Snail, ActivityContext}
+import macroid.{Snail, ActivityContextWrapper}
 import macroid.FullDsl._
 import com.fortysevendeg.macroid.extras.ViewTweaks._
 
 import scala.concurrent.Promise
 import scala.util.Success
 
-class RippleBackgroundView(context: Context, attr: AttributeSet, defStyleAttr: Int)(implicit acontext: ActivityContext)
+class RippleBackgroundView(context: Context, attr: AttributeSet, defStyleAttr: Int)(implicit acontext: ActivityContextWrapper)
     extends FrameLayout(context, attr, defStyleAttr) {
 
-  def this(context: Context)(implicit acontext: ActivityContext) = this(context, null, 0)
+  def this(context: Context)(implicit acontext: ActivityContextWrapper) = this(context, null, 0)
 
-  def this(context: Context, attr: AttributeSet)(implicit acontext: ActivityContext) = this(context, attr, 0)
+  def this(context: Context, attr: AttributeSet)(implicit acontext: ActivityContextWrapper) = this(context, attr, 0)
 
   val rippleView = {
     var rippleView = slot[View]

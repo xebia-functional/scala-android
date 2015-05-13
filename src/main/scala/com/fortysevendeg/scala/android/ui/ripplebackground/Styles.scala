@@ -9,7 +9,7 @@ import com.fortysevendeg.macroid.extras.ViewTweaks._
 import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.scala.android.ui.components.{CircleView, RippleBackgroundView}
 import macroid.FullDsl._
-import macroid.{AppContext, Tweak}
+import macroid.{ContextWrapper, Tweak}
 
 import scala.language.postfixOps
 
@@ -22,18 +22,18 @@ object Styles {
   val colorContent: Tweak[FrameLayout] =
     llMatchWeightVertical
 
-  def backgroundStyle(implicit appContext: AppContext): Tweak[RippleBackgroundView] = {
+  def backgroundStyle(implicit context: ContextWrapper): Tweak[RippleBackgroundView] = {
     val height = resGetDimensionPixelSize(R.dimen.ripple_bg_height_content)
     lp[LinearLayout](MATCH_PARENT, height)
   }
 
-  def circlesContentStyle(implicit appContext: AppContext): Tweak[LinearLayout] = {
+  def circlesContentStyle(implicit context: ContextWrapper): Tweak[LinearLayout] = {
     vMatchWidth +
       llGravity(Gravity.CENTER_HORIZONTAL) +
       llHorizontal
   }
 
-  def circleStyle(implicit appContext: AppContext): Tweak[CircleView] = {
+  def circleStyle(implicit context: ContextWrapper): Tweak[CircleView] = {
     val size = resGetDimensionPixelSize(R.dimen.ripple_bg_size_circle)
     val margin = resGetDimensionPixelSize(R.dimen.padding_default)
     val marginTop = resGetDimensionPixelSize(R.dimen.ripple_bg_height_content)

@@ -7,12 +7,12 @@ import android.graphics._
 import android.graphics.drawable.{Animatable, Drawable}
 import android.view.animation.DecelerateInterpolator
 import android.widget.ImageView
-import macroid.{AppContext, Tweak}
+import macroid.{ContextWrapper, Tweak}
 import IconTypes._
 
 import scala.util.Try
 
-class PathMorphDrawable(val defaultIcon: Int = NOICON, val defaultStroke: Int = 3, val defaultColor: Int = Color.BLACK)(implicit appContext: AppContext)
+class PathMorphDrawable(val defaultIcon: Int = NOICON, val defaultStroke: Int = 3, val defaultColor: Int = Color.BLACK)(implicit context: ContextWrapper)
   extends Drawable
   with Animatable
   with PathMorphDrawableTypes {
@@ -125,7 +125,7 @@ class PathMorphDrawable(val defaultIcon: Int = NOICON, val defaultStroke: Int = 
   }
 
   def setColorResource(color: Int): Unit = {
-    iconPaint.setColor(appContext.get.getResources.getColor(color))
+    iconPaint.setColor(context.application.getResources.getColor(color))
     invalidateSelf()
   }
 

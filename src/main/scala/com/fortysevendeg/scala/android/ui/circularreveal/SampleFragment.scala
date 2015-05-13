@@ -1,7 +1,7 @@
 package com.fortysevendeg.scala.android.ui.circularreveal
 
 import android.animation.{AnimatorListenerAdapter, ObjectAnimator, Animator}
-import android.os.{Build, Bundle}
+import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.animation.{AccelerateInterpolator, DecelerateInterpolator}
 import android.view.{ViewAnimationUtils, View, ViewGroup, LayoutInflater}
@@ -9,7 +9,9 @@ import com.fortysevendeg.macroid.extras.SnailsUtils
 import com.fortysevendeg.macroid.extras.DeviceVersion._
 import macroid.Contexts
 
-class SampleFragment extends Fragment with Contexts[Fragment] {
+class SampleFragment
+  extends Fragment
+  with Contexts[Fragment] {
 
   private var lastWidth: Option[Int] = None
 

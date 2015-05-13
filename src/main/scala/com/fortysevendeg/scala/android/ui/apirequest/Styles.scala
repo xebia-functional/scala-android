@@ -9,7 +9,7 @@ import com.fortysevendeg.macroid.extras.ImageViewTweaks._
 import com.fortysevendeg.macroid.extras.ViewTweaks._
 import com.fortysevendeg.macroid.extras.ResourcesExtras._
 import com.fortysevendeg.scala.android.R
-import macroid.{AppContext, Tweak}
+import macroid.{ContextWrapper, Tweak}
 
 import scala.language.postfixOps
 
@@ -39,14 +39,14 @@ object Styles {
     vWrapContent +
       flLayoutGravity(Gravity.CENTER)
 
-  def messageStyle(implicit appContext: AppContext): Tweak[TextView] =
+  def messageStyle(implicit context: ContextWrapper): Tweak[TextView] =
     vWrapContent +
       tvGravity(Gravity.CENTER) +
       tvColorResource(R.color.text_error_message) +
       tvSizeResource(R.dimen.text_size_forecast_error_message) +
       vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
-  def buttonStyle(implicit appContext: AppContext): Tweak[TextView] =
+  def buttonStyle(implicit context: ContextWrapper): Tweak[TextView] =
     vWrapContent +
       vMinWidth(resGetDimensionPixelSize(R.dimen.width_forecast_error_button)) +
       tvColorResource(R.color.text_error_button) +
@@ -57,41 +57,41 @@ object Styles {
 
   val forecastFragmentLayoutStyle = vMatchParent
 
-  def forecastLayoutStyle(implicit appContext: AppContext): Tweak[LinearLayout] =
+  def forecastLayoutStyle(implicit context: ContextWrapper): Tweak[LinearLayout] =
     vMatchParent +
       llVertical +
       vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
-  def forecastLocationLayoutStyle(implicit appContext: AppContext): Tweak[LinearLayout] = 
+  def forecastLocationLayoutStyle(implicit context: ContextWrapper): Tweak[LinearLayout] = 
     vMatchWidth +
       llHorizontal +
       llGravity(Gravity.CENTER_VERTICAL)
 
-  def forecastDetailLayoutStyle(implicit appContext: AppContext): Tweak[LinearLayout] =
+  def forecastDetailLayoutStyle(implicit context: ContextWrapper): Tweak[LinearLayout] =
     vMatchParent +
       llVertical +
       llGravity(Gravity.CENTER)
 
-  def markerImageViewStyle(implicit appContext: AppContext): Tweak[ImageView] =
+  def markerImageViewStyle(implicit context: ContextWrapper): Tweak[ImageView] =
     vWrapContent +
       vPaddings(resGetDimensionPixelSize(R.dimen.padding_default)) +
       ivSrc(R.drawable.map_marker)
 
-  def locationTextViewStyle(implicit appContext: AppContext) =
+  def locationTextViewStyle(implicit context: ContextWrapper) =
     vWrapContent +
       tvSizeResource(R.dimen.text_size_forecast_location) +
       vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
   val forecastImageViewStyle = vWrapContent
 
-  def temperatureTextViewStyle(implicit appContext: AppContext) =
+  def temperatureTextViewStyle(implicit context: ContextWrapper) =
     vWrapContent +
       tvGravity(Gravity.CENTER) +
       tvSizeResource(R.dimen.text_size_forecast_temperature) +
       tvBoldCondensed +
       vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
-  def aboutDialogLayoutStyle(implicit appContext: AppContext) =
+  def aboutDialogLayoutStyle(implicit context: ContextWrapper) =
     vMatchParent +
       vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 

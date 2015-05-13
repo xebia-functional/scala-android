@@ -4,11 +4,13 @@ import android.graphics.Color
 import com.fortysevendeg.scala.android.ui.akkasimon.actors.ComputerActor.RoundItemActorColor
 import com.fortysevendeg.scala.android.ui.akkasimon.util.FragmentEnum._
 import macroid.Contexts
-import macroid.akkafragments.AkkaFragment
+import macroid.akka.AkkaFragment
 import scala.language.postfixOps
 import scala.util.Random
 
-trait SimonAkkaFragment extends AkkaFragment with Contexts[AkkaFragment] {
+trait SimonAkkaFragment
+  extends AkkaFragment
+  with Contexts[AkkaFragment] {
 
   val random = Random
 

@@ -2,10 +2,10 @@ package com.fortysevendeg.scala.android.modules.forecast
 
 import com.fortysevendeg.scala.android.modules.forecast.impl.ForecastServices
 import com.fortysevendeg.scala.android.modules.forecast.model._
-import com.fortysevendeg.scala.android.{AppContextTestSupport, BaseTestSupport}
+import com.fortysevendeg.scala.android.{ContextWrapperTestSupport, BaseTestSupport}
 import com.squareup.okhttp.OkHttpClient
 import io.taig.communicator.result.Parser
-import macroid.AppContext
+import macroid.ContextWrapper
 import org.specs2.mutable.Specification
 
 import scala.concurrent.duration.Duration
@@ -13,11 +13,11 @@ import scala.concurrent.{Await, Future}
 
 trait ForecastServiceMock
   extends ForecastServices
-  with AppContextTestSupport {
+  with ContextWrapperTestSupport {
 
-  override def loadJsonUrl(latitude: Double, longitude: Double)(implicit appContextProvider: AppContext): String = "http://fake_url/"
+  override def loadJsonUrl(latitude: Double, longitude: Double)(implicit context: ContextWrapper): String = "http://fake_url/"
 
-  override def loadHeaderTuple(implicit appContextProvider: AppContext): (String, String) = ("key_name", "key_value")
+  override def loadHeaderTuple(implicit context: ContextWrapper): (String, String) = ("key_name", "key_value")
 
 }
 

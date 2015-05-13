@@ -1,13 +1,13 @@
 package com.fortysevendeg.scala.android.ui.textstyles
 
 import android.os.Bundle
-import android.support.v7.app.ActionBarActivity
+import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import macroid.Contexts
 
 class TextStylesActivity
-  extends ActionBarActivity
-  with Contexts[ActionBarActivity]
+  extends AppCompatActivity
+  with Contexts[AppCompatActivity]
   with Layout {
 
   override def onCreate(savedInstanceState: Bundle) = {

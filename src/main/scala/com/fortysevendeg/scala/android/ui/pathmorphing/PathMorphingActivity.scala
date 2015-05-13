@@ -1,7 +1,7 @@
 package com.fortysevendeg.scala.android.ui.pathmorphing
 
 import android.os.Bundle
-import android.support.v7.app.ActionBarActivity
+import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.macroid.extras.SeekBarTweaks._
@@ -11,7 +11,10 @@ import com.fortysevendeg.scala.android.ui.components.IconTypes._
 import macroid.Contexts
 import macroid.FullDsl._
 
-class PathMorphingActivity extends ActionBarActivity with Contexts[ActionBarActivity] with Layout {
+class PathMorphingActivity
+  extends AppCompatActivity
+  with Contexts[AppCompatActivity]
+  with Layout {
 
   override def onCreate(savedInstanceState: Bundle) = {
     super.onCreate(savedInstanceState)

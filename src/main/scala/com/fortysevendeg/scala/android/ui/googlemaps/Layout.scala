@@ -18,7 +18,7 @@ trait Layout
 
   val fragmentTag = "fragment-map"
   
-  def layout(implicit appContext: AppContext, context: ActivityContext, fragmentManager: FragmentManagerContext[Fragment, FragmentManager]) = {
+  def layout(implicit context: ActivityContextWrapper, fragmentManager: FragmentManagerContext[Fragment, FragmentManager]) = {
     getUi(
       l[LinearLayout](
         toolBarLayout <~ tbTitle(R.string.title_map),

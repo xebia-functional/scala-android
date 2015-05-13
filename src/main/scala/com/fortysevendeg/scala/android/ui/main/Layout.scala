@@ -7,7 +7,7 @@ import android.widget.{ImageView, LinearLayout, TextView}
 import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.scala.android.ui.commons.ToolbarLayout
 import macroid.FullDsl._
-import macroid.{Ui, ActivityContext, AppContext}
+import macroid.{Ui, ActivityContextWrapper}
 import com.fortysevendeg.macroid.extras.TextTweaks._
 import com.fortysevendeg.macroid.extras.ResourcesExtras._
 
@@ -19,7 +19,7 @@ trait Layout
 
   var recyclerView = slot[RecyclerView]
 
-  def layout(implicit appContext: AppContext, context: ActivityContext) = {
+  def layout(implicit context: ActivityContextWrapper) = {
     getUi(
       l[LinearLayout](
         toolBarLayout,
@@ -30,7 +30,7 @@ trait Layout
 
 }
 
-class Adapter(implicit appContext: AppContext, context: ActivityContext)
+class Adapter(implicit context: ActivityContextWrapper)
   extends AdapterStyles {
 
   var title = slot[TextView]
@@ -75,7 +75,7 @@ class Adapter(implicit appContext: AppContext, context: ActivityContext)
                   tag <- Option(content.getTag)
                 } yield {
                   val twitterName = if (tag.toString.startsWith("@")) tag.toString.substring(1) else tag.toString
-                  context.get.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(resGetString(R.string.url_twitter_user, twitterName))))
+                  context.getOriginal.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(resGetString(R.string.url_twitter_user, twitterName))))
                 }
               }
             },

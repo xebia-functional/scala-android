@@ -17,7 +17,7 @@ import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.scala.android.ui.components.IconTypes._
 import com.fortysevendeg.scala.android.ui.components.PathMorphDrawable
 import macroid.FullDsl._
-import macroid.{AppContext, Tweak}
+import macroid.{ContextWrapper, Tweak}
 
 import scala.language.postfixOps
 
@@ -25,13 +25,13 @@ trait Styles {
 
   val rootStyle = llVertical
 
-  def contentStyle(implicit appContext: AppContext): Tweak[FrameLayout] =
+  def contentStyle(implicit context: ContextWrapper): Tweak[FrameLayout] =
     vMatchParent +
       vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
-  def fragmentStyle(implicit appContext: AppContext): Tweak[FrameLayout] = vMatchParent
+  def fragmentStyle(implicit context: ContextWrapper): Tweak[FrameLayout] = vMatchParent
 
-  def fabStyle(implicit appContext: AppContext): Tweak[ImageView] = {
+  def fabStyle(implicit context: ContextWrapper): Tweak[ImageView] = {
     val size = resGetDimensionPixelSize(R.dimen.size_fab_default)
     lp[FrameLayout](size, size) +
       flLayoutGravity(Gravity.RIGHT | Gravity.BOTTOM) +
@@ -50,25 +50,25 @@ trait Styles {
 
 trait FragmentStyles {
 
-  def contentRevealStyle(implicit appContext: AppContext): Tweak[CardView] =
+  def contentRevealStyle(implicit context: ContextWrapper): Tweak[CardView] =
     vMatchParent
 
   val contentLayoutStyle: Tweak[LinearLayout] =
     vMatchParent +
       llVertical
 
-  def imageStyle(implicit appContext: AppContext): Tweak[ImageView] =
+  def imageStyle(implicit context: ContextWrapper): Tweak[ImageView] =
     lp[LinearLayout](MATCH_PARENT, resGetDimensionPixelSize(R.dimen.circular_reveal_height_image)) +
       ivSrc(R.drawable.photo_1) +
       ivScaleType(ScaleType.CENTER_CROP)
 
-  def textTitleStyle(implicit appContext: AppContext): Tweak[TextView] =
+  def textTitleStyle(implicit context: ContextWrapper): Tweak[TextView] =
     tvText(R.string.circular_reveal_title) +
       tvSizeResource(R.dimen.font_size_large) +
       tvText(R.string.circular_reveal_title) +
       vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
-  def textMessageStyle(implicit appContext: AppContext): Tweak[TextView] =
+  def textMessageStyle(implicit context: ContextWrapper): Tweak[TextView] =
     tvText(R.string.circular_reveal_title) +
       tvSizeResource(R.dimen.font_size_normal) +
       tvNormalLight +
