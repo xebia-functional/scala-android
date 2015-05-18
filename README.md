@@ -82,6 +82,17 @@ If you are having trouble deciding on an example to contribute here are some ide
 * Transitions between activities: use the new [Activity Transitions in Material Design](https://developer.android.com/training/material/animations.html#Transitions), similar to *Google Play Music*
 * Validate forms with [Validation in ScalaZ](http://eed3si9n.com/learning-scalaz/Validation.html)
 
+IntelliJ problems
+========
+
+The last versions of IntelliJ have problems with load the project. If you have problems with that, we have included `SBT Idea` plugin for help you
+
+You only have to follow the next steps:
+
+* Remove the folder `.idea` and `.idea_modules` if exist
+* Run `sbt gen-idea`
+* From IntelliJ open the project (DON'T Import project)
+
 
 License
 ======
