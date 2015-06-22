@@ -1,7 +1,9 @@
 package com.fortysevendeg.scala.android.ui.circularreveal
 
 import android.animation.{AnimatorListenerAdapter, ObjectAnimator, Animator}
-import android.os.Bundle
+import android.annotation.TargetApi
+import android.os.Build.VERSION
+import android.os.{Build, Bundle}
 import android.support.v4.app.Fragment
 import android.view.animation.{AccelerateInterpolator, DecelerateInterpolator}
 import android.view.{ViewAnimationUtils, View, ViewGroup, LayoutInflater}
@@ -66,6 +68,7 @@ class SampleFragment
     }
   }
 
+  @TargetApi(Build.VERSION_CODES.LOLLIPOP)
   def getLollipopReveal(layout: View, width: Int, height: Int) = {
     val cx = getArguments.getInt(SampleFragment.posX, 0)
     val cy = getArguments.getInt(SampleFragment.posY, 0)
@@ -77,6 +80,7 @@ class SampleFragment
     reveal.start()
   }
 
+  @TargetApi(Build.VERSION_CODES.LOLLIPOP)
   def getLollipopUnreveal(layout: View) = {
     val (x, y, w, h) = (for {
       x <- lastRevealX

@@ -1,7 +1,9 @@
 package com.fortysevendeg.scala.android.ui.components
 
 import android.animation.{Animator, AnimatorListenerAdapter}
+import android.annotation.TargetApi
 import android.content.Context
+import android.os.Build
 import android.util.AttributeSet
 import android.view.View._
 import android.view.{ViewAnimationUtils, View, ViewGroup}
@@ -33,6 +35,7 @@ class RippleBackgroundView(context: Context, attr: AttributeSet, defStyleAttr: I
 }
 
 object RippleBackgroundSnails {
+  @TargetApi(Build.VERSION_CODES.LOLLIPOP)
   def ripple(rippleData : RippleSnailData) = Snail[RippleBackgroundView] {
     view ⇒
       val animPromise = Promise[Unit]()
