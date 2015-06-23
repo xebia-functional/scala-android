@@ -16,19 +16,29 @@
 
 package com.fortysevendeg.scala.android.modules.forecast.model
 
-import org.specs2.mutable._
+import com.fortysevendeg.scala.android.BaseTestSpecification
 import play.api.libs.json.{JsValue, Json}
+import JsonImplicits._
+
+object JsonImplicits {
+
+  implicit val apiCloudsReads = Json.reads[ApiClouds]
+  implicit val apiWindReads = Json.reads[ApiWind]
+  implicit val apiWeatherReads = Json.reads[ApiWeather]
+  implicit val apiMainReads = Json.reads[ApiMain]
+  implicit val apiSysReads = Json.reads[ApiSys]
+  implicit val apiCoordReads = Json.reads[ApiCoord]
+  implicit val apiModelReads = Json.reads[ApiModel]
+
+}
 
 class JsonModelSpec
-  extends Specification
-  with JsonModelTestSupportTestSupport {
-  
+  extends BaseTestSpecification {
 
   "load and map sample json" should {
 
-    "return an ApiModel class with the right fields" in {
-      
-      import JsonImplicits._
+    "return an ApiModel class with the right fields" in new BaseTestScope {
+
 
       val jsonSource = scala.io.Source.fromInputStream(JsonImplicits.getClass.getResourceAsStream("/weather.json")).mkString
       val json: JsValue = Json.parse(jsonSource)
