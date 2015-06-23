@@ -10,14 +10,14 @@ import macroid.ContextWrapper
 import scala.concurrent.duration.Duration
 import scala.concurrent.{Await, Future}
 
-trait ForecastServiceSpecification
+trait ForecastServicesSpecification
   extends BaseTestSpecification
   with ContextWrapperContextTestSupport {
 
-  trait ForecastServiceScope
+  trait ForecastServicesScope
     extends BaseTestScope
     with ForecastServices
-    with ForecastServiceData {
+    with ForecastServicesData {
 
     override def loadJsonUrl(latitude: Double, longitude: Double)(implicit context: ContextWrapper): String = "http://fake_url/"
 
@@ -27,7 +27,7 @@ trait ForecastServiceSpecification
 
 }
 
-trait ForecastServiceData {
+trait ForecastServicesData {
 
   val validJson: ApiModel = ApiModel(
     id = 5809844,
@@ -56,12 +56,12 @@ trait ForecastServiceData {
 
 }
 
-class ForecastServicesSpec extends ForecastServiceSpecification {
+class ForecastServicesSpec extends ForecastServicesSpecification {
 
   "ForecastServices component" should {
 
     "return forecast with right JSON" in
-      new ForecastServiceScope {
+      new ForecastServicesScope {
 
         override def loadJson[T](url: String, headers: Seq[(String, String)])(implicit parser: Parser[T], client: OkHttpClient = new OkHttpClient()): Future[T] =
           Future.successful[T](validJson.asInstanceOf[T])
@@ -74,7 +74,7 @@ class ForecastServicesSpec extends ForecastServiceSpecification {
       }
 
     "got the exception thrown by the call to loadJson" in
-      new ForecastServiceScope {
+      new ForecastServicesScope {
 
         override def loadJson[T](url: String, headers: Seq[(String, String)])(implicit parser: Parser[T], client: OkHttpClient = new OkHttpClient()): Future[T] =
           Future.failed[T](new RuntimeException())
