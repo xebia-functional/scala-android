@@ -17,4 +17,7 @@ before_install:
   - echo yes | android update sdk --all --filter extra-google-m2repository --no-ui
   - echo yes | android update sdk --all --filter extra-google-google_play_services --no-ui
 script:
-  - sbt ++$TRAVIS_SCALA_VERSION clean test
+  - sbt ++$TRAVIS_SCALA_VERSION test
+after_script:
+  - sbt ++$TRAVIS_SCALA_VERSION clean android:package
+  - sbt ++$TRAVIS_SCALA_VERSION android:package
