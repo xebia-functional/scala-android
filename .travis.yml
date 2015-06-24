@@ -19,5 +19,4 @@ before_install:
 script:
   - sbt ++$TRAVIS_SCALA_VERSION test
 after_script:
-  - sbt ++$TRAVIS_SCALA_VERSION clean android:package
-  - sbt ++$TRAVIS_SCALA_VERSION android:package
+  - ./scripts/runPackage.sh
