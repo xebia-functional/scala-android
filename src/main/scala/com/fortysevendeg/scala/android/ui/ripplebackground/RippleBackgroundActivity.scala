@@ -1,6 +1,5 @@
 package com.fortysevendeg.scala.android.ui.ripplebackground
 
-import android.animation.{Animator, AnimatorListenerAdapter}
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
@@ -11,8 +10,8 @@ import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.scala.android.ui.components.CircleView._
 import com.fortysevendeg.scala.android.ui.components.RippleBackgroundSnails._
 import com.fortysevendeg.scala.android.ui.components.{CircleView, RippleSnailData}
-import macroid.Contexts
 import macroid.FullDsl._
+import macroid.{Contexts, Ui}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
@@ -26,8 +25,6 @@ class RippleBackgroundActivity
 
     setContentView(layout)
 
-    val rippleSnailData = RippleSnailData.fromPlace(rippleBackground.get)
-
     val color1 = resGetColor(R.color.ripple_bg_color1)
     val color2 = resGetColor(R.color.ripple_bg_color2)
     val color3 = resGetColor(R.color.ripple_bg_color3)
@@ -39,34 +36,30 @@ class RippleBackgroundActivity
         (circle3 <~ cvColor(color3) <~ On.click(anim(circle3, color3)))
     )
 
-    toolBar map setSupportActionBar
+    toolBar foreach setSupportActionBar
 
     getSupportActionBar.setDisplayHomeAsUpEnabled(true)
 
   }
 
-  override def onOptionsItemSelected(item: MenuItem): Boolean = {
-    item.getItemId match {
-      case android.R.id.home => {
-        finish()
-        false
-      }
-    }
-    super.onOptionsItemSelected(item)
+  override def onOptionsItemSelected(item: MenuItem): Boolean = item.getItemId match {
+    case android.R.id.home =>
+      finish()
+      false
+    case _ => super.onOptionsItemSelected(item)
   }
 
-  def anim(circleView: Option[CircleView], color: Int) = {
-
-    val rippleData = RippleSnailData.fromPlace(rippleBackground.get).
-      copy(
-        resColor = color,
-        listener = Some(new AnimatorListenerAdapter {
-          override def onAnimationEnd(animation: Animator): Unit = {
-            runUi(circleView <~ vTransformation(0, 0))
+  def anim(circleView: Option[CircleView], color: Int): Ui[_] = rippleBackground map {
+    background ⇒
+      val rippleData = RippleSnailData.toCenterView(background).
+        copy(
+          resColor = color,
+          onAnimationEnd = Some {
+            () ⇒
+              runUi(circleView <~ vTransformation(0, 0))
           }
-        })
-      )
-    (circleView <~~ move(rippleBackground)) ~~ (rippleBackground <~~ ripple(rippleData)) ~~ (circleView <~~ fadeIn(1000))
-  }
+        )
+      (circleView <~~ move(rippleBackground)) ~~ (rippleBackground <~~ ripple(rippleData)) ~~ (circleView <~~ fadeIn(1000))
+  } getOrElse Ui.nop
 
 }

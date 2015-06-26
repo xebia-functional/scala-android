@@ -57,6 +57,8 @@ apkSigningConfig in Android := Option(
     keystore = new File(Path.userHome.absolutePath + "/.android/signed.keystore"),
     alias = "47deg"))
 
+proguardCache in Android := Seq.empty
+
 proguardScala in Android := true
 
 useProguard in Android := true

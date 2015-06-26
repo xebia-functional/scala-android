@@ -20,10 +20,8 @@ object Settings {
   lazy val proguardCommons = Seq(
     "-ignorewarnings",
     "-keep class scala.Dynamic",
-    "-keep class com.fortysevendeg.** { *; }",
     "-keep class macroid.** { *; }",
-    "-keep class android.** { *; }",
-    "-keep class com.google.** { *; }")
+    "-keep class android.** { *; }")
 
   lazy val proguardAkka = Seq(
     "-keep class akka.actor.Actor$class { *; }",

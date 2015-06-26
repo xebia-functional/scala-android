@@ -21,24 +21,21 @@ class PathMorphingActivity
 
     setContentView(layout)
 
-    toolBar map setSupportActionBar
+    toolBar foreach setSupportActionBar
 
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true)
+    getSupportActionBar.setDisplayHomeAsUpEnabled(true)
 
     runUi(
       (icon <~ pmdAnimIcon(BURGER)) ~
           (strokeSelector <~ sbProgress(2)) ~
-          (sizeTitle <~ tvText(getApplicationContext().getString(R.string.title_select_size, 48.toString, 48.toString)))
+          (sizeTitle <~ tvText(getString(R.string.title_select_size, 48.toString, 48.toString)))
     )
   }
 
-  override def onOptionsItemSelected(item: MenuItem): Boolean = {
-    item.getItemId match {
-      case android.R.id.home => {
-        finish()
-        false
-      }
-    }
-    super.onOptionsItemSelected(item)
+  override def onOptionsItemSelected(item: MenuItem): Boolean = item.getItemId match {
+    case android.R.id.home =>
+      finish()
+      false
+    case _ => super.onOptionsItemSelected(item)
   }
 }
