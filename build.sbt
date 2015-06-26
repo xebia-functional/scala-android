@@ -43,8 +43,7 @@ libraryDependencies ++= Seq(
   akkaActor,
   specs2,
   mockito,
-  androidTest,
-  compilerPlugin(Libraries.wartRemover))
+  androidTest)
 
 dexMaxHeap in Android := "2048m"
 
