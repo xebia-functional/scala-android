@@ -8,7 +8,7 @@ import com.fortysevendeg.scala.android.modules.utils.validation._
 import com.fortysevendeg.scala.android.modules.validators.DummyFormValidation
 import com.fortysevendeg.scala.android.ui.commons.ToolbarLayout
 import macroid.FullDsl._
-import macroid.{ActivityContext, AppContext}
+import macroid.ActivityContextWrapper
 
 import scala.util.{Failure, Success, Try}
 
@@ -25,7 +25,7 @@ trait Layout
 
   var validationResultLabel = slot[TextView]
 
-  def layout(implicit appContext: AppContext, context: ActivityContext) = {
+  def layout(implicit activityContext: ActivityContextWrapper) = {
     getUi(
       l[LinearLayout](
         toolBarLayout <~ tbTitle(R.string.title_validate_form),
