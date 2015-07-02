@@ -1,14 +1,14 @@
 package com.fortysevendeg.scala.android.ui.validateforms
 
 import android.widget._
-import com.fortysevendeg.macroid.extras.TextTweaks._
 import com.fortysevendeg.macroid.extras.ToolbarTweaks._
 import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.scala.android.modules.utils.validation._
 import com.fortysevendeg.scala.android.modules.validators.DummyFormValidation
 import com.fortysevendeg.scala.android.ui.commons.ToolbarLayout
+import com.fortysevendeg.macroid.extras.UIActionsExtras._
 import macroid.FullDsl._
-import macroid.ActivityContextWrapper
+import macroid.{ContextWrapper, Tweak, ActivityContextWrapper, Ui}
 
 import scala.util.{Failure, Success, Try}
 
@@ -23,8 +23,6 @@ trait Layout
 
   var email = slot[EditText]
 
-  var validationResultLabel = slot[TextView]
-
   def layout(implicit activityContext: ActivityContextWrapper) = {
     getUi(
       l[LinearLayout](
@@ -36,20 +34,18 @@ trait Layout
             w[TextView] <~ textLabelStyle <~ text(R.string.validate_label_email),
             w[EditText] <~ editTextStyle <~ wire(email),
             w[TextView] <~ textLabelStyle <~ text(R.string.validate_label_age),
-            w[EditText] <~ editTextStyle <~ wire(age),
-            w[TextView] <~ textLabelStyle <~ text(R.string.validate_label_result),
-            w[TextView] <~ textLabelStyle <~ text(R.string.validate_result) <~ wire(validationResultLabel)
+            w[EditText] <~ editTextStyle <~ wire(age)
           ) <~ scrollContentStyle
         ) <~ scrollStyle,
         w[ImageView] <~ lineHorizontalStyle,
-        w[Button] <~ saveButtonStyle <~ On.click({
-          validationResultLabel <~ tvText(getValidationResult)
-        })
+        w[Button] <~ saveButtonStyle <~ On.click {
+          validationForm
+        }
       ) <~ contentStyle
     )
   }
 
-  def getValidationResult: String = {
+  def validationForm(implicit context: ContextWrapper): Ui[_] = {
 
     implicit val model = FormModel(name, email, age)
 
@@ -58,13 +54,22 @@ trait Layout
         isValidNameField,
         isValidEmailField,
         isValidAgeField) {
-        saveAction(model)
+        saveAction
       }) match {
       case Success(message) => message
-      case Failure(ex: ValidationException) => defaultToStringErrors(ex)
+      case Failure(ex: ValidationException) =>
+        val uis = uiValidationMessage(ex.errorHead) +: (ex.errorTail map uiValidationMessage)
+        Ui.sequence(uis :_*)
       case _ => defaultMessage
     }
   }
 
-  def saveAction(model: FormModel) = "Your data have been saved successfully."
+  def saveAction(implicit context: ContextWrapper): Ui[_] = uiShortToast(R.string.validate_successfully)
+
+  def defaultMessage(implicit context: ContextWrapper): Ui[_] = uiShortToast(R.string.validate_error)
+
+  def tvError(error: String) = Tweak[EditText](_.setError(error))
+
+  private def uiValidationMessage(validationMessage: ValidationMessage)(implicit context: ContextWrapper): Ui[_] =
+    validationMessage.widget <~ tvError(validationMessage.details)
 }

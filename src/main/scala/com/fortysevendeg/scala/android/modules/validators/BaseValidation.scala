@@ -19,25 +19,28 @@ trait BaseValidation {
   }
 
   def hasRequiredField[T](
+      widget: Option[EditText],
       name: String,
       value: String,
       action: String): Validator[T] = input =>
     value.isEmpty match {
-      case true => ValidationMessage(s"Error $action.", s"$name can not be empty.").failure
+      case true => ValidationMessage(widget, s"Error $action.", s"$name can not be empty.").failure
       case _ => input.success
     }
 
   def isValidEMail[T](
+      widget: Option[EditText],
       value: String,
       action: String): Validator[T] = input =>
     emailRegex.findFirstMatchIn(value)
         .map(_ => input.success)
-        .getOrElse(ValidationMessage(s"Error $action.", s"$value is not a valid email address.").failure)
+        .getOrElse(ValidationMessage(widget, s"Error $action.", s"$value is not a valid email address.").failure)
 
   def isValidNum[T](
+      widget: Option[EditText],
       value: String,
       action: String): Validator[T] = input =>
     numericRegex.findFirstMatchIn(value)
         .map(_ => input.success)
-        .getOrElse(ValidationMessage(s"Error $action.", s"$value is an invalid number.").failure)
+        .getOrElse(ValidationMessage(widget, s"Error $action.", s"$value is an invalid number.").failure)
 }

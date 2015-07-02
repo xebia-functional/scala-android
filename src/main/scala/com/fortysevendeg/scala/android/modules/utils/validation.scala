@@ -1,16 +1,20 @@
 package com.fortysevendeg.scala.android.modules.utils
 
+import android.widget.EditText
+import com.fortysevendeg.scala.android.R
+import macroid.ContextWrapper
+import com.fortysevendeg.macroid.extras.ResourcesExtras._
+
 import scalaz._
 import scalaz.std.list._
 import scalaz.syntax.traverse._
 
 object validation {
 
-  val defaultMessage = "Unexpected validation error."
-
   type Validator[T] = (T) => Validation[ValidationMessage, T]
 
   case class ValidationMessage(
+      widget: Option[EditText] = None,
       message: String,
       details: String = "")
 
@@ -22,24 +26,15 @@ object validation {
   def WithValidation[T, ValT <: T, A, S]
   (validators: ((ValT) => Validation[ValidationMessage, T])*)
       (happyPath: => S)
-      (implicit input: ValT, m: Manifest[T]): S = {
+      (implicit input: ValT, m: Manifest[T], contextWrapper: ContextWrapper): S = {
 
     validators.toList.map(p => p(input).toValidationNel).sequenceU match {
       case Failure(NonEmptyList(head: ValidationMessage)) => throw ValidationException(head)
       case Failure(list: NonEmptyList[_]) =>
         throw ValidationException(list.head.asInstanceOf[ValidationMessage], list.tail.asInstanceOf[List[ValidationMessage]])
       case Success(_) => happyPath
-      case _ => throw ValidationException(ValidationMessage(defaultMessage))
+      case _ => throw ValidationException(ValidationMessage(message = resGetString(R.string.validate_error)))
     }
   }
 
-  def defaultToStringErrors(ex: ValidationException) = {
-    val sb = new StringBuilder()
-
-    sb.append(ex.errorHead.message)
-    sb.append("\n* ").append(ex.errorHead.details)
-    ex.errorTail foreach( err => sb.append("\n* ").append(err.details))
-
-    sb.toString()
-  }
 }

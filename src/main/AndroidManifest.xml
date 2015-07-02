@@ -29,10 +29,10 @@
         <activity
                 android:label="@string/app_name"
                 android:name=".ui.main.MainActivity">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN"/>-->
-                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
-            <!--</intent-filter>-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
 
         <activity android:name=".ui.ripplebackground.RippleBackgroundActivity"/>
@@ -45,17 +45,11 @@
 
         <activity android:name=".ui.googlemaps.GoogleMapsActivity"/>
 
-        <activity android:name=".ui.akkasimon.AkkaSimonActivity">
-        </activity>
+        <activity android:name=".ui.akkasimon.AkkaSimonActivity" />
 
         <activity android:name=".ui.apirequest.ForecastApiRequestActivity" />
 
-        <activity android:name=".ui.validateforms.ValidateFormsActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
+        <activity android:name=".ui.validateforms.ValidateFormsActivity" />
 
     </application>
 </manifest>

@@ -16,19 +16,19 @@ trait DummyFormValidation extends BaseValidation {
   val ageField = "age"
 
   def isValidNameField: Validator[FormModel] =
-    input => hasRequiredField(nameField, input.name.getStringValue, validationDescriptionAction)(input)
+    input => hasRequiredField(input.name, nameField, input.name.getStringValue, validationDescriptionAction)(input)
 
   def isValidEmailField: Validator[FormModel] =
     input =>
       for {
-        isFilled <- hasRequiredField(emailField, input.email.getStringValue, validationDescriptionAction)(input)
-        isValidAtAll <- isValidEMail(input.email.getStringValue, validationDescriptionAction)(input)
+        isFilled <- hasRequiredField(input.email, emailField, input.email.getStringValue, validationDescriptionAction)(input)
+        isValidAtAll <- isValidEMail(input.email, input.email.getStringValue, validationDescriptionAction)(input)
       } yield isValidAtAll
 
   def isValidAgeField: Validator[FormModel] =
     input =>
       for {
-        isFilled <- hasRequiredField(ageField, input.age.getStringValue, validationDescriptionAction)(input)
-        isValidAtAll <- isValidNum(input.age.getStringValue, validationDescriptionAction)(input)
+        isFilled <- hasRequiredField(input.age, ageField, input.age.getStringValue, validationDescriptionAction)(input)
+        isValidAtAll <- isValidNum(input.age, input.age.getStringValue, validationDescriptionAction)(input)
       } yield isValidAtAll
 }
