@@ -25,8 +25,7 @@ trait Layout
 
   var content = slot[FrameLayout]
 
-  def layout(implicit appContext: AppContext,
-             context: ActivityContext,
+  def layout(implicit context: ActivityContextWrapper,
              managerContext: FragmentManagerContext[Fragment, FragmentManager]) = getUi(
     l[LinearLayout](
       toolBarLayout <~ tbTitle(R.string.title_circular_reveal_styles),
@@ -57,7 +56,7 @@ trait Layout
 
 }
 
-class FragmentLayout(implicit appContext: AppContext, context: ActivityContext)
+class FragmentLayout(implicit context: ActivityContextWrapper)
   extends FragmentStyles {
 
   val content = getUi(

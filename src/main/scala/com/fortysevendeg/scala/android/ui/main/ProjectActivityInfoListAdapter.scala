@@ -13,7 +13,7 @@ import com.fortysevendeg.macroid.extras.ViewTweaks._
 import com.fortysevendeg.scala.android.R
 import com.fortysevendeg.scala.android.ui.commons.JsonReads
 import macroid.FullDsl._
-import macroid.{ActivityContext, AppContext}
+import macroid.ActivityContextWrapper
 import com.fortysevendeg.scala.android.ui.commons.AsyncImageTweaks._
 import play.api.libs.json.{JsResultException, Json}
 
@@ -21,7 +21,7 @@ import scala.io.Source
 import scala.util.{Failure, Success, Try}
 
 class ProjectActivityInfoListAdapter(listener: RecyclerClickListener)
-                                    (implicit context: ActivityContext, appContext: AppContext)
+                                    (implicit context: ActivityContextWrapper)
   extends RecyclerView.Adapter[ViewHolder] with JsonReads {
 
   import com.fortysevendeg.scala.android.ui.main.APIType._
@@ -32,9 +32,9 @@ class ProjectActivityInfoListAdapter(listener: RecyclerClickListener)
     case Success(activitiesList) => activitiesList
     case Failure(exception) => {
       exception match {
-        case e: FileNotFoundException => aLongToast(appContext.get.getString(R.string.json_file_not_found))
-        case e: JsResultException => aLongToast(appContext.get.getString(R.string.malformed_json_file))
-        case e => aLongToast(appContext.get.getString(R.string.unexpected_error) + e.toString)
+        case e: FileNotFoundException => aLongToast(context.application.getString(R.string.json_file_not_found))
+        case e: JsResultException => aLongToast(context.application.getString(R.string.malformed_json_file))
+        case e => aLongToast(context.application.getString(R.string.unexpected_error) + e.toString)
       }
       Seq.empty
     }
@@ -86,7 +86,7 @@ class ProjectActivityInfoListAdapter(listener: RecyclerClickListener)
 
   private def getActivitiesFromJson(url: String): Try[Seq[ProjectActivityInfo]] = {
     for {
-      stream <- Try(appContext.get.getAssets.open(url))
+      stream <- Try(context.application.getAssets.open(url))
       json <- Try(Source.fromInputStream(stream, "UTF-8").mkString)
       activityInfoList <- Try(Json.parse(json).as[Seq[ProjectActivityInfo]])
     } yield activityInfoList
@@ -98,7 +98,8 @@ trait RecyclerClickListener {
   def onClick(info: ProjectActivityInfo)
 }
 
-case class ViewHolder(adapter: Adapter)(implicit context: ActivityContext, appContext: AppContext) extends RecyclerView.ViewHolder(adapter.layout) {
+case class ViewHolder(adapter: Adapter)(implicit context: ActivityContextWrapper)
+  extends RecyclerView.ViewHolder(adapter.layout) {
 
   val content = adapter.layout
 

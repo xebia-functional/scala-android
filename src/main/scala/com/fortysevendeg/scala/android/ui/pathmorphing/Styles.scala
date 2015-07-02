@@ -12,7 +12,7 @@ import com.fortysevendeg.macroid.extras.TextTweaks._
 import com.fortysevendeg.macroid.extras.ViewTweaks._
 import com.fortysevendeg.scala.android.ui.components.PathMorphDrawable
 import com.fortysevendeg.scala.android.ui.components.IconTypes._
-import macroid.{Tweak, AppContext}
+import macroid.{Tweak, ContextWrapper}
 import macroid.FullDsl._
 import scala.language.postfixOps
 
@@ -26,7 +26,7 @@ trait Styles {
     vMatchParent +
       llVertical
 
-  def scrollViewStyle(implicit appContext: AppContext): Tweak[ScrollView] =
+  def scrollViewStyle(implicit context: ContextWrapper): Tweak[ScrollView] =
     vMatchParent +
       vPaddings(resGetDimensionPixelSize(R.dimen.padding_default))
 
@@ -50,21 +50,21 @@ trait Styles {
       sbProgress(0) +
       vMatchWidth
 
-  def drawableContentStyle(implicit appContext: AppContext): Tweak[FrameLayout] = {
+  def drawableContentStyle(implicit context: ContextWrapper): Tweak[FrameLayout] = {
     val size = resGetDimensionPixelSize(R.dimen.path_morphing_size_content_drawable)
     lp[LinearLayout](size, size) +
       llLayoutGravity(Gravity.CENTER)
   }
 
 
-  def drawableStyle(width: Int, height: Int, stroke: Int)(implicit appContext: AppContext): Tweak[ImageView] =
+  def drawableStyle(width: Int, height: Int, stroke: Int)(implicit context: ContextWrapper): Tweak[ImageView] =
     lp[LinearLayout](width, height) +
       flLayoutGravity(Gravity.CENTER) +
       vMargins(resGetDimensionPixelSize(R.dimen.padding_default)) +
       ivSrc(new PathMorphDrawable(defaultStroke = stroke)) +
       vBackground(R.drawable.background_item_square)
 
-  def colorSelectorStyle(selected: Boolean = false)(implicit appContext: AppContext): Tweak[ImageView] = {
+  def colorSelectorStyle(selected: Boolean = false)(implicit context: ContextWrapper): Tweak[ImageView] = {
     val size = resGetDimensionPixelSize(R.dimen.path_morphing_size_circles)
     lp[LinearLayout](size, size) +
       vPaddings(8 dp) +
@@ -75,7 +75,7 @@ trait Styles {
       })
   }
 
-  def iconSelectorStyle(icon: Int, selected: Boolean = false)(implicit appContext: AppContext): Tweak[ImageView] = {
+  def iconSelectorStyle(icon: Int, selected: Boolean = false)(implicit context: ContextWrapper): Tweak[ImageView] = {
     val size = resGetDimensionPixelSize(R.dimen.path_morphing_size_circles)
     lp[LinearLayout](size, size) +
       vPaddings(resGetDimensionPixelSize(R.dimen.padding_default)) +
@@ -89,7 +89,7 @@ trait Styles {
     vMatchWidth +
       llVertical
 
-  def tableLayoutRowStyle(implicit appContext: AppContext): Tweak[LinearLayout] =
+  def tableLayoutRowStyle(implicit context: ContextWrapper): Tweak[LinearLayout] =
     vMatchWidth +
       llHorizontal +
       llGravity(Gravity.CENTER)

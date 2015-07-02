@@ -1,4 +1,6 @@
-Scala API Demos [![Circle CI](https://circleci.com/gh/47deg/scala-android.svg?style=svg&circle-token=9e0f25c4e51c6eb2e3f637a2bedc88b67d905c13)](https://circleci.com/gh/47deg/scala-android)
+[![Build Status](https://travis-ci.org/47deg/scala-android.svg?branch=master)](https://travis-ci.org/47deg/scala-android)
+
+Scala API Demos
 =============
 
 This repository contains examples of using Scala on Android. The [Macroid](http://macroid.github.io/) library is used in the project to assist in GUI operations.

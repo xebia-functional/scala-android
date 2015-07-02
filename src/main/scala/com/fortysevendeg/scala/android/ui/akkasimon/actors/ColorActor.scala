@@ -4,12 +4,12 @@ import akka.actor.{ActorLogging, Props}
 import com.fortysevendeg.scala.android.ui.akkasimon.actors.ComputerActor.RoundItemActorColor
 import com.fortysevendeg.scala.android.ui.akkasimon.fragments.ColorFragment
 import macroid.Ui
-import macroid.akkafragments.FragmentActor
+import macroid.akka.FragmentActor
 
 class ColorActor extends FragmentActor[ColorFragment] with ActorLogging {
 
   import com.fortysevendeg.scala.android.ui.akkasimon.actors.ColorActor._
-  import macroid.akkafragments.FragmentActor._
+  import macroid.akka.FragmentActor._
 
   def receive = receiveUi andThen {
     case LightOn(Nil) =>

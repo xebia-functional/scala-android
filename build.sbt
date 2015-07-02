@@ -48,6 +48,8 @@ libraryDependencies ++= Seq(
   androidTest,
   compilerPlugin(Libraries.wartRemover))
 
+dexMaxHeap in Android := "2048m"
+
 packageRelease <<= (packageRelease in Android).dependsOn(setDebugTask(false))
 
 run <<= run in Android
@@ -56,6 +58,8 @@ apkSigningConfig in Android := Option(
   PromptPasswordsSigningConfig(
     keystore = new File(Path.userHome.absolutePath + "/.android/signed.keystore"),
     alias = "47deg"))
+
+proguardCache in Android := Seq.empty
 
 proguardScala in Android := true
 
