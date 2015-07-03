@@ -32,7 +32,7 @@ resolvers ++= Settings.resolvers
 libraryDependencies ++= Seq(
   aar(macroidRoot),
   aar(macroidAkkaFragments),
-  aar(androidAppCompat),
+  aar(androidDesign),
   aar(androidCardView),
   aar(androidRecyclerview),
   aar(macroidExtras),
@@ -43,8 +43,9 @@ libraryDependencies ++= Seq(
   akkaActor,
   specs2,
   mockito,
-  androidTest,
-  compilerPlugin(Libraries.wartRemover))
+  androidTest)
+
+transitiveAndroidLibs in Android := true
 
 dexMaxHeap in Android := "2048m"
 
