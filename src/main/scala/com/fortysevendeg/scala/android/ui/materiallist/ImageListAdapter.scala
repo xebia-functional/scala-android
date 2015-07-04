@@ -3,10 +3,7 @@ package com.fortysevendeg.scala.android.ui.materiallist
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView
 import android.view.{LayoutInflater, View, ViewGroup}
-import com.fortysevendeg.macroid.extras.ViewTweaks._
-import com.fortysevendeg.macroid.extras.TextTweaks._
-import com.fortysevendeg.scala.android.ui.commons.AsyncImageTweaks._
-import com.fortysevendeg.scala.android.{R, TR, TypedFindView}
+import com.fortysevendeg.scala.android.R
 import macroid.ActivityContextWrapper
 import macroid.FullDsl._
 
@@ -27,30 +24,13 @@ class ImageListAdapter(implicit context: ActivityContextWrapper)
 
   override def getItemCount: Int = images.size
 
-  override def onBindViewHolder(viewHolder: ImageViewHolder, position: Int): Unit = {
-    val image = images(position)
-    runUi(
-      (viewHolder.parent <~ vTag(position.toString)) ~
-          (viewHolder.image <~ srcImage(image.url)) ~
-          (viewHolder.text <~ tvText(image.name))
-    )
-  }
+  override def onBindViewHolder(viewHolder: ImageViewHolder, position: Int): Unit =
+    runUi(viewHolder.bind(images(position), position))
 
   override def onClick(v: View): Unit = {
     val image = images(v.getTag.toString.toInt)
     Snackbar.make(v, image.name, Snackbar.LENGTH_LONG).show()
   }
-}
-
-case class ImageViewHolder(parent: View)
-    extends RecyclerView.ViewHolder(parent)
-    with TypedFindView {
-
-  val image = Option(findView(TR.image))
-  val text = Option(findView(TR.text))
-
-  override protected def findViewById(id: Int): View = parent.findViewById(id)
-
 }
 
 case class ImageData(name: String, url: String)
