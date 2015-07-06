@@ -60,7 +60,7 @@ trait FragmentStyles {
 
   def imageStyle(implicit context: ActivityContextWrapper): Tweak[ImageView] =
     lp[LinearLayout](MATCH_PARENT, resGetDimensionPixelSize(R.dimen.circular_reveal_height_image)) +
-        srcImage("http://lorempixel.com/600/600/technics/") +
+        srcImage(resGetString(R.string.material_list_url_image)) +
         ivScaleType(ScaleType.CENTER_CROP)
 
   def textTitleStyle(implicit context: ContextWrapper): Tweak[TextView] =

@@ -18,7 +18,7 @@ class MaterialListActivity
 
     setContentView(R.layout.material_list_activity)
 
-    toolBar foreach  setSupportActionBar
+    toolBar foreach setSupportActionBar
     getSupportActionBar.setDisplayHomeAsUpEnabled(true)
 
     runUi(init)
