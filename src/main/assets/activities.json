@@ -1,5 +1,19 @@
 [
   {
+    "name": "Material Design List",
+    "description": "This example shows how to use a list with the AppBar and FabButton from the Android Support Design Library",
+    "className": "com.fortysevendeg.scala.android.ui.materiallist.MaterialListActivity",
+    "minApi": 14,
+    "targetApi": 21,
+    "scalaLevel": 1,
+    "androidLevel": 2,
+    "user" : {
+      "avatar": "http://www.47deg.com/assets/img/company/profile-javi.jpg",
+      "name": "Javi Pacheco",
+      "twitter": "@javielinux"
+    }
+  },
+  {
     "name": "Ripple Background",
     "description": "This example demonstrates usage of the new Ripple animations available in Lollipop and how to create several animations in serial using Macroid",
     "className": "com.fortysevendeg.scala.android.ui.ripplebackground.RippleBackgroundActivity",

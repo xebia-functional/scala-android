@@ -5,6 +5,7 @@
     <string name="title_ripple_background">Ripple Background</string>
     <string name="title_text_styles">Text Styles</string>
     <string name="title_circular_reveal_styles">Circular Reveal</string>
+    <string name="material_list">Material Design List</string>
     <string name="title_path_morphing">Path Morphing</string>
     <string name="title_select_icon">Select icon</string>
     <string name="title_select_color">Select color</string>
@@ -49,7 +50,7 @@
     <string name="simon_round_counter">Round: %s</string>
 
     <!-- Circular Reveal String resources -->
-    <string name="circular_reveal_title">Beach</string>
+    <string name="circular_reveal_title">Technics</string>
 
     <!-- Forecast String resources -->
     <string name="menu_about_icons">About</string>
@@ -66,4 +67,8 @@
     <string name="error_message_api_request_default">Unknown error</string>
     <string name="error_message_api_request_location_api">Error getting location</string>
     <string name="error_message_api_request_loading">Error loading weather</string>
+
+    <!-- Material List -->
+    <string name="material_list_add_item">Add new item</string>
+
 </resources>

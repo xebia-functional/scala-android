@@ -20,7 +20,7 @@ class CircularRevealActivity
 
     setContentView(layout)
 
-    toolBar map setSupportActionBar
+    toolBar foreach setSupportActionBar
 
     getSupportActionBar.setDisplayHomeAsUpEnabled(true)
 
@@ -28,14 +28,11 @@ class CircularRevealActivity
 
   def remove(fragment: Fragment): Unit = removeFragment(fragment)
 
-  override def onOptionsItemSelected(item: MenuItem): Boolean = {
-    item.getItemId match {
-      case android.R.id.home => {
-        finish()
-        false
-      }
-    }
-    super.onOptionsItemSelected(item)
+  override def onOptionsItemSelected(item: MenuItem): Boolean = item.getItemId match {
+    case android.R.id.home =>
+      finish()
+      false
+    case _ => super.onOptionsItemSelected(item)
   }
 
   override def onBackPressed(): Unit =
