@@ -18,7 +18,7 @@ import macroid.{ActivityContextWrapper, ContextWrapper, Ui}
 
 import scala.language.postfixOps
 
-trait ScreenRenderer {
+trait MainComposer {
 
   self: TypedFindView =>
 
@@ -32,7 +32,7 @@ trait ScreenRenderer {
 
   lazy val fabActionButton = Option(findView(TR.fab_action_button))
 
-  def init(implicit contextWrapper: ActivityContextWrapper): Ui[_] = initRecycler ~ initFabButton
+  def composition(implicit contextWrapper: ActivityContextWrapper): Ui[_] = initRecycler ~ initFabButton
 
   private[this] def initRecycler(implicit contextWrapper: ActivityContextWrapper): Ui[_] =
     (recycler

@@ -10,7 +10,7 @@ import macroid.FullDsl._
 class MaterialListActivity
   extends AppCompatActivity
   with TypedFindView
-  with ScreenRenderer
+  with MainComposer
   with Contexts[AppCompatActivity] {
 
   override def onCreate(savedInstanceState: Bundle) = {
@@ -21,7 +21,7 @@ class MaterialListActivity
     toolBar foreach setSupportActionBar
     getSupportActionBar.setDisplayHomeAsUpEnabled(true)
 
-    runUi(init)
+    runUi(composition)
   }
 
   override def onOptionsItemSelected(item: MenuItem): Boolean = item.getItemId match {
