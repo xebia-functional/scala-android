@@ -75,19 +75,3 @@ packagingOptions in Android := PackagingOptions(
     "META-INF/NOTICE.txt"))
 
 dexMulti in Android := true
-
-dexMinimizeMain in Android := true
-
-dexMainClasses in Android := Seq(
-  "com/example/app/MultidexApplication.class",
-  "android/support/multidex/BuildConfig.class",
-  "android/support/multidex/MultiDex$V14.class",
-  "android/support/multidex/MultiDex$V19.class",
-  "android/support/multidex/MultiDex$V4.class",
-  "android/support/multidex/MultiDex.class",
-  "android/support/multidex/MultiDexApplication.class",
-  "android/support/multidex/MultiDexExtractor$1.class",
-  "android/support/multidex/MultiDexExtractor.class",
-  "android/support/multidex/ZipUtil$CentralDirectory.class",
-  "android/support/multidex/ZipUtil.class"
-)
