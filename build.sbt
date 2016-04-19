@@ -6,7 +6,7 @@ import Libraries.graphics._
 import Libraries.json._
 import Libraries.net._
 import Libraries.test._
-import ReplacePropertiesGenerator._
+//import ReplacePropertiesGenerator._
 import android.PromptPasswordsSigningConfig
 
 android.Plugin.androidBuild
@@ -26,6 +26,10 @@ version := Versions.appV
 scalaVersion := Versions.scalaV
 
 scalacOptions ++= Seq("-feature", "-deprecation")
+
+javacOptions ++= Seq("-source", "1.7", "-target", "1.7")
+
+scalacOptions ++= Seq("-feature", "-deprecation", "-target:jvm-1.7")
 
 resolvers ++= Settings.resolvers
 
@@ -49,8 +53,6 @@ transitiveAndroidLibs in Android := true
 
 dexMaxHeap in Android := "2048m"
 
-packageRelease <<= (packageRelease in Android).dependsOn(setDebugTask(false))
-
 run <<= run in Android
 
 apkSigningConfig in Android := Option(
@@ -58,14 +60,34 @@ apkSigningConfig in Android := Option(
     keystore = new File(Path.userHome.absolutePath + "/.android/signed.keystore"),
     alias = "47deg"))
 
-proguardCache in Android := Seq.empty
-
 proguardScala in Android := true
 
 useProguard in Android := true
 
+useProguardInDebug in Android := true
+
 proguardOptions in Android ++= Settings.proguardCommons ++ Settings.proguardAkka
 
-apkbuildExcludes in Android ++= Seq("META-INF/LICENSE.txt", "META-INF/NOTICE.txt", "META-INF/LICENSE", "META-INF/NOTICE")
+packagingOptions in Android := PackagingOptions(
+  Seq("META-INF/LICENSE",
+    "META-INF/LICENSE.txt",
+    "META-INF/NOTICE",
+    "META-INF/NOTICE.txt"))
 
-packageResources in Android <<= (packageResources in Android).dependsOn(replaceValuesTask)
+dexMulti in Android := true
+
+dexMinimizeMain in Android := true
+
+dexMainClasses in Android := Seq(
+  "com/example/app/MultidexApplication.class",
+  "android/support/multidex/BuildConfig.class",
+  "android/support/multidex/MultiDex$V14.class",
+  "android/support/multidex/MultiDex$V19.class",
+  "android/support/multidex/MultiDex$V4.class",
+  "android/support/multidex/MultiDex.class",
+  "android/support/multidex/MultiDexApplication.class",
+  "android/support/multidex/MultiDexExtractor$1.class",
+  "android/support/multidex/MultiDexExtractor.class",
+  "android/support/multidex/ZipUtil$CentralDirectory.class",
+  "android/support/multidex/ZipUtil.class"
+)
