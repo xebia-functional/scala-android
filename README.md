@@ -12,13 +12,18 @@ Compile
 
 You can compile this project and contribute improvements. To compile the project:
 
-* Download [Activator](https://typesafe.com/community/core-tools/activator-and-sbt) and install it
+* Download [Activator](https://www.lightbend.com/community/core-tools/activator-and-sbt) and install it
 * Configure the Android SDK on your computer
 * Clone this GitHub project to your computer
 * From project root directory run:
 
 ```
-$ ./activator
+$ activator
+```
+or
+
+```
+$ sbt
 ```
 
 * Connect your phone and execute:
@@ -42,7 +47,7 @@ google.map.key=***
 Contribute your own examples
 ===============
 
-If you want to learn *Scala on Android* and you want to share your examples, you can send us a PR with your new feature. 
+If you want to learn *Scala on Android* and you want to share your examples, you can send us a PR with your new feature.
 
 Follow these steps to create your example:
 
@@ -78,7 +83,7 @@ Follow these steps to create your example:
 2 -> Intermediate
 3 -> Advanced
 ```
- 
+
 If you are having trouble deciding on an example to contribute here are some ideas:
 
 * Transitions between activities: use the new [Activity Transitions in Material Design](https://developer.android.com/training/material/animations.html#Transitions), similar to *Google Play Music*
@@ -94,5 +99,3 @@ Licensed under the Apache License, Version 2.0 (the "License"); you may not use 
 
 http://www.apache.org/licenses/LICENSE-2.0
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
-
