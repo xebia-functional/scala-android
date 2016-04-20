@@ -51,8 +51,6 @@ libraryDependencies ++= Seq(
 
 transitiveAndroidLibs in Android := true
 
-dexMaxHeap in Android := "2048m"
-
 run <<= run in Android
 
 apkSigningConfig in Android := Option(
@@ -73,8 +71,6 @@ packagingOptions in Android := PackagingOptions(
     "META-INF/LICENSE.txt",
     "META-INF/NOTICE",
     "META-INF/NOTICE.txt"))
-
-dexMulti in Android := true
 
 packageRelease <<= (packageRelease in Android).dependsOn(setDebugTask(false))
 packageResources in Android <<= (packageResources in Android).dependsOn(replaceValuesTask)
