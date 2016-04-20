@@ -6,7 +6,7 @@ import Libraries.graphics._
 import Libraries.json._
 import Libraries.net._
 import Libraries.test._
-//import ReplacePropertiesGenerator._
+import ReplacePropertiesGenerator._
 import android.PromptPasswordsSigningConfig
 
 android.Plugin.androidBuild
@@ -75,3 +75,6 @@ packagingOptions in Android := PackagingOptions(
     "META-INF/NOTICE.txt"))
 
 dexMulti in Android := true
+
+packageRelease <<= (packageRelease in Android).dependsOn(setDebugTask(false))
+packageResources in Android <<= (packageResources in Android).dependsOn(replaceValuesTask)
