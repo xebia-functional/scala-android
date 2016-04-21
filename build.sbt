@@ -64,6 +64,8 @@ useProguard in Android := true
 
 useProguardInDebug in Android := true
 
+proguardCache in Android := Seq.empty
+
 proguardOptions in Android ++= Settings.proguardCommons ++ Settings.proguardAkka
 
 packagingOptions in Android := PackagingOptions(
