@@ -27,6 +27,10 @@ scalaVersion := Versions.scalaV
 
 scalacOptions ++= Seq("-feature", "-deprecation")
 
+javacOptions ++= Seq("-source", "1.7", "-target", "1.7")
+
+scalacOptions ++= Seq("-feature", "-deprecation", "-target:jvm-1.7")
+
 resolvers ++= Settings.resolvers
 
 libraryDependencies ++= Seq(
@@ -47,10 +51,6 @@ libraryDependencies ++= Seq(
 
 transitiveAndroidLibs in Android := true
 
-dexMaxHeap in Android := "2048m"
-
-packageRelease <<= (packageRelease in Android).dependsOn(setDebugTask(false))
-
 run <<= run in Android
 
 apkSigningConfig in Android := Option(
@@ -58,14 +58,26 @@ apkSigningConfig in Android := Option(
     keystore = new File(Path.userHome.absolutePath + "/.android/signed.keystore"),
     alias = "47deg"))
 
-proguardCache in Android := Seq.empty
-
 proguardScala in Android := true
 
 useProguard in Android := true
 
+useProguardInDebug in Android := true
+
+proguardCache in Android := Seq.empty
+
 proguardOptions in Android ++= Settings.proguardCommons ++ Settings.proguardAkka
 
-apkbuildExcludes in Android ++= Seq("META-INF/LICENSE.txt", "META-INF/NOTICE.txt", "META-INF/LICENSE", "META-INF/NOTICE")
+packagingOptions in Android := PackagingOptions(
+  Seq("META-INF/LICENSE",
+    "META-INF/LICENSE.txt",
+    "META-INF/NOTICE",
+    "META-INF/NOTICE.txt"))
+
+dexMaxHeap in Android := "2048m"
+
+dexMulti in Android := true
+
+packageRelease <<= (packageRelease in Android).dependsOn(setDebugTask(false))
 
 packageResources in Android <<= (packageResources in Android).dependsOn(replaceValuesTask)

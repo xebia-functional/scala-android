@@ -1,3 +1,2 @@
-addSbtPlugin("org.brianmckenna" % "sbt-wartremover" % "0.13")
-
-addSbtPlugin("com.hanhuy.sbt" % "android-sdk-plugin" % "1.4.3")
+logLevel := Level.Info
+addSbtPlugin("org.scala-android" % "sbt-android" % "1.6.0")
